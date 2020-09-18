@@ -23,8 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26886c16-0bad-470f-8bff-8ae8b003d4f6" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/../Zhuhai-AED-emergency-system-v1/aed-miniprogram/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Zhuhai-AED-emergency-system-v1/aed-miniprogram/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Zhuhai-AED-emergency-system-v1/aed-web/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Zhuhai-AED-emergency-system-v1/aed-web/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/HttpsClientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/HttpsClientUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +48,13 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -76,6 +84,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/bnuz/aed" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -86,13 +100,15 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -125,6 +141,7 @@
       <option name="presentableId" value="Default" />
       <updated>1600416314832</updated>
       <workItem from="1600416317078" duration="327000" />
+      <workItem from="1600418200353" duration="1907000" />
     </task>
     <servers />
   </component>
@@ -141,6 +158,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1458" height="466" key="GridCell.Tab.0.bottom" timestamp="1600416644228">

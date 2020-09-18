@@ -29,7 +29,7 @@ import java.util.Map;
  * 处理Get和Post请求
  * 返回值为响应的json字符串
  */
-public class HttpsClientUtil {
+public class HttpsClientUtils {
 
     /**
      * @param url 发送请求的URL
