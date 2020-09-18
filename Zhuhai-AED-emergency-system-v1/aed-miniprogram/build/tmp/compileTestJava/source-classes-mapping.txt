@@ -1,0 +1,2 @@
+org/bnuz/aedminiprogram/AedMiniprogramApplicationTests.java
+ org.bnuz.aedminiprogram.AedMiniprogramApplicationTests
