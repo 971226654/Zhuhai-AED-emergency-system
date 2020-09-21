@@ -1,2 +1,13 @@
 server:
   port: 8989
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://120.24.43.70/springboot_test_db
+    username: admin
+    password: 123456@admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

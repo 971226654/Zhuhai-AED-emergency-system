@@ -23,9 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26886c16-0bad-470f-8bff-8ae8b003d4f6" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/HttpsClientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/HttpsClientUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +44,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="aed" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -76,6 +83,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="JPA.DatabaseSchemaImportDialog" value="059d7c7e-f38b-4efd-a872-3b30bc6f6ba9" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -83,15 +92,21 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/bnuz/aed" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.40344828" />
   </component>
   <component name="RecentsManager">
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="com.bnuz.aed.model" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.bnuz.aed.controller" />
     </key>
@@ -141,7 +156,9 @@
       <option name="presentableId" value="Default" />
       <updated>1600416314832</updated>
       <workItem from="1600416317078" duration="327000" />
-      <workItem from="1600418200353" duration="1907000" />
+      <workItem from="1600418200353" duration="2235000" />
+      <workItem from="1600579824955" duration="6094000" />
+      <workItem from="1600588687897" duration="2869000" />
     </task>
     <servers />
   </component>
@@ -161,6 +178,42 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="688" y="142" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600586823416">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="688" y="142" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1600586823416" />
+    <state x="431" y="253" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1600588148508">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="431" y="253" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1500.960@0.0.1500.960" timestamp="1600588148508" />
+    <state x="455" y="387" key="#com.intellij.javaee.module.view.common.J2EE.J2EEDeploymentDescriptorLocationPanel.changeDDPath" timestamp="1600587466942">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="455" y="387" key="#com.intellij.javaee.module.view.common.J2EE.J2EEDeploymentDescriptorLocationPanel.changeDDPath/0.0.1500.960@0.0.1500.960" timestamp="1600587466942" />
+    <state x="371" y="126" width="655" height="700" key="#com.intellij.jpa.generation.ui.DatabaseSchemaImportDialog" timestamp="1600588171100">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="371" y="126" width="655" height="700" key="#com.intellij.jpa.generation.ui.DatabaseSchemaImportDialog/0.0.1500.960@0.0.1500.960" timestamp="1600588171100" />
+    <state x="396" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600589137086">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="396" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1500.960@0.0.1500.960" timestamp="1600589137086" />
+    <state x="650" y="368" width="422" height="306" key="#分配数据源" timestamp="1600615680434">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="650" y="368" width="422" height="306" key="#分配数据源/0.0.1500.960@0.0.1500.960" timestamp="1600615680434" />
+    <state x="377" y="159" key="#检查" timestamp="1600588925349">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="377" y="159" key="#检查/0.0.1500.960@0.0.1500.960" timestamp="1600588925349" />
+    <state x="182" y="74" key="#项目结构" timestamp="1600587985315">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="182" y="74" key="#项目结构/0.0.1500.960@0.0.1500.960" timestamp="1600587985315" />
+    <state x="906" y="224" key="FileChooserDialogImpl" timestamp="1600615637253">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="906" y="224" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1600615637253" />
     <state width="1458" height="466" key="GridCell.Tab.0.bottom" timestamp="1600416644228">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
@@ -193,5 +246,21 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state width="1458" height="466" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1600416644228" />
+    <state x="331" y="214" key="IDE.errors.dialog" timestamp="1600587220301">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="331" y="214" key="IDE.errors.dialog/0.0.1500.960@0.0.1500.960" timestamp="1600587220301" />
+    <state x="231" y="55" key="SettingsEditor" timestamp="1600588541941">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="231" y="55" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1600588541941" />
+    <state x="566" y="292" width="366" height="371" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1600589157218">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="566" y="292" width="366" height="371" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1500.960@0.0.1500.960" timestamp="1600589157218" />
+    <state x="103" y="164" key="spring file set editor" timestamp="1600588308912">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="103" y="164" key="spring file set editor/0.0.1500.960@0.0.1500.960" timestamp="1600588308912" />
   </component>
 </project>
