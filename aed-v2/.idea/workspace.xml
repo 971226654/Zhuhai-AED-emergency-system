@@ -23,24 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26886c16-0bad-470f-8bff-8ae8b003d4f6" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/059d7c7e-f38b-4efd-a872-3b30bc6f6ba9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/059d7c7e-f38b-4efd-a872-3b30bc6f6ba9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/AedApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/AedApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/AedEquipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/AedEquipment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/AedPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/AedPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/AedSituation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/AedSituation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/CollectList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/CollectList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Examine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Examine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Inspector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Inspector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Knowledge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Knowledge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/RealtimeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/RealtimeInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedEquipmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedEquipmentController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +155,7 @@
       <workItem from="1600418200353" duration="2235000" />
       <workItem from="1600579824955" duration="6094000" />
       <workItem from="1600588687897" duration="11852000" />
-      <workItem from="1600672373110" duration="3101000" />
+      <workItem from="1600672373110" duration="3504000" />
     </task>
     <servers />
   </component>
@@ -227,38 +211,38 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="906" y="224" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1600615637253" />
-    <state width="1458" height="325" key="GridCell.Tab.0.bottom" timestamp="1600675437591">
+    <state width="1458" height="325" key="GridCell.Tab.0.bottom" timestamp="1600675604682">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1600675437591" />
-    <state width="1458" height="325" key="GridCell.Tab.0.center" timestamp="1600675437591">
+    <state width="1458" height="325" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1600675604682" />
+    <state width="1458" height="325" key="GridCell.Tab.0.center" timestamp="1600675604682">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1600675437591" />
-    <state width="1458" height="325" key="GridCell.Tab.0.left" timestamp="1600675437591">
+    <state width="1458" height="325" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1600675604682" />
+    <state width="1458" height="325" key="GridCell.Tab.0.left" timestamp="1600675604681">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1600675437591" />
-    <state width="1458" height="325" key="GridCell.Tab.0.right" timestamp="1600675437591">
+    <state width="1458" height="325" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1600675604681" />
+    <state width="1458" height="325" key="GridCell.Tab.0.right" timestamp="1600675604682">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1600675437591" />
-    <state width="1458" height="325" key="GridCell.Tab.1.bottom" timestamp="1600675437592">
+    <state width="1458" height="325" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1600675604682" />
+    <state width="1458" height="325" key="GridCell.Tab.1.bottom" timestamp="1600675604683">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1600675437592" />
-    <state width="1458" height="325" key="GridCell.Tab.1.center" timestamp="1600675437592">
+    <state width="1458" height="325" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1600675604683" />
+    <state width="1458" height="325" key="GridCell.Tab.1.center" timestamp="1600675604682">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1600675437592" />
-    <state width="1458" height="325" key="GridCell.Tab.1.left" timestamp="1600675437592">
+    <state width="1458" height="325" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1600675604682" />
+    <state width="1458" height="325" key="GridCell.Tab.1.left" timestamp="1600675604682">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1600675437592" />
-    <state width="1458" height="325" key="GridCell.Tab.1.right" timestamp="1600675437592">
+    <state width="1458" height="325" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1600675604682" />
+    <state width="1458" height="325" key="GridCell.Tab.1.right" timestamp="1600675604683">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1600675437592" />
+    <state width="1458" height="325" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1600675604683" />
     <state x="331" y="214" key="IDE.errors.dialog" timestamp="1600587220301">
       <screen x="0" y="0" width="1500" height="960" />
     </state>

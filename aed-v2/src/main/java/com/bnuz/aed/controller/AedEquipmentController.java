@@ -46,7 +46,7 @@ public class AedEquipmentController {
     }
 
     @PostMapping("/equipments")
-    @ApiOperation("新增一个AED设备")
+    @ApiOperation("新增一个AED设备,所需字段购买时间,厂家名称,生产时间, 经度, 纬度")
     public String addEquipment(@RequestParam(value = "purchaseTime") String purchaseTime,
                                @RequestParam(value = "factoryName") String factoryName,
                                @RequestParam(value = "productionTime") String productionTime,
@@ -67,7 +67,7 @@ public class AedEquipmentController {
     }
 
     @DeleteMapping("/equipments/delete/{id}")
-    @ApiOperation("删除一个AED设备")
+    @ApiOperation("删除一个AED设备，by 设备ID")
     public String deleteEquipment(@PathVariable String id){
         Long equipmentId = Long.parseLong(id);
         Optional<AedEquipment> optional = aedEquipmentRepository.findById(equipmentId);
@@ -80,7 +80,7 @@ public class AedEquipmentController {
     }
 
     @PutMapping("/equipments/position/{id}")
-    @ApiOperation("更新一个AED设备的经纬度")
+    @ApiOperation("更新一个AED设备的经纬度，by 设备ID")
     public String updatePosition(@PathVariable String id,
                                  @RequestParam(value = "longitude") String longitude,
                                  @RequestParam(value = "latitude") String latitude) {
