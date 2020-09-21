@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 import java.io.Serializable;
 
 /**
@@ -14,7 +13,7 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table ( name = "AED-Position" )
+@Table ( name = "aed_position" )
 public class AedPosition implements Serializable {
 
 	private static final long serialVersionUID =  4049388573756599450L;

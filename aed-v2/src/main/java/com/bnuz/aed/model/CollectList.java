@@ -23,6 +23,7 @@ public class CollectList implements Serializable {
 	 * 收藏ID
 	 */
 	@Id
+	@GeneratedValue
    	@Column(name = "collection_id" )
 	private Long collectionId;
 

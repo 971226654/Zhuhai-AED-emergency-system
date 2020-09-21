@@ -24,6 +24,7 @@ public class Knowledge implements Serializable {
 	 * 急救知识ID
 	 */
 	@Id
+	@GeneratedValue
    	@Column(name = "knowledge_id" )
 	private Long knowledgeId;
 

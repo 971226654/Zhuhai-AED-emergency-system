@@ -1,8 +1,44 @@
-com/bnuz/aed/controller/HelloController.java
- com.bnuz.aed.controller.HelloController
-com/bnuz/aed/common/tools/HttpsClientUtil.java
- com.bnuz.aed.common.tools.HttpsClientUtil
+com/bnuz/aed/common/repository/AedEquipmentRepository.java
+ com.bnuz.aed.common.repository.AedEquipmentRepository
+com/bnuz/aed/model/AedEquipment.java
+ com.bnuz.aed.model.AedEquipment
+com/bnuz/aed/model/FeedbackResult.java
+ com.bnuz.aed.model.FeedbackResult
+com/bnuz/aed/model/AedSituation.java
+ com.bnuz.aed.model.AedSituation
+com/bnuz/aed/model/CollectList.java
+ com.bnuz.aed.model.CollectList
 com/bnuz/aed/common/config/Swagger3Config.java
  com.bnuz.aed.common.config.Swagger3Config
+com/bnuz/aed/model/Inspector.java
+ com.bnuz.aed.model.Inspector
 com/bnuz/aed/AedApplication.java
  com.bnuz.aed.AedApplication
+com/bnuz/aed/common/tools/HttpsClientUtils.java
+ com.bnuz.aed.common.tools.HttpsClientUtils
+com/bnuz/aed/common/repository/AedPositionRepository.java
+ com.bnuz.aed.common.repository.AedPositionRepository
+com/bnuz/aed/model/User.java
+ com.bnuz.aed.model.User
+com/bnuz/aed/model/Examine.java
+ com.bnuz.aed.model.Examine
+com/bnuz/aed/model/ExamineResult.java
+ com.bnuz.aed.model.ExamineResult
+com/bnuz/aed/common/tools/DateUtils.java
+ com.bnuz.aed.common.tools.DateUtils
+com/bnuz/aed/controller/HelloController.java
+ com.bnuz.aed.controller.HelloController
+com/bnuz/aed/model/Knowledge.java
+ com.bnuz.aed.model.Knowledge
+com/bnuz/aed/model/AedPosition.java
+ com.bnuz.aed.model.AedPosition
+com/bnuz/aed/common/tools/JsonUtils.java
+ com.bnuz.aed.common.tools.JsonUtils
+com/bnuz/aed/model/Feedback.java
+ com.bnuz.aed.model.Feedback
+com/bnuz/aed/controller/AedEquipmentController.java
+ com.bnuz.aed.controller.AedEquipmentController
+com/bnuz/aed/model/RealtimeInfo.java
+ com.bnuz.aed.model.RealtimeInfo
+com/bnuz/aed/model/Manager.java
+ com.bnuz.aed.model.Manager

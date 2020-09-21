@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api(tags = "HelloTest")
 public class HelloController {
+
     @GetMapping("/hello")
     @ApiOperation("Hello To Two Client测试")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
         return String.format("Hello %s!", name);
     }
+
 }

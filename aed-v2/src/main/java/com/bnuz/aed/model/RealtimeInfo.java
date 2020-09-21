@@ -24,6 +24,7 @@ public class RealtimeInfo implements Serializable {
 	 * 资讯id
 	 */
 	@Id
+	@GeneratedValue
    	@Column(name = "info_id" )
 	private Long infoId;
 

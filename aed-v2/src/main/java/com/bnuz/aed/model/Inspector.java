@@ -23,6 +23,7 @@ public class Inspector implements Serializable {
 	 * 检查员ID
 	 */
 	@Id
+	@GeneratedValue
    	@Column(name = "inspector_id" )
 	private Long inspectorId;
 

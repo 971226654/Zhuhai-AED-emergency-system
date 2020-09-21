@@ -23,6 +23,7 @@ public class Examine implements Serializable {
 	 * 审核ID
 	 */
 	@Id
+	@GeneratedValue
    	@Column(name = "examine_id" )
 	private Long examineId;
 

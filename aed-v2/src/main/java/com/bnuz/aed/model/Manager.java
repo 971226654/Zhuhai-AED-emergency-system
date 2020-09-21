@@ -23,6 +23,7 @@ public class Manager implements Serializable {
 	 * 管理员ID
 	 */
 	@Id
+	@GeneratedValue
    	@Column(name = "manager_id" )
 	private Long managerId;
 

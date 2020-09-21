@@ -1,10 +1,6 @@
 package com.bnuz.aed.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +11,7 @@ import java.util.Date;
  */
 
 @Entity
-@Table ( name = "AED-Equipment" )
+@Table ( name = "aed_equipment" )
 public class AedEquipment implements Serializable {
 
 	private static final long serialVersionUID =  1684658591110423194L;
@@ -24,6 +20,7 @@ public class AedEquipment implements Serializable {
 	 * 设备ID
 	 */
 	@Id
+	@GeneratedValue
    	@Column(name = "equipment_id" )
 	private Long equipmentId;
 

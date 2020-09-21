@@ -4,7 +4,10 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://120.24.43.70/springboot_test_db
+#    url: jdbc:mysql://localhost:3306/springboot_test_db
+#    username: root
+#    password: 123456@root
+    url: jdbc:mysql://120.24.43.70:3306/springboot_test_db?characterEncoding=utf-8
     username: admin
     password: 123456@admin
   jpa:

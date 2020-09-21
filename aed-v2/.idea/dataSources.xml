@@ -8,5 +8,14 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://120.24.43.70:3306/springboot_test_db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="springboot_test_db@localhost" uuid="3a676bff-8f35-4bef-acf1-9ce7ad51de48">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/springboot_test_db</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC+8" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>
