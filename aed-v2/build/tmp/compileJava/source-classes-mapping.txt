@@ -36,9 +36,9 @@ com/bnuz/aed/common/tools/JsonUtils.java
  com.bnuz.aed.common.tools.JsonUtils
 com/bnuz/aed/model/Feedback.java
  com.bnuz.aed.model.Feedback
-com/bnuz/aed/controller/AedEquipmentController.java
- com.bnuz.aed.controller.AedEquipmentController
-com/bnuz/aed/model/RealtimeInfo.java
- com.bnuz.aed.model.RealtimeInfo
 com/bnuz/aed/model/Manager.java
  com.bnuz.aed.model.Manager
+com/bnuz/aed/model/RealtimeInfo.java
+ com.bnuz.aed.model.RealtimeInfo
+com/bnuz/aed/controller/AedEquipmentController.java
+ com.bnuz.aed.controller.AedEquipmentController

@@ -23,8 +23,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26886c16-0bad-470f-8bff-8ae8b003d4f6" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedEquipmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedEquipmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AedEquipmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AedEquipmentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +53,26 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="aed" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="aed" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="aed" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -97,7 +125,8 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="模块" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="构件" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.40344828" />
   </component>
@@ -112,7 +141,7 @@
       <recent name="D:\Zhuhai-AED-emergency-system\aed-v2\src\main\java\com\bnuz\aed" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.aed-v2 [bootJar]">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -123,6 +152,25 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="aed-v2 [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="bootJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="AedApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="aed.main" />
@@ -139,6 +187,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.aed-v2 [bootJar]" />
         <item itemvalue="Spring Boot.AedApplication" />
       </list>
     </recent_temporary>
@@ -155,7 +204,7 @@
       <workItem from="1600418200353" duration="2235000" />
       <workItem from="1600579824955" duration="6094000" />
       <workItem from="1600588687897" duration="11852000" />
-      <workItem from="1600672373110" duration="3504000" />
+      <workItem from="1600672373110" duration="7080000" />
     </task>
     <servers />
   </component>
@@ -211,46 +260,46 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="906" y="224" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1600615637253" />
-    <state width="1458" height="325" key="GridCell.Tab.0.bottom" timestamp="1600675604682">
+    <state width="1458" height="325" key="GridCell.Tab.0.bottom" timestamp="1600700209935">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1600675604682" />
-    <state width="1458" height="325" key="GridCell.Tab.0.center" timestamp="1600675604682">
+    <state width="1458" height="325" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1600700209935" />
+    <state width="1458" height="325" key="GridCell.Tab.0.center" timestamp="1600700209935">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1600675604682" />
-    <state width="1458" height="325" key="GridCell.Tab.0.left" timestamp="1600675604681">
+    <state width="1458" height="325" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1600700209935" />
+    <state width="1458" height="325" key="GridCell.Tab.0.left" timestamp="1600700209934">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1600675604681" />
-    <state width="1458" height="325" key="GridCell.Tab.0.right" timestamp="1600675604682">
+    <state width="1458" height="325" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1600700209934" />
+    <state width="1458" height="325" key="GridCell.Tab.0.right" timestamp="1600700209935">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1600675604682" />
-    <state width="1458" height="325" key="GridCell.Tab.1.bottom" timestamp="1600675604683">
+    <state width="1458" height="325" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1600700209935" />
+    <state width="1458" height="325" key="GridCell.Tab.1.bottom" timestamp="1600676039933">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1600675604683" />
-    <state width="1458" height="325" key="GridCell.Tab.1.center" timestamp="1600675604682">
+    <state width="1458" height="325" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1600676039933" />
+    <state width="1458" height="325" key="GridCell.Tab.1.center" timestamp="1600676039933">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1600675604682" />
-    <state width="1458" height="325" key="GridCell.Tab.1.left" timestamp="1600675604682">
+    <state width="1458" height="325" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1600676039933" />
+    <state width="1458" height="325" key="GridCell.Tab.1.left" timestamp="1600676039933">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1600675604682" />
-    <state width="1458" height="325" key="GridCell.Tab.1.right" timestamp="1600675604683">
+    <state width="1458" height="325" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1600676039933" />
+    <state width="1458" height="325" key="GridCell.Tab.1.right" timestamp="1600676039933">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="325" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1600675604683" />
+    <state width="1458" height="325" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1600676039933" />
     <state x="331" y="214" key="IDE.errors.dialog" timestamp="1600587220301">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="331" y="214" key="IDE.errors.dialog/0.0.1500.960@0.0.1500.960" timestamp="1600587220301" />
-    <state x="231" y="55" key="SettingsEditor" timestamp="1600588541941">
+    <state x="231" y="55" key="SettingsEditor" timestamp="1600698887017">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="231" y="55" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1600588541941" />
+    <state x="231" y="55" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1600698887017" />
     <state x="566" y="292" width="366" height="371" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1600589157218">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
