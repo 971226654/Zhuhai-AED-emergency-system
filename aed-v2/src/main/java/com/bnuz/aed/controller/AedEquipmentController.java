@@ -1,18 +1,17 @@
 package com.bnuz.aed.controller;
 
-import com.bnuz.aed.common.repository.AedEquipmentRepository;
-import com.bnuz.aed.common.repository.AedPositionRepository;
+import com.bnuz.aed.common.mapper.AedEquipmentMapper;
 import com.bnuz.aed.common.tools.DateUtils;
-import com.bnuz.aed.common.tools.JsonUtils;
-import com.bnuz.aed.model.AedEquipment;
-import com.bnuz.aed.model.AedPosition;
+import com.bnuz.aed.common.tools.ServerResponse;
+import com.bnuz.aed.entity.expand.AedOutput;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.Optional;
+import java.util.List;
 
 /**
  * @author Leia Liang
@@ -22,79 +21,52 @@ import java.util.Optional;
 public class AedEquipmentController {
 
     @Autowired
-    private AedEquipmentRepository aedEquipmentRepository;
-    @Autowired
-    private AedPositionRepository aedPositionRepository;
+    private AedEquipmentMapper aedEquipmentMapper;
 
     @GetMapping("/equipments")
     @ApiOperation("获取所有AED设备信息")
-    public String getAllEquipments() {
-        if (aedEquipmentRepository.findAllEquipments() != null) {
-            return JsonUtils.objectToJson(aedEquipmentRepository.findAllEquipments());
+    public ServerResponse getAllEquipments() throws ParseException{
+        List<AedOutput> outputs = aedEquipmentMapper.findAllEquipments();
+        if (outputs != null) {
+            for (AedOutput output : outputs) {
+                output.setDisplayTime(DateUtils.DateToDate(output.getDisplayTime()));
+                output.setProductionTime(DateUtils.DateToDate(output.getProductionTime()));
+                output.setPurchaseTime(DateUtils.DateToDate(output.getPurchaseTime()));
+            }
+            return ServerResponse.createBySuccess(outputs);
+        } else {
+            return ServerResponse.createByFail();
         }
-        return null;
     }
 
     @GetMapping("/equipments/{id}")
     @ApiOperation("通过id获得某一个AED设备")
-    public String getEquipmentById(@PathVariable String id) {
-        Long equipmentId = Long.parseLong("id");
-        if (aedEquipmentRepository.findEquipmentById(equipmentId) != null) {
-            return JsonUtils.objectToJson(aedEquipmentRepository.findEquipmentById(equipmentId));
-        }
-        return null;
-    }
-
-    @PostMapping("/equipments")
-    @ApiOperation("新增一个AED设备,所需字段购买时间,厂家名称,生产时间, 经度, 纬度")
-    public String addEquipment(@RequestParam(value = "purchaseTime") String purchaseTime,
-                               @RequestParam(value = "factoryName") String factoryName,
-                               @RequestParam(value = "productionTime") String productionTime,
-                               @RequestParam(value = "longitude") String longitude,
-                               @RequestParam(value = "latitude") String latitude) throws ParseException {
-        AedEquipment equipment = new AedEquipment();
-        equipment.setPurchaseTime(DateUtils.stringToDate(purchaseTime));
-        equipment.setFactoryName(factoryName);
-        equipment.setProductionTime(DateUtils.stringToDate(productionTime));
-        aedEquipmentRepository.save(equipment);
-        long id = aedEquipmentRepository.findIdByTimes(purchaseTime, factoryName, productionTime);
-        AedPosition position = new AedPosition();
-        position.setEquipmentId(id);
-        position.setLongitude(longitude);
-        position.setLatitude(latitude);
-        aedPositionRepository.save(position);
-        return "OK";
-    }
-
-    @DeleteMapping("/equipments/delete/{id}")
-    @ApiOperation("删除一个AED设备，by 设备ID")
-    public String deleteEquipment(@PathVariable String id){
+    public ServerResponse getEquipmentById(@PathVariable String id) throws ParseException {
         Long equipmentId = Long.parseLong(id);
-        Optional<AedEquipment> optional = aedEquipmentRepository.findById(equipmentId);
-        if (optional.isPresent()) {
-            aedEquipmentRepository.delete(optional.get());
-            return "OK";
+        AedOutput output = aedEquipmentMapper.findEquipmentById(equipmentId);
+        if (output != null) {
+            output.setDisplayTime(DateUtils.DateToDate(output.getDisplayTime()));
+            output.setProductionTime(DateUtils.DateToDate(output.getProductionTime()));
+            output.setPurchaseTime(DateUtils.DateToDate(output.getPurchaseTime()));
+            return ServerResponse.createBySuccess(output);
         } else {
-            return "Fail";
+            return ServerResponse.createByFail();
         }
     }
-
-    @PutMapping("/equipments/position/{id}")
-    @ApiOperation("更新一个AED设备的经纬度，by 设备ID")
-    public String updatePosition(@PathVariable String id,
-                                 @RequestParam(value = "longitude") String longitude,
-                                 @RequestParam(value = "latitude") String latitude) {
-        Long equipmentId = Long.parseLong("id");
-        Optional<AedPosition> optional = aedPositionRepository.findById(equipmentId);
-        if (optional.isPresent()) {
-            AedPosition position = optional.get();
-            position.setLongitude(longitude);
-            position.setLatitude(latitude);
-            aedPositionRepository.save(position);
-            return "OK";
-        } else {
-            return "Fail";
-        }
-    }
+//
+//    @PostMapping("/equipments")
+//    @ApiOperation("新增一个AED设备,所需字段购买时间,厂家名称,生产时间, 返回equipmentId")
+//    public Long addEquipment(@RequestParam(value = "purchaseTime") String purchaseTime,
+//                               @RequestParam(value = "factoryName") String factoryName,
+//                               @RequestParam(value = "productionTime") String productionTime) throws ParseException {
+//
+//        return null;
+//    }
+//
+//    @DeleteMapping("/equipments/delete/{id}")
+//    @ApiOperation("删除一个AED设备，by 设备ID")
+//    public String deleteEquipment(@PathVariable String id){
+//        return null;
+//    }
 
 }

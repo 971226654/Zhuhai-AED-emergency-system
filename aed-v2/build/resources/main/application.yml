@@ -1,5 +1,5 @@
 server:
-  port: 8989
+  port: 9090
 
 spring:
   datasource:
@@ -7,10 +7,18 @@ spring:
 #    url: jdbc:mysql://localhost:3306/springboot_test_db
 #    username: root
 #    password: 123456@root
-    url: jdbc:mysql://120.24.43.70:3306/springboot_test_db?characterEncoding=utf-8
+    url: jdbc:mysql://120.24.43.70:3306/springboot_test_db?useAffectedRows=true&characterEncoding=utf-8
     username: admin
     password: 123456@admin
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.bnuz.aed.model
+
+#Show sql语句
+logging:
+  level:
+    com:
+      bnuz:
+        aed:
+          mapper: debug
