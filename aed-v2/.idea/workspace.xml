@@ -23,73 +23,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26886c16-0bad-470f-8bff-8ae8b003d4f6" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/AedEquipment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/AedPosition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/AedSituation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/Audit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/AuditResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/CollectList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/Feedback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/FeedbackResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/RealtimeInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/059d7c7e-f38b-4efd-a872-3b30bc6f6ba9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/059d7c7e-f38b-4efd-a872-3b30bc6f6ba9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/AedApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/AedApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/repository/AedEquipmentRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/repository/AedPositionRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/DateUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/DateUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/JsonUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/JsonUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AedEquipmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AedEquipmentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/AedEquipment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/AedPosition.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/AedSituation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/CollectList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/Examine.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/ExamineResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/Feedback.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/FeedbackResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/Inspector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/Knowledge.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/Manager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/RealtimeInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/base/CollectList.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/base/CollectList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/base/RealtimeInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/base/RealtimeInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/expand/AedOutput.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/expand/AedOutput.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/AedEquipmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/AedEquipmentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/AedPositionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/AedPositionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/RealtimeInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/RealtimeInfoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/AedApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/AedApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/repository/AedEquipmentRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/repository/AedPositionRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/DateUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/JsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/JsonUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedEquipmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedEquipmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/AedEquipment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/AedPosition.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/AedSituation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/CollectList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Examine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/ExamineResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Feedback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/FeedbackResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Knowledge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/Manager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/RealtimeInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/model/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/CollectList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/CollectList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/RealtimeInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/RealtimeInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/expand/AedOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/expand/AedOutput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AedEquipmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AedEquipmentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AedPositionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AedPositionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/RealtimeInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/RealtimeInfoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,18 +152,7 @@
       <recent name="D:\Zhuhai-AED-emergency-system\aed-v2\src\main\java\com\bnuz\aed" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.aed-v2 [bootJar]">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.AedApplication">
     <configuration name="aed-v2 [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -266,7 +213,9 @@
       <workItem from="1600841531172" duration="109000" />
       <workItem from="1600841684231" duration="2661000" />
       <workItem from="1600913512191" duration="2584000" />
-      <workItem from="1600916136298" duration="12669000" />
+      <workItem from="1600916136298" duration="13689000" />
+      <workItem from="1600999307228" duration="14227000" />
+      <workItem from="1601018276239" duration="92000" />
     </task>
     <servers />
   </component>
@@ -334,6 +283,10 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="377" y="159" key="#检查/0.0.1500.960@0.0.1500.960" timestamp="1600588925349" />
+    <state x="530" y="1" key="#自动导入" timestamp="1601015551561">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="530" y="1" key="#自动导入/0.0.1500.960@0.0.1500.960" timestamp="1601015551561" />
     <state x="182" y="74" key="#项目结构" timestamp="1600587985315">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
@@ -342,38 +295,38 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="906" y="224" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1600615637253" />
-    <state width="1458" height="275" key="GridCell.Tab.0.bottom" timestamp="1600935429160">
+    <state width="1458" height="304" key="GridCell.Tab.0.bottom" timestamp="1601018247148">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="275" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1600935429160" />
-    <state width="1458" height="275" key="GridCell.Tab.0.center" timestamp="1600935429160">
+    <state width="1458" height="304" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1601018247148" />
+    <state width="1458" height="304" key="GridCell.Tab.0.center" timestamp="1601018247148">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="275" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1600935429160" />
-    <state width="1458" height="275" key="GridCell.Tab.0.left" timestamp="1600935429160">
+    <state width="1458" height="304" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1601018247148" />
+    <state width="1458" height="304" key="GridCell.Tab.0.left" timestamp="1601018247148">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="275" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1600935429160" />
-    <state width="1458" height="275" key="GridCell.Tab.0.right" timestamp="1600935429160">
+    <state width="1458" height="304" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1601018247148" />
+    <state width="1458" height="304" key="GridCell.Tab.0.right" timestamp="1601018247148">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="275" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1600935429160" />
-    <state width="1458" height="275" key="GridCell.Tab.1.bottom" timestamp="1600935015169">
+    <state width="1458" height="304" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1601018247148" />
+    <state width="1458" height="304" key="GridCell.Tab.1.bottom" timestamp="1601017601218">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="275" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1600935015169" />
-    <state width="1458" height="275" key="GridCell.Tab.1.center" timestamp="1600935015169">
+    <state width="1458" height="304" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1601017601218" />
+    <state width="1458" height="304" key="GridCell.Tab.1.center" timestamp="1601017601218">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="275" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1600935015169" />
-    <state width="1458" height="275" key="GridCell.Tab.1.left" timestamp="1600935015169">
+    <state width="1458" height="304" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1601017601218" />
+    <state width="1458" height="304" key="GridCell.Tab.1.left" timestamp="1601017601218">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="275" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1600935015169" />
-    <state width="1458" height="275" key="GridCell.Tab.1.right" timestamp="1600935015169">
+    <state width="1458" height="304" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1601017601218" />
+    <state width="1458" height="304" key="GridCell.Tab.1.right" timestamp="1601017601218">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="275" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1600935015169" />
+    <state width="1458" height="304" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1601017601218" />
     <state x="331" y="214" key="IDE.errors.dialog" timestamp="1600587220301">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
@@ -382,18 +335,18 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="82" y="73" width="1009" height="751" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1600914465143" />
-    <state x="478" y="225" width="540" height="524" key="StructurePopup" timestamp="1600923120260">
+    <state x="479" y="226" width="540" height="524" key="StructurePopup" timestamp="1601000656076">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="478" y="225" width="540" height="524" key="StructurePopup/0.0.1500.960@0.0.1500.960" timestamp="1600923120260" />
+    <state x="479" y="226" width="540" height="524" key="StructurePopup/0.0.1500.960@0.0.1500.960" timestamp="1601000656076" />
     <state x="566" y="292" width="366" height="371" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1600781845961">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="566" y="292" width="366" height="371" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1500.960@0.0.1500.960" timestamp="1600781845961" />
-    <state x="413" y="206" width="672" height="678" key="search.everywhere.popup" timestamp="1600670856150">
+    <state x="416" y="209" width="672" height="678" key="search.everywhere.popup" timestamp="1601016883774">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="413" y="206" width="672" height="678" key="search.everywhere.popup/0.0.1500.960@0.0.1500.960" timestamp="1600670856150" />
+    <state x="416" y="209" width="672" height="678" key="search.everywhere.popup/0.0.1500.960@0.0.1500.960" timestamp="1601016883774" />
     <state x="103" y="164" key="spring file set editor" timestamp="1600588308912">
       <screen x="0" y="0" width="1500" height="960" />
     </state>

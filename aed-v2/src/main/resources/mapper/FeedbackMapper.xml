@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bnuz.aed.common.mapper.FeedbackMapper">
+
+    <select id="findAllFeedbackByUserId" resultType="map">
+        SELECT * FROM Feedback f
+        LEFT JOIN FeedbackResult r ON f.feedbackId = r.feedbackId
+        WHERE f.userId = #{userId};
+    </select>
+
+    <select id="sumFeedbacks" resultType="int">
+        SELECT COUNT(*) FROM Feedback;
+    </select>
+
+    <select id="sumFeedbackResults" resultType="int">
+        SELECT COUNT(*) FROM FeedbackResult;
+    </select>
+
+    <select id="findAllFeedbacks" resultType="map">
+        SELECT * FROM Feedback f
+        LEFT JOIN FeedbackResult r ON f.feedbackId = r.feedbackId;
+    </select>
+
+</mapper>

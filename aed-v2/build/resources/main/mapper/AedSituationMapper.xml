@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bnuz.aed.common.mapper.AedSituationMapper">
+
+    <select id="findAllRecords" resultType="com.bnuz.aed.entity.base.AedSituation">
+        SELECT * FROM AedSituation;
+    </select>
+
+    <select id="findRecordsByEquipmentId" resultType="com.bnuz.aed.entity.base.AedSituation">
+        SELECT * FROM AedSituation
+        WHERE equipmentId = #{equipmentId};
+    </select>
+
+    <select id="findRecordsByInspectorId" resultType="com.bnuz.aed.entity.base.AedSituation">
+        SELECT * FROM AedSituation
+        WHERE inspectorId = #{inspectorId};
+    </select>
+
+    <select id="findRecordsByEquipmentIdAndInspectorId" resultType="com.bnuz.aed.entity.base.AedSituation">
+        SELECT * FROM AedSituation
+        WHERE equipmentId = #{equipmentId} AND inspectorId = #{inspectorId};
+    </select>
+
+</mapper>

@@ -12,7 +12,6 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class CollectList implements Serializable {
 
 	private static final long serialVersionUID = -8649986576428315969L;

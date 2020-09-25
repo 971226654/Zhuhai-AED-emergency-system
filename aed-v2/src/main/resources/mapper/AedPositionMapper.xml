@@ -3,11 +3,14 @@
 <mapper namespace="com.bnuz.aed.common.mapper.AedPositionMapper">
 
     <select id="findPositionById" resultType="com.bnuz.aed.entity.base.AedPosition">
-        SELECT * FROM AedPosition p WHERE p.equipmentId = #{equipmentId};
+        SELECT * FROM AedPosition p
+        WHERE p.equipmentId = #{equipmentId};
     </select>
 
     <update id="updateGeoPosition">
-        UPDATE AedPosition SET longitude = #{newLongitude}, latitude = #{newLatitude} WHERE equipmentId = #{equipmentId};
+        UPDATE AedPosition
+        SET longitude = #{newLongitude}, latitude = #{newLatitude}
+        WHERE equipmentId = #{equipmentId};
     </update>
 
 </mapper>

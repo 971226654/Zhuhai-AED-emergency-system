@@ -3,11 +3,13 @@
 <mapper namespace="com.bnuz.aed.common.mapper.RealtimeInfoMapper">
 
     <select id="findAllInfos" resultType="com.bnuz.aed.entity.base.RealtimeInfo">
-        SELECT * FROM RealtimeInfo WHERE info = 1;
+        SELECT * FROM RealtimeInfo
+        WHERE info = 1;
     </select>
 
     <select id="findAllKnows" resultType="com.bnuz.aed.entity.base.RealtimeInfo">
-        SELECT * FROM RealtimeInfo WHERE knowledge = 1;
+        SELECT * FROM RealtimeInfo
+        WHERE knowledge = 1;
     </select>
 
 </mapper>

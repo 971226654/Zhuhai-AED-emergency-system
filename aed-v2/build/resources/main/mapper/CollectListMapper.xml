@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bnuz.aed.common.mapper.CollectListMapper">
+
+    <select id="findAllCollectById" resultType="map">
+        SELECT * FROM CollectList c
+        LEFT JOIN RealtimeInfo r ON c.infoId = r.infoId
+        WHERE c.userId = #{userId};
+    </select>
+
+</mapper>

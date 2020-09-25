@@ -11,7 +11,6 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class AedOutput implements Serializable {
 
     private static final long serialVersionUID = 1167929581558148785L;

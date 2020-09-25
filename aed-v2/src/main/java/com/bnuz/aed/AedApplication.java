@@ -15,7 +15,7 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
  */
 @SpringBootApplication
 @EnableOpenApi
-@EntityScan(basePackages = {"com.bnuz.aed.model"})
+@EntityScan(basePackages = {"com.bnuz.aed.model.base"})
 @MapperScan(basePackages = {"com.bnuz.aed.common.mapper"})
 public class AedApplication {
 

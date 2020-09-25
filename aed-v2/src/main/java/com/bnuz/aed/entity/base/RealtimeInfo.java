@@ -13,7 +13,6 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class RealtimeInfo implements Serializable {
 
 	private static final long serialVersionUID = 1997232631727375869L;
