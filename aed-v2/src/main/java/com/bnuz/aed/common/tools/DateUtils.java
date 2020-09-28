@@ -1,9 +1,7 @@
 package com.bnuz.aed.common.tools;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -11,7 +9,7 @@ import java.util.Date;
  */
 public class DateUtils {
 
-    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public static String dateToString(Date date) {
         return simpleDateFormat.format(date);

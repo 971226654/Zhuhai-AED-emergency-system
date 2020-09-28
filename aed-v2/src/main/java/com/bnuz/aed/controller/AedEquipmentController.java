@@ -1,7 +1,6 @@
 package com.bnuz.aed.controller;
 
 import com.bnuz.aed.common.mapper.AedEquipmentMapper;
-import com.bnuz.aed.common.tools.DateUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.expand.AedOutput;
 import io.swagger.annotations.Api;
@@ -28,11 +27,6 @@ public class AedEquipmentController {
     public ServerResponse getAllEquipments() throws ParseException{
         List<AedOutput> outputs = aedEquipmentMapper.findAllEquipments();
         if (outputs != null) {
-            for (AedOutput output : outputs) {
-                output.setDisplayTime(DateUtils.DateToDate(output.getDisplayTime()));
-                output.setProductionTime(DateUtils.DateToDate(output.getProductionTime()));
-                output.setPurchaseTime(DateUtils.DateToDate(output.getPurchaseTime()));
-            }
             return ServerResponse.createBySuccess(outputs);
         } else {
             return ServerResponse.createByFail();
@@ -45,9 +39,7 @@ public class AedEquipmentController {
         Long equipmentId = Long.parseLong(id);
         AedOutput output = aedEquipmentMapper.findEquipmentById(equipmentId);
         if (output != null) {
-            output.setDisplayTime(DateUtils.DateToDate(output.getDisplayTime()));
-            output.setProductionTime(DateUtils.DateToDate(output.getProductionTime()));
-            output.setPurchaseTime(DateUtils.DateToDate(output.getPurchaseTime()));
+            System.out.println(output);
             return ServerResponse.createBySuccess(output);
         } else {
             return ServerResponse.createByFail();

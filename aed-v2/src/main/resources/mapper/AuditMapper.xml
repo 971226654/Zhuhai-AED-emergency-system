@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bnuz.aed.common.mapper.AuditMapper">
+    
+    <resultMap id="auditMap" type="com.bnuz.aed.entity.expand.AuditOutput">
+        <id column="auditId" jdbcType="BIGINT" property="auditId" />
+        <result column="userId" jdbcType="BIGINT" property="userId" />
+        <result column="phoneNumber" jdbcType="VARCHAR" property="phoneNumber" />
+        <result column="idCard" jdbcType="VARCHAR" property="idCard" />
+        <association property="auditResult" column="auditId"
+                     select="com.bnuz.aed.common.mapper.AuditResultMapper.findAuditResultByAid"/>
+        <collection property="materials" column="auditId"
+                    select="com.bnuz.aed.common.mapper.MaterialMapper.findMaterialsByAid" />
+    </resultMap>
+
+    <select id="findAllAudits" resultMap="auditMap">
+        SELECT * FROM Audit;
+    </select>
+
+    <select id="finAuditsByUserId" resultMap="auditMap">
+        SELECT * FROM Audit WHERE userId = #{userId};
+    </select>
+
+</mapper>

@@ -25,7 +25,7 @@ public class RealtimeInfo implements Serializable {
 	/**
 	 * 发布时间
 	 */
-	private Date releaseTime;
+	private String releaseTime;
 
 	/**
 	 * 标题

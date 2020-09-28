@@ -20,7 +20,7 @@ public class Audit implements Serializable {
 	/**
 	 * 审核ID
 	 */
-	private Long examineId;
+	private Long auditId;
 
 	/**
 	 * 用户ID

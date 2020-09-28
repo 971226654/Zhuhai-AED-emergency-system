@@ -2,6 +2,8 @@ com/bnuz/aed/entity/base/AedPosition.java
  com.bnuz.aed.entity.base.AedPosition
 com/bnuz/aed/common/mapper/AedPositionMapper.java
  com.bnuz.aed.common.mapper.AedPositionMapper
+com/bnuz/aed/common/mapper/MaterialMapper.java
+ com.bnuz.aed.common.mapper.MaterialMapper
 com/bnuz/aed/common/config/Swagger3Config.java
  com.bnuz.aed.common.config.Swagger3Config
 com/bnuz/aed/controller/CollectListController.java
@@ -14,20 +16,28 @@ com/bnuz/aed/controller/HelloController.java
  com.bnuz.aed.controller.HelloController
 com/bnuz/aed/controller/RealtimeInfoController.java
  com.bnuz.aed.controller.RealtimeInfoController
+com/bnuz/aed/common/mapper/AuditMapper.java
+ com.bnuz.aed.common.mapper.AuditMapper
 com/bnuz/aed/common/mapper/RealtimeInfoMapper.java
  com.bnuz.aed.common.mapper.RealtimeInfoMapper
 com/bnuz/aed/entity/base/Audit.java
  com.bnuz.aed.entity.base.Audit
 com/bnuz/aed/entity/base/FeedbackResult.java
  com.bnuz.aed.entity.base.FeedbackResult
-com/bnuz/aed/common/tools/ServerResponse.java
- com.bnuz.aed.common.tools.ServerResponse
 com/bnuz/aed/entity/base/AedSituation.java
  com.bnuz.aed.entity.base.AedSituation
+com/bnuz/aed/common/tools/ServerResponse.java
+ com.bnuz.aed.common.tools.ServerResponse
+com/bnuz/aed/controller/AuditController.java
+ com.bnuz.aed.controller.AuditController
 com/bnuz/aed/entity/base/Material.java
  com.bnuz.aed.entity.base.Material
+com/bnuz/aed/common/mapper/AedSituationMapper.java
+ com.bnuz.aed.common.mapper.AedSituationMapper
 com/bnuz/aed/controller/AedPositionController.java
  com.bnuz.aed.controller.AedPositionController
+com/bnuz/aed/controller/AedSituationController.java
+ com.bnuz.aed.controller.AedSituationController
 com/bnuz/aed/common/mapper/FeedbackMapper.java
  com.bnuz.aed.common.mapper.FeedbackMapper
 com/bnuz/aed/AedApplication.java
@@ -38,30 +48,30 @@ com/bnuz/aed/entity/expand/AedOutput.java
  com.bnuz.aed.entity.expand.AedOutput
 com/bnuz/aed/common/tools/ResponseCode.java
  com.bnuz.aed.common.tools.ResponseCode
-com/bnuz/aed/entity/base/AuditResult.java
- com.bnuz.aed.entity.base.AuditResult
+com/bnuz/aed/entity/base/AedEquipment.java
+ com.bnuz.aed.entity.base.AedEquipment
 com/bnuz/aed/common/tools/DateUtils.java
  com.bnuz.aed.common.tools.DateUtils
 com/bnuz/aed/common/tools/JsonUtils.java
  com.bnuz.aed.common.tools.JsonUtils
  com.bnuz.aed.common.tools.JsonUtils$1
-com/bnuz/aed/common/mapper/AedEquipmentMapper.java
- com.bnuz.aed.common.mapper.AedEquipmentMapper
+com/bnuz/aed/controller/FeedbackController.java
+ com.bnuz.aed.controller.FeedbackController
 com/bnuz/aed/common/mapper/CollectListMapper.java
  com.bnuz.aed.common.mapper.CollectListMapper
 com/bnuz/aed/controller/AedEquipmentController.java
  com.bnuz.aed.controller.AedEquipmentController
+com/bnuz/aed/common/mapper/AedEquipmentMapper.java
+ com.bnuz.aed.common.mapper.AedEquipmentMapper
 com/bnuz/aed/entity/base/RealtimeInfo.java
  com.bnuz.aed.entity.base.RealtimeInfo
 com/bnuz/aed/entity/base/CollectList.java
  com.bnuz.aed.entity.base.CollectList
 com/bnuz/aed/entity/base/Feedback.java
  com.bnuz.aed.entity.base.Feedback
-com/bnuz/aed/entity/base/AedEquipment.java
- com.bnuz.aed.entity.base.AedEquipment
-com/bnuz/aed/controller/FeedbackController.java
- com.bnuz.aed.controller.FeedbackController
-com/bnuz/aed/controller/AedSituationController.java
- com.bnuz.aed.controller.AedSituationController
-com/bnuz/aed/common/mapper/AedSituationMapper.java
- com.bnuz.aed.common.mapper.AedSituationMapper
+com/bnuz/aed/entity/expand/AuditOutput.java
+ com.bnuz.aed.entity.expand.AuditOutput
+com/bnuz/aed/common/mapper/AuditResultMapper.java
+ com.bnuz.aed.common.mapper.AuditResultMapper
+com/bnuz/aed/entity/base/AuditResult.java
+ com.bnuz.aed.entity.base.AuditResult

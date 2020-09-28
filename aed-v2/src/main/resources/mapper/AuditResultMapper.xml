@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bnuz.aed.common.mapper.AuditResultMapper">
+
+    <select id="findAuditResultByAid" resultType="com.bnuz.aed.entity.base.AuditResult">
+        SELECT * FROM AuditResult WHERE auditId = #{auditId};
+    </select>
+
+</mapper>

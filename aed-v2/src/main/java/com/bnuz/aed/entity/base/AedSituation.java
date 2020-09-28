@@ -30,7 +30,7 @@ public class AedSituation implements Serializable {
 	/**
 	 * 检查时间
 	 */
-	private Date inspectTime;
+	private String inspectTime;
 
 	/**
 	 * 检查员ID

@@ -19,11 +19,11 @@ public class AedOutput implements Serializable {
 
     private Long inspectorId;
 
-    private Date displayTime;
+    private String displayTime;
 
-    private Date productionTime;
+    private String productionTime;
 
-    private Date purchaseTime;
+    private String purchaseTime;
 
     private String factoryName;
 

@@ -31,17 +31,17 @@ public class AedEquipment implements Serializable {
 	/**
 	 * 摆放时间
 	 */
-	private Date displayTime;
+	private String displayTime;
 
 	/**
 	 * 生产时间
 	 */
-	private Date productionTime;
+	private String productionTime;
 
 	/**
 	 * 购买时间
 	 */
-	private Date purchaseTime;
+	private String purchaseTime;
 
 	/**
 	 * 厂家名称
