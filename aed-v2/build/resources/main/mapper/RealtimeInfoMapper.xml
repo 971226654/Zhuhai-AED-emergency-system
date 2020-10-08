@@ -12,4 +12,9 @@
         WHERE knowledge = 1;
     </select>
 
+    <select id="findInfoOrKnow" resultType="com.bnuz.aed.entity.base.RealtimeInfo">
+        SELECT * FROM RealtimeInfo
+        WHERE infoId = #{infoId};
+    </select>
+
 </mapper>

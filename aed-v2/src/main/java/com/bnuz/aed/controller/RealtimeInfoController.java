@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -38,6 +39,18 @@ public class RealtimeInfoController {
         List<RealtimeInfo> knows = realtimeInfoMapper.findAllKnows();
         if (knows != null) {
             return ServerResponse.createBySuccess(knows);
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
+
+    @GetMapping("/infos/{id}")
+    @ApiOperation("根据id获取资讯或急救知识")
+    public ServerResponse getInfoOrKnow(@PathVariable String id) {
+        Long infoId = Long.parseLong(id);
+        RealtimeInfo info = realtimeInfoMapper.findInfoOrKnow(infoId);
+        if (info != null) {
+            return ServerResponse.createBySuccess(info);
         } else {
             return ServerResponse.createByFail();
         }

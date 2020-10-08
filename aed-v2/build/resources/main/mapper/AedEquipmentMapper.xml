@@ -13,4 +13,14 @@
         LEFT JOIN AedPosition p ON e.equipmentId = p.equipmentId;
     </select>
 
+    <insert id="insertEquipment" parameterType="com.bnuz.aed.entity.base.AedEquipment">
+        INSERT INTO
+        AedEquipment(displayTime, productionTime, purchaseTime, factoryName, model, status)
+        VALUES (#{displayTime}, #{productionTime}, #{purchaseTime}, #{factoryName}, #{model}, #{status});
+    </insert>
+
+    <delete id="deleteEquipment">
+        DELETE FROM AedEquipment WHERE equipmentId = #{equipmentId};
+    </delete>
+
 </mapper>

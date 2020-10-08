@@ -15,7 +15,7 @@ plugins {
 }
 
 group = 'com.bnuz'
-version = '0.0.5-SNAPSHOT'
+version = '0.0.6-SNAPSHOT'
 sourceCompatibility = '14'
 
 configurations {
@@ -37,6 +37,7 @@ dependencies {
     implementation 'org.apache.httpcomponents:httpclient'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'com.alibaba:fastjson:1.2.73'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
     compileOnly 'org.projectlombok:lombok:1.18.12'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {

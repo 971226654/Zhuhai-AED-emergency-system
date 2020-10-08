@@ -8,10 +8,16 @@ public enum ResponseCode {
 
     // 成功
     SUCCESS(200, "SUCCESS"),
+    // 新建或者修改数据成功
+    CREATED(201, "CREATED"),
+    // 删除数据成功
+    NOT_CONTENT(204, "NOT CONTENT"),
     //失败
     FAIL(400, "FAIL"),
     //未认证（签名错误）
     UNAUTHORIZED(401, "UNAUTHORIZED"),
+    // 用户访问被禁止
+    FORBIDDEN(403, "FORBIDDEN"),
     //接口不存在
     NOT_FOUND(404, "NOT_FOUND"),
     //服务器内部错误

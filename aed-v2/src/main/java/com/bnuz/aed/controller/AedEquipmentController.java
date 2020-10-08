@@ -2,6 +2,7 @@ package com.bnuz.aed.controller;
 
 import com.bnuz.aed.common.mapper.AedEquipmentMapper;
 import com.bnuz.aed.common.tools.ServerResponse;
+import com.bnuz.aed.entity.base.AedEquipment;
 import com.bnuz.aed.entity.expand.AedOutput;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,20 +46,41 @@ public class AedEquipmentController {
             return ServerResponse.createByFail();
         }
     }
-//
-//    @PostMapping("/equipments")
-//    @ApiOperation("新增一个AED设备,所需字段购买时间,厂家名称,生产时间, 返回equipmentId")
-//    public Long addEquipment(@RequestParam(value = "purchaseTime") String purchaseTime,
-//                               @RequestParam(value = "factoryName") String factoryName,
-//                               @RequestParam(value = "productionTime") String productionTime) throws ParseException {
-//
-//        return null;
-//    }
-//
-//    @DeleteMapping("/equipments/delete/{id}")
-//    @ApiOperation("删除一个AED设备，by 设备ID")
-//    public String deleteEquipment(@PathVariable String id){
-//        return null;
-//    }
+
+    @PostMapping("/equipments")
+    @ApiOperation("新增一个AED设备,所需字段摆放时间,生产时间,购买时间,厂家名称,设备型号,目前状态（是否可用）")
+    public ServerResponse addEquipment(@RequestParam(value = "displayTime") String displayTime,
+                                       @RequestParam(value = "productionTime") String productionTime,
+                                       @RequestParam(value = "purchaseTime") String purchaseTime,
+                                       @RequestParam(value = "factoryName") String factoryName,
+                                       @RequestParam(value = "model") String model,
+                                       @RequestParam(value = "status") int status) {
+        AedEquipment equipment = new AedEquipment();
+        equipment.setDisplayTime(displayTime);
+        equipment.setProductionTime(productionTime);
+        equipment.setPurchaseTime(purchaseTime);
+        equipment.setFactoryName(factoryName);
+        equipment.setModel(model);
+        equipment.setStatus(status);
+        int count = aedEquipmentMapper.insertEquipment(equipment);
+        System.out.println("insert count: " + count);
+        if (count > 0) {
+            return ServerResponse.createBySuccess("INSERT SUCCESS!");
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
+
+    @DeleteMapping("/equipments/{id}")
+    @ApiOperation("删除一个AED设备，by 设备ID")
+    public ServerResponse deleteEquipment(@PathVariable String id){
+        Long equipmentId = Long.parseLong(id);
+        int count = aedEquipmentMapper.deleteEquipment(equipmentId);
+        if (count > 0) {
+            return ServerResponse.createBySuccess("DELETE SUCCESS!");
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
 
 }
