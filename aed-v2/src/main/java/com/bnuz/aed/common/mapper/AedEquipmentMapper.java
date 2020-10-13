@@ -13,12 +13,18 @@ import java.util.List;
 @Mapper
 public interface AedEquipmentMapper {
 
-    AedOutput findEquipmentById(@Param("equipmentId") Long equipmentId);
+    AedOutput findEquipmentByIdExpand(@Param("equipmentId") Long equipmentId);
+
+    AedEquipment findEquipmentByIdBase(@Param("equipmentId") Long equipmentId);
 
     List<AedOutput> findAllEquipments();
 
     int insertEquipment(AedEquipment equipment);
 
-    int deleteEquipment(@Param("equipmentId") Long equipmentId);
+    int deleteEquipmentById(@Param("equipmentId") Long equipmentId);
+
+    int updateEquipment(AedEquipment equipment);
+
+    String findImageById(@Param("equipmentId") Long equipmentId);
 
 }

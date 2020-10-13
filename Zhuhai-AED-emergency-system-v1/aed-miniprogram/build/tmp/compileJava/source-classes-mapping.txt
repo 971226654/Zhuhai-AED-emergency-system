@@ -1,8 +1,0 @@
-org/bnuz/aedminiprogram/AedMiniprogramApplication.java
- org.bnuz.aedminiprogram.AedMiniprogramApplication
-org/bnuz/aedminiprogram/common/tools/HttpsClientUtil.java
- org.bnuz.aedminiprogram.common.tools.HttpsClientUtil
-org/bnuz/aedminiprogram/controller/HelloController.java
- org.bnuz.aedminiprogram.controller.HelloController
-org/bnuz/aedminiprogram/common/config/Swagger3Config.java
- org.bnuz.aedminiprogram.common.config.Swagger3Config

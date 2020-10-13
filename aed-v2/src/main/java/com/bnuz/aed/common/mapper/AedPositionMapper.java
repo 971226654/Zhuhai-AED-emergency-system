@@ -12,5 +12,10 @@ public interface AedPositionMapper {
 
     AedPosition findPositionById(@Param("equipmentId") Long equipmentId);
 
-    int updateGeoPosition(@Param("equipmentId") Long equipmentId, @Param("newLongitude") String newLongitude, @Param("newLatitude") String newLatitude);
+    int updatePositionByObject(AedPosition position);
+
+    int insertPositionByObject(AedPosition position);
+
+    int deletePositionById(@Param("equipmentId") Long equipmentId);
+
 }

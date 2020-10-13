@@ -3,7 +3,6 @@ package com.bnuz.aed.entity.expand;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author Leia Liang
@@ -31,7 +30,7 @@ public class AedOutput implements Serializable {
 
     private int status;
 
-    private byte[] appearance;
+    private String appearance;
 
     private String longitude;
 

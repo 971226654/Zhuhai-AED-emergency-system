@@ -10,6 +10,10 @@ spring:
     url: jdbc:mysql://120.24.43.70:3306/springboot_test_db?useAffectedRows=true&characterEncoding=utf-8
     username: admin
     password: 123456@admin
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

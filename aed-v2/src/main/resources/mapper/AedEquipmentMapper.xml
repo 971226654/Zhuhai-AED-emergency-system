@@ -2,10 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
     <mapper namespace="com.bnuz.aed.common.mapper.AedEquipmentMapper">
 
-    <select id="findEquipmentById" resultType="com.bnuz.aed.entity.expand.AedOutput">
+    <select id="findEquipmentByIdExpand" resultType="com.bnuz.aed.entity.expand.AedOutput">
         SELECT * FROM AedEquipment e
         LEFT JOIN AedPosition p ON e.equipmentId = p.equipmentId
         WHERE e.equipmentId = #{equipmentId};
+    </select>
+
+    <select id="findEquipmentByIdBase" resultType="com.bnuz.aed.entity.base.AedEquipment">
+        SELECT * FROM AedEquipment WHERE equipmentId = #{equipmentId};
     </select>
 
     <select id="findAllEquipments" resultType="com.bnuz.aed.entity.expand.AedOutput">
@@ -15,12 +19,31 @@
 
     <insert id="insertEquipment" parameterType="com.bnuz.aed.entity.base.AedEquipment">
         INSERT INTO
-        AedEquipment(displayTime, productionTime, purchaseTime, factoryName, model, status)
-        VALUES (#{displayTime}, #{productionTime}, #{purchaseTime}, #{factoryName}, #{model}, #{status});
+        AedEquipment(displayTime, productionTime, purchaseTime, factoryName, model, status, appearance)
+        VALUES (#{displayTime}, #{productionTime}, #{purchaseTime}, #{factoryName}, #{model}, #{status}, #{appearance});
     </insert>
 
-    <delete id="deleteEquipment">
+    <update id="updateEquipment" parameterType="com.bnuz.aed.entity.base.AedEquipment">
+        UPDATE AedEquipment
+        <set>
+            <if test="inspectorId != null">inspectorId = #{inspectorId},</if>
+            <if test="displayTime != null">displayTime = #{displayTime},</if>
+            <if test="productionTime != null">productionTime = #{productionTime},</if>
+            <if test="purchaseTime != null">purchaseTime = #{purchaseTime},</if>
+            <if test="factoryName != null">factoryName = #{factoryName},</if>
+            <if test="model != null">model = #{model},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="appearance != null">appearance = #{appearance}</if>
+        </set>
+        WHERE equipmentId = #{equipmentId};
+    </update>
+
+    <delete id="deleteEquipmentById">
         DELETE FROM AedEquipment WHERE equipmentId = #{equipmentId};
     </delete>
+
+    <select id="findImageById" resultType="String">
+        SELECT appearance FROM AedEquipment WHERE equipmentId = #{equipmentId};
+    </select>
 
 </mapper>

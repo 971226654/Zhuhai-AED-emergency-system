@@ -16,9 +16,36 @@
         WHERE inspectorId = #{inspectorId};
     </select>
 
-    <select id="findRecordsByEquipmentIdAndInspectorId" resultType="com.bnuz.aed.entity.base.AedSituation">
-        SELECT * FROM AedSituation
-        WHERE equipmentId = #{equipmentId} AND inspectorId = #{inspectorId};
+    <insert id="insertRecordByObject" parameterType="com.bnuz.aed.entity.base.AedSituation">
+        INSERT INTO
+        AedSituation(equipmentId,inspectTime,inspectorId,recordContent,fuselage,electrode,validity,battery,available,useTimes)
+        VALUES
+        (#{equipmentId},#{inspectTime},#{inspectorId},#{recordContent},#{fuselage},#{electrode},#{validity},#{battery},#{available},#{useTimes});
+    </insert>
+
+    <select id="findRecordByRecordId" resultType="com.bnuz.aed.entity.base.AedSituation">
+        SELECT * FROM AedSituation WHERE recordId = #{recordId};
     </select>
+
+    <update id="updateRecordByObject" parameterType="com.bnuz.aed.entity.base.AedSituation">
+        UPDATE AedSituation
+        <set>
+            <if test="equipmentId != null">equipmentId = #{equipmentId},</if>
+            <if test="inspectTime != null">inspectTime = #{inspectTime},</if>
+            <if test="inspectorId != null">inspectorId = #{inspectorId},</if>
+            <if test="recordContent != null">recordContent = #{recordContent},</if>
+            <if test="fuselage != null">fuselage = #{fuselage},</if>
+            <if test="electrode != null">electrode = #{electrode},</if>
+            <if test="validity != null">validity = #{validity},</if>
+            <if test="battery != null">battery = #{battery},</if>
+            <if test="available != null">available = #{available},</if>
+            <if test="useTimes != null">useTimes = #{useTimes}</if>
+        </set>
+        WHERE recordId = #{recordId};
+    </update>
+
+    <delete id="deleteRecordByRecordI">
+        DELETE FROM AedSituation WHERE recordId = #{recordId};
+    </delete>
 
 </mapper>

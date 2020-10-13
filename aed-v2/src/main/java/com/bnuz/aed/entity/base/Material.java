@@ -30,4 +30,9 @@ public class Material implements Serializable {
      */
     private Long auditId;
 
+    /**
+     * 七牛云图片
+     */
+    private String picture;
+
 }

@@ -61,6 +61,6 @@ public class AedEquipment implements Serializable {
 	/**
 	 * 外观
 	 */
-	private byte[] appearance;
+	private String appearance;
 
 }

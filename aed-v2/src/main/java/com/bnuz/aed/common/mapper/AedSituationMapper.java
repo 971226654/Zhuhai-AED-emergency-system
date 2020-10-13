@@ -18,6 +18,12 @@ public interface AedSituationMapper {
 
     List<AedSituation> findRecordsByInspectorId(@Param("inspectorId") Long inspectorId);
 
-    List<AedSituation> findRecordsByEquipmentIdAndInspectorId(@Param("equipmentId") Long equipmentId, @Param("inspectorId") Long inspectorId);
+    int insertRecordByObject(AedSituation situation);
+
+    int updateRecordByObject(AedSituation situation);
+
+    int deleteRecordByRecordId(@Param("recordId") Long recordId);
+
+    AedSituation findRecordByRecordId(@Param("recordId") Long recordId);
 
 }

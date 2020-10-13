@@ -5,10 +5,9 @@ import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.AedSituation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.javassist.tools.rmi.AppletServer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +20,8 @@ public class AedSituationController {
 
     @Autowired
     private AedSituationMapper aedSituationMapper;
+
+    private static final String ONE = "1";
 
     @GetMapping("/situations")
     @ApiOperation("获取所有设备的所有检查记录")
@@ -52,6 +53,88 @@ public class AedSituationController {
         List<AedSituation> outputs = aedSituationMapper.findRecordsByInspectorId(inspectorId);
         if (outputs != null) {
             return ServerResponse.createBySuccess(outputs);
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
+
+    @PostMapping("/situations/inspectorId/{id}")
+    @ApiOperation("添加一条设备检查记录，by 检查员ID")
+    public ServerResponse addRecord(@PathVariable String id,
+                                    @RequestParam(value = "equipmentId") String equipmentId,
+                                    @RequestParam(value = "inspectTime") String inspectTime,
+                                    @RequestParam(value = "recordContent") String recordContent,
+                                    @RequestParam(value = "fuselage") String fuselage,
+                                    @RequestParam(value = "electrode") String electrode,
+                                    @RequestParam(value = "validity") String validity,
+                                    @RequestParam(value = "battery") String battery,
+                                    @RequestParam(value = "available") String available,
+                                    @RequestParam(value = "useTimes") String useTimes) {
+        Long inspectorId = Long.parseLong(id);
+        Long equipment_id = Long.parseLong(equipmentId);
+        Long use_times = Long.parseLong(useTimes);
+        AedSituation situation = new AedSituation();
+        situation.setInspectorId(inspectorId);
+        situation.setEquipmentId(equipment_id);
+        situation.setInspectTime(inspectTime);
+        situation.setRecordContent(recordContent);
+        situation.setUseTimes(use_times);
+        situation.setFuselage(Integer.parseInt(fuselage));
+        situation.setElectrode(Integer.parseInt(electrode));
+        situation.setValidity(Integer.parseInt(validity));
+        situation.setBattery(Integer.parseInt(battery));
+        situation.setAvailable(Integer.parseInt(available));
+        int count = aedSituationMapper.insertRecordByObject(situation);
+        if (count > 0) {
+            return ServerResponse.createBySuccess("INSERT SUCCESS!");
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
+
+    @PutMapping("/situations/{id}")
+    @ApiOperation("修改一条设备检查记录，by 记录ID")
+    public ServerResponse updateRecord(@PathVariable String id,
+                                       @RequestParam(value = "equipmentId") String equipmentId,
+                                       @RequestParam(value = "inspectorId") String inspectorId,
+                                       @RequestParam(value = "inspectTime") String inspectTime,
+                                       @RequestParam(value = "recordContent") String recordContent,
+                                       @RequestParam(value = "fuselage") String fuselage,
+                                       @RequestParam(value = "electrode") String electrode,
+                                       @RequestParam(value = "validity") String validity,
+                                       @RequestParam(value = "battery") String battery,
+                                       @RequestParam(value = "available") String available,
+                                       @RequestParam(value = "useTimes") String useTimes) {
+        Long recordId = Long.parseLong(id);
+        Long inspector_id = Long.parseLong(inspectorId);
+        Long equipment_id = Long.parseLong(equipmentId);
+        Long use_times = Long.parseLong(useTimes);
+        AedSituation situation = aedSituationMapper.findRecordByRecordId(recordId);
+        situation.setEquipmentId(equipment_id);
+        situation.setInspectorId(inspector_id);
+        situation.setInspectTime(inspectTime);
+        situation.setRecordContent(recordContent);
+        situation.setUseTimes(use_times);
+        situation.setFuselage(Integer.parseInt(fuselage));
+        situation.setElectrode(Integer.parseInt(electrode));
+        situation.setValidity(Integer.parseInt(validity));
+        situation.setBattery(Integer.parseInt(battery));
+        situation.setAvailable(Integer.parseInt(available));
+        int count = aedSituationMapper.updateRecordByObject(situation);
+        if (count > 0) {
+            return ServerResponse.createBySuccess("UPDATE SUCCESS!");
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
+
+    @DeleteMapping("/situations/{id}")
+    @ApiOperation("删除一条检查记录，by 记录ID")
+    public ServerResponse deleteRecord(@PathVariable String id) {
+        Long recordId = Long.parseLong(id);
+        int count = aedSituationMapper.deleteRecordByRecordId(recordId);
+        if (count > 0) {
+            return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {
             return ServerResponse.createByFail();
         }

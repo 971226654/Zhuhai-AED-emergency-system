@@ -32,5 +32,9 @@ public class Feedback implements Serializable {
 	 */
 	private Long userId;
 
+	/**
+	 * 七牛云图片地址
+	 */
+	private String picture;
 
 }

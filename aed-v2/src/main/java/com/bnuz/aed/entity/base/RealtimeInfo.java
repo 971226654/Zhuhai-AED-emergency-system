@@ -57,4 +57,8 @@ public class RealtimeInfo implements Serializable {
 	 */
 	private int info;
 
+	/**
+	 * 七牛云图片视频地址
+	 */
+	private String media;
 }

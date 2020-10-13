@@ -7,10 +7,26 @@
         WHERE p.equipmentId = #{equipmentId};
     </select>
 
-    <update id="updateGeoPosition">
+    <update id="updatePositionByObject">
         UPDATE AedPosition
-        SET longitude = #{newLongitude}, latitude = #{newLatitude}
+        <set>
+            <if test="longitude != null">longitude = #{longitude},</if>
+            <if test="latitude != null">latitude = #{latitude},</if>
+            <if test="country != null">country = #{country},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="address != null">address = #{address}</if>
+        </set>
         WHERE equipmentId = #{equipmentId};
     </update>
+
+    <insert id="insertPositionByObject" parameterType="com.bnuz.aed.entity.base.AedPosition">
+        INSERT INTO
+        AedPosition(equipmentId, longitude, latitude, country, city, address)
+        VALUES (#{equipmentId},#{longitude},#{latitude},#{country},#{city},#{address});
+    </insert>
+
+    <delete id="deletePositionById">
+        DELETE FROM AedPosition WHERE equipmentId = #{equipmentId};
+    </delete>
 
 </mapper>

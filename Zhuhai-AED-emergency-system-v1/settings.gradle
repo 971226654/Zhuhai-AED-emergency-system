@@ -1,4 +1,0 @@
-rootProject.name = 'Zhuhai-AED-emergency-system-v1'
-include 'tool-common'
-include 'aed-web'
-include 'aed-miniprogram'
