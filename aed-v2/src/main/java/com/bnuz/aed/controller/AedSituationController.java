@@ -60,16 +60,11 @@ public class AedSituationController {
 
     @PostMapping("/situations/inspectorId/{id}")
     @ApiOperation("添加一条设备检查记录，by 检查员ID")
-    public ServerResponse addRecord(@PathVariable String id,
-                                    @RequestParam(value = "equipmentId") String equipmentId,
-                                    @RequestParam(value = "inspectTime") String inspectTime,
-                                    @RequestParam(value = "recordContent") String recordContent,
-                                    @RequestParam(value = "fuselage") String fuselage,
-                                    @RequestParam(value = "electrode") String electrode,
-                                    @RequestParam(value = "validity") String validity,
-                                    @RequestParam(value = "battery") String battery,
-                                    @RequestParam(value = "available") String available,
-                                    @RequestParam(value = "useTimes") String useTimes) {
+    public ServerResponse addRecord(@PathVariable String id, String equipmentId,
+                                    String inspectTime, String recordContent,
+                                    String fuselage, String electrode,
+                                    String validity, String battery,
+                                    String available, String useTimes) {
         Long inspectorId = Long.parseLong(id);
         Long equipment_id = Long.parseLong(equipmentId);
         Long use_times = Long.parseLong(useTimes);
@@ -94,17 +89,11 @@ public class AedSituationController {
 
     @PutMapping("/situations/{id}")
     @ApiOperation("修改一条设备检查记录，by 记录ID")
-    public ServerResponse updateRecord(@PathVariable String id,
-                                       @RequestParam(value = "equipmentId") String equipmentId,
-                                       @RequestParam(value = "inspectorId") String inspectorId,
-                                       @RequestParam(value = "inspectTime") String inspectTime,
-                                       @RequestParam(value = "recordContent") String recordContent,
-                                       @RequestParam(value = "fuselage") String fuselage,
-                                       @RequestParam(value = "electrode") String electrode,
-                                       @RequestParam(value = "validity") String validity,
-                                       @RequestParam(value = "battery") String battery,
-                                       @RequestParam(value = "available") String available,
-                                       @RequestParam(value = "useTimes") String useTimes) {
+    public ServerResponse updateRecord(@PathVariable String id, String equipmentId,
+                                       String inspectorId, String inspectTime,
+                                       String recordContent, String fuselage,
+                                       String electrode, String validity,
+                                       String battery, String available, String useTimes) {
         Long recordId = Long.parseLong(id);
         Long inspector_id = Long.parseLong(inspectorId);
         Long equipment_id = Long.parseLong(equipmentId);

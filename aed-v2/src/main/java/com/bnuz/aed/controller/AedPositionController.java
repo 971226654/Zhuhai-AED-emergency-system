@@ -21,12 +21,9 @@ public class AedPositionController {
 
     @PostMapping("/positions/{id}")
     @ApiOperation("新增设备的地理信息，by 设备ID")
-    public ServerResponse addPosition(@PathVariable String id,
-                                      @RequestParam(value = "longitude") String longitude,
-                                      @RequestParam(value = "latitude") String latitude,
-                                      @RequestParam(value = "country") String country,
-                                      @RequestParam(value = "city") String city,
-                                      @RequestParam(value = "address") String address) {
+    public ServerResponse addPosition(@PathVariable String id, String longitude,
+                                      String latitude, String country,
+                                      String city, String address) {
         Long equipmentId = Long.parseLong(id);
         AedPosition position = new AedPosition();
         position.setEquipmentId(equipmentId);
@@ -45,12 +42,9 @@ public class AedPositionController {
 
     @PutMapping("/positions/{id}")
     @ApiOperation("更新一个AED设备的地理信息，by 设备ID")
-    public ServerResponse updatePosition(@PathVariable String id,
-                                         @RequestParam(value = "longitude") String longitude,
-                                         @RequestParam(value = "latitude") String latitude,
-                                         @RequestParam(value = "country") String country,
-                                         @RequestParam(value = "city") String city,
-                                         @RequestParam(value = "address") String address) {
+    public ServerResponse updatePosition(@PathVariable String id, String longitude,
+                                         String latitude, String country,
+                                         String city, String address) {
         Long equipmentId = Long.parseLong(id);
         AedPosition position = aedPositionMapper.findPositionById(equipmentId);
         position.setLongitude(longitude);

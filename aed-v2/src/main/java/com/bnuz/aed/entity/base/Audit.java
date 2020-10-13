@@ -17,25 +17,16 @@ public class Audit implements Serializable {
 
 	private static final long serialVersionUID = 1752438241560823088L;
 
-	/**
-	 * 审核ID
-	 */
+	/** 审核ID */
 	private Long auditId;
 
-	/**
-	 * 用户ID
-	 */
+	/** 用户ID */
 	private Long userId;
 
-	/**
-	 * 手机号码
-	 */
+	/** 手机号码 */
 	private String phoneNumber;
 
-	/**
-	 * 身份证
-	 */
+	/** 身份证 */
 	private String idCard;
-
 
 }

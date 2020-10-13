@@ -3,7 +3,6 @@ package com.bnuz.aed.entity.base;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @Description  
@@ -18,49 +17,31 @@ public class AedEquipment implements Serializable {
 
 	private static final long serialVersionUID = -4309564230972272665L;
 
-	/**
-	 * 设备ID
-	 */
+	/** 设备ID */
 	private Long equipmentId;
 
-	/**
-	 * 检查员ID
-	 */
+	/** 检查员ID */
 	private Long inspectorId;
 
-	/**
-	 * 摆放时间
-	 */
+	/** 摆放时间 */
 	private String displayTime;
 
-	/**
-	 * 生产时间
-	 */
+	/** 生产时间 */
 	private String productionTime;
 
-	/**
-	 * 购买时间
-	 */
+	/** 购买时间 */
 	private String purchaseTime;
 
-	/**
-	 * 厂家名称
-	 */
+	/** 厂家名称 */
 	private String factoryName;
 
-	/**
-	 * 设备型号
-	 */
+	/** 设备型号 */
 	private String model;
 
-	/**
-	 * 目前是否可用
-	 */
+	/** 目前是否可用 */
 	private int status;
 
-	/**
-	 * 外观
-	 */
+	/** 外观 */
 	private String appearance;
 
 }

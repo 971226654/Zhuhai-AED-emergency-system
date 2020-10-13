@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -34,7 +33,7 @@ public class AedEquipmentController {
 
     @GetMapping("/equipments")
     @ApiOperation("获取所有AED设备信息")
-    public ServerResponse getAllEquipments() throws ParseException{
+    public ServerResponse getAllEquipments() {
         List<AedOutput> outputs = aedEquipmentMapper.findAllEquipments();
         if (outputs != null) {
             return ServerResponse.createBySuccess(outputs);
@@ -45,7 +44,7 @@ public class AedEquipmentController {
 
     @GetMapping("/equipments/{id}")
     @ApiOperation("通过id获得某一个AED设备")
-    public ServerResponse getEquipmentById(@PathVariable String id) throws ParseException {
+    public ServerResponse getEquipmentById(@PathVariable String id) {
         Long equipmentId = Long.parseLong(id);
         AedOutput output = aedEquipmentMapper.findEquipmentByIdExpand(equipmentId);
         if (output != null) {
@@ -58,13 +57,10 @@ public class AedEquipmentController {
 
     @PostMapping("/equipments")
     @ApiOperation("新增一个AED设备,所需字段摆放时间,生产时间,购买时间,厂家名称,设备型号,目前状态（是否可用）,外观照片")
-    public ServerResponse addEquipment(@RequestParam(value = "displayTime") String displayTime,
-                                       @RequestParam(value = "productionTime") String productionTime,
-                                       @RequestParam(value = "purchaseTime") String purchaseTime,
-                                       @RequestParam(value = "factoryName") String factoryName,
-                                       @RequestParam(value = "model") String model,
-                                       @RequestParam(value = "status") int status,
-                                       @RequestParam(value = "appearance") MultipartFile file) {
+    public ServerResponse addEquipment(String displayTime, String productionTime,
+                                       String purchaseTime, String factoryName,
+                                       String model, int status,
+                                       @RequestPart MultipartFile file) {
         AedEquipment equipment = new AedEquipment();
         equipment.setDisplayTime(displayTime);
         equipment.setProductionTime(productionTime);
@@ -94,15 +90,11 @@ public class AedEquipmentController {
 
     @PutMapping("/equipments/{id}")
     @ApiOperation("修改某一个AED设备的基本信息，by 设备ID，所需字段同post")
-    public ServerResponse updateEquipment(@PathVariable String id,
-                                          @RequestParam(value = "inspectorId") String inspectorId,
-                                          @RequestParam(value = "displayTime") String displayTime,
-                                          @RequestParam(value = "productionTime") String productionTime,
-                                          @RequestParam(value = "purchaseTime") String purchaseTime,
-                                          @RequestParam(value = "factoryName") String factoryName,
-                                          @RequestParam(value = "model") String model,
-                                          @RequestParam(value = "status") int status,
-                                          @RequestParam(value = "appearance") MultipartFile file) {
+    public ServerResponse updateEquipment(@PathVariable String id, String inspectorId,
+                                          String displayTime, String productionTime,
+                                          String purchaseTime, String factoryName,
+                                          String model, int status,
+                                          @RequestPart MultipartFile file) {
         Long equipmentId = Long.parseLong(id);
         AedEquipment equipment = aedEquipmentMapper.findEquipmentByIdBase(equipmentId);
 

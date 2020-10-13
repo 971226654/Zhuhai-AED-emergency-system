@@ -15,24 +15,16 @@ public class Material implements Serializable {
 
     private static final long serialVersionUID = -5884655138207608940L;
 
-    /**
-     * 材料ID
-     */
+    /** 材料ID */
     private Long materialId;
 
-    /**
-     * 材料内容
-     */
+    /** 材料内容 */
     private String materialContent;
 
-    /**
-     * 审核ID
-     */
+    /** 审核ID */
     private Long auditId;
 
-    /**
-     * 七牛云图片
-     */
+    /** 七牛云图片 */
     private String picture;
 
 }
