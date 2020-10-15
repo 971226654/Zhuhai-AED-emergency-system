@@ -12,6 +12,14 @@ import java.util.List;
 @Mapper
 public interface MaterialMapper {
 
-    List<Material> findMaterialsByAid(@Param("auditId") Long auditId);
+    Material findMaterialsByAid(@Param("auditId") Long auditId);
+
+    String findPictureByAid(@Param("auditId") Long auditId);
+
+    int insertMaterial(Material material);
+
+    int updateMaterial(Material material);
+
+    int deleteMaterial(@Param("auditId") Long auditId);
 
 }

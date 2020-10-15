@@ -12,4 +12,10 @@ public interface AuditResultMapper {
 
     AuditResult findAuditResultByAid(@Param("auditId") Long auditId);
 
+    int insertAuditResult(AuditResult auditResult);
+
+    int updateAuditResult(AuditResult auditResult);
+
+    int deleteAuditResult(@Param("auditId") Long auditId);
+
 }

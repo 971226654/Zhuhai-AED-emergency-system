@@ -12,9 +12,39 @@
         WHERE knowledge = 1;
     </select>
 
-    <select id="findInfoOrKnow" resultType="com.bnuz.aed.entity.base.RealtimeInfo">
+    <select id="findInfoOrKnowById" resultType="com.bnuz.aed.entity.base.RealtimeInfo">
         SELECT * FROM RealtimeInfo
         WHERE infoId = #{infoId};
+    </select>
+
+    <insert id="insertInfoOrKnow" parameterType="com.bnuz.aed.entity.base.RealtimeInfo">
+        INSERT INTO
+        RealtimeInfo(releaseTime,title,content,intro,author,knowledge,info,media)
+        VALUES
+        (#{releaseTime},#{title},#{content},#{intro},#{author},#{knowledge},#{info},#{media});
+    </insert>
+
+    <update id="updateInfoOrKnow" parameterType="com.bnuz.aed.entity.base.RealtimeInfo">
+        UPDATE RealtimeInfo
+        <set>
+            <if test="releaseTime != null">releaseTime = #{releaseTime},</if>
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="intro != null">intro = #{intro},</if>
+            <if test="author != null">author = #{author},</if>
+            <if test="knowledge != null">knowledge = #{knowledge},</if>
+            <if test="info != null">info = #{info},</if>
+            <if test="media != null">media = #{media}</if>
+        </set>
+        WHERE infoId = #{infoId};
+    </update>
+
+    <delete id="deleteInfoOrKnow">
+        DELETE FROM RealtimeInfo WHERE infoId = #{infoId};
+    </delete>
+
+    <select id="findMediaById" resultType="String">
+        SELECT media FROM RealtimeInfo WHERE infoId = #{infoId};
     </select>
 
 </mapper>

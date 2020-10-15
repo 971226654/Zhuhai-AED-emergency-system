@@ -9,7 +9,7 @@
         <result column="idCard" jdbcType="VARCHAR" property="idCard" />
         <association property="auditResult" column="auditId"
                      select="com.bnuz.aed.common.mapper.AuditResultMapper.findAuditResultByAid"/>
-        <collection property="materials" column="auditId"
+        <association property="material" column="auditId"
                     select="com.bnuz.aed.common.mapper.MaterialMapper.findMaterialsByAid" />
     </resultMap>
 
@@ -17,8 +17,32 @@
         SELECT * FROM Audit;
     </select>
 
-    <select id="finAuditsByUserId" resultMap="auditMap">
+    <select id="findAuditsByUserId" resultMap="auditMap">
         SELECT * FROM Audit WHERE userId = #{userId};
     </select>
+
+    <insert id="insertAudit" parameterType="com.bnuz.aed.entity.base.Audit">
+        INSERT INTO
+        Audit (userId, phoneNumber, idCard)
+        VALUES (#{userId}, #{phoneNumber}, #{idCard});
+    </insert>
+
+    <select id="findAuditByUserId" resultType="com.bnuz.aed.entity.base.Audit">
+        SELECT * FROM Audit WHERE userId = #{userId};
+    </select>
+
+    <update id="updateAudit" parameterType="com.bnuz.aed.entity.base.Audit">
+        UPDATE Audit
+        <set>
+            <if test="userId != null">userId = #{userId},</if>
+            <if test="phoneNumber != null">phoneNumber = #{phoneNumber},</if>
+            <if test="idCard != null">idCard = #{idCard}</if>
+        </set>
+        WHERE auditId = #{auditId};
+    </update>
+
+    <delete id="deleteAudit">
+        DELETE FROM Audit WHERE auditId = #{auditId};
+    </delete>
 
 </mapper>

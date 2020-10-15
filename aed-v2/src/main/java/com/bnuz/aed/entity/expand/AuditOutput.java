@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
  * @author Leia Liang
  */
@@ -26,6 +24,6 @@ public class AuditOutput {
 
     private AuditResult auditResult;
 
-    private List<Material> materials;
+    private Material material;
 
 }

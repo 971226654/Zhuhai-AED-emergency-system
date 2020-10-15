@@ -90,7 +90,7 @@ public class AedEquipmentController {
 
     @PutMapping("/equipments/{id}")
     @ApiOperation("修改某一个AED设备的基本信息，by 设备ID，所需字段同post")
-    public ServerResponse updateEquipment(@PathVariable String id, String inspectorId,
+    public ServerResponse updateEquipment(@PathVariable String id, String inspector_id,
                                           String displayTime, String productionTime,
                                           String purchaseTime, String factoryName,
                                           String model, int status,
@@ -98,8 +98,8 @@ public class AedEquipmentController {
         Long equipmentId = Long.parseLong(id);
         AedEquipment equipment = aedEquipmentMapper.findEquipmentByIdBase(equipmentId);
 
-        Long inspector_id = Long.parseLong(inspectorId);
-        equipment.setInspectorId(inspector_id);
+        Long inspectorId = Long.parseLong(inspector_id);
+        equipment.setInspectorId(inspectorId);
         equipment.setDisplayTime(displayTime);
         equipment.setProductionTime(productionTime);
         equipment.setPurchaseTime(purchaseTime);
@@ -136,6 +136,13 @@ public class AedEquipmentController {
     @ApiOperation("删除一个AED设备的基本信息和地理信息，by 设备ID")
     public ServerResponse deleteEquipment(@PathVariable String id){
         Long equipmentId = Long.parseLong(id);
+        String oldUrl = aedEquipmentMapper.findImageById(equipmentId);
+        int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
+        if (statusCode == -1) {
+            System.out.println("图片删除失败！");
+        } else {
+            System.out.println("图片删除成功！");
+        }
         int count1 = aedEquipmentMapper.deleteEquipmentById(equipmentId);
         int count2 = aedPositionMapper.deletePositionById(equipmentId);
         if (count1 > 0 && count2 > 0) {

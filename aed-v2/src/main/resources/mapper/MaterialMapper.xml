@@ -6,4 +6,27 @@
         SELECT * FROM Material WHERE auditId = #{auditId};
     </select>
 
+    <select id="findPictureByAid" resultType="String">
+        SELECT picture FROM Material WHERE auditId = #{auditId};
+    </select>
+
+    <insert id="insertMaterial" parameterType="com.bnuz.aed.entity.base.Material">
+        INSERT INTO
+        Material (auditId, materialContent, picture)
+        VALUES (#{auditId}, #{materialContent}, #{picture});
+    </insert>
+
+    <update id="updateMaterial" parameterType="com.bnuz.aed.entity.base.Material">
+        UPDATE Material
+        <set>
+            <if test="materialContent != null">materialContent = #{materialContent},</if>
+            <if test="picture != null">picture = #{picture}</if>
+        </set>
+        WHERE auditId = #{auditId};
+    </update>
+
+    <delete id="deleteMaterial">
+        DELETE FROM Material WHERE auditId = #{auditId};
+    </delete>
+
 </mapper>

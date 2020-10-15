@@ -6,4 +6,23 @@
         SELECT * FROM AuditResult WHERE auditId = #{auditId};
     </select>
 
+    <insert id="insertAuditResult" parameterType="com.bnuz.aed.entity.base.AuditResult">
+        INSERT INTO
+        AuditResult (auditId, result, managerId)
+        VALUES (#{auditId}, #{result}, #{managerId});
+    </insert>
+
+    <update id="updateMaterial" parameterType="com.bnuz.aed.entity.base.AuditResult">
+        UPDATE AuditResult
+        <set>
+            <if test="result != null">result = #{result},</if>
+            <if test="managerId != null">managerId = #{managerId}</if>
+        </set>
+        WHERE auditId = #{auditId};
+    </update>
+
+    <delete id="deleteAuditResult">
+        DELETE FROM AuditResult WHERE auditId = #{auditId};
+    </delete>
+
 </mapper>

@@ -8,4 +8,14 @@
         WHERE c.userId = #{userId};
     </select>
 
+    <insert id="insertCollection">
+        INSERT INTO
+        CollectList(userId, infoId)
+        VALUES (#{userId}, #{infoId});
+    </insert>
+
+    <delete id="deleteCollection">
+        DELETE FROM CollectList WHERE collectionId = #{collectionId};
+    </delete>
+
 </mapper>

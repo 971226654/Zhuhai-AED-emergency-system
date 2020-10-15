@@ -15,7 +15,7 @@ plugins {
 }
 
 group = 'com.bnuz'
-version = '1.0.8.20201013_alpha'
+version = '1.0.9.20201015_alpha'
 sourceCompatibility = '14'
 
 configurations {

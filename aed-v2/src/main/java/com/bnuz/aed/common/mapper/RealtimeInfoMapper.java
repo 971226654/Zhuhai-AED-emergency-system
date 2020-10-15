@@ -16,6 +16,14 @@ public interface RealtimeInfoMapper {
 
     List<RealtimeInfo> findAllKnows();
 
-    RealtimeInfo findInfoOrKnow(@Param("infoId") Long infoId);
+    RealtimeInfo findInfoOrKnowById(@Param("infoId") Long infoId);
+
+    int insertInfoOrKnow(RealtimeInfo realtimeInfo);
+
+    int updateInfoOrKnow(RealtimeInfo realtimeInfo);
+
+    int deleteInfoOrKnow(@Param("infoId") Long infoId);
+
+    String findMediaById(@Param("infoId") Long infoId);
 
 }

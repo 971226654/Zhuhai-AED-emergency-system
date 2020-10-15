@@ -5,7 +5,6 @@ import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.AedSituation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.javassist.tools.rmi.AppletServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,20 +59,20 @@ public class AedSituationController {
 
     @PostMapping("/situations/inspectorId/{id}")
     @ApiOperation("添加一条设备检查记录，by 检查员ID")
-    public ServerResponse addRecord(@PathVariable String id, String equipmentId,
+    public ServerResponse addRecord(@PathVariable String id, String equipment_id,
                                     String inspectTime, String recordContent,
                                     String fuselage, String electrode,
                                     String validity, String battery,
-                                    String available, String useTimes) {
+                                    String available, String use_times) {
         Long inspectorId = Long.parseLong(id);
-        Long equipment_id = Long.parseLong(equipmentId);
-        Long use_times = Long.parseLong(useTimes);
+        Long equipmentId = Long.parseLong(equipment_id);
+        Long useTimes = Long.parseLong(use_times);
         AedSituation situation = new AedSituation();
         situation.setInspectorId(inspectorId);
-        situation.setEquipmentId(equipment_id);
+        situation.setEquipmentId(equipmentId);
         situation.setInspectTime(inspectTime);
         situation.setRecordContent(recordContent);
-        situation.setUseTimes(use_times);
+        situation.setUseTimes(useTimes);
         situation.setFuselage(Integer.parseInt(fuselage));
         situation.setElectrode(Integer.parseInt(electrode));
         situation.setValidity(Integer.parseInt(validity));
@@ -89,21 +88,21 @@ public class AedSituationController {
 
     @PutMapping("/situations/{id}")
     @ApiOperation("修改一条设备检查记录，by 记录ID")
-    public ServerResponse updateRecord(@PathVariable String id, String equipmentId,
-                                       String inspectorId, String inspectTime,
+    public ServerResponse updateRecord(@PathVariable String id, String equipment_id,
+                                       String inspector_id, String inspectTime,
                                        String recordContent, String fuselage,
                                        String electrode, String validity,
-                                       String battery, String available, String useTimes) {
+                                       String battery, String available, String use_times) {
         Long recordId = Long.parseLong(id);
-        Long inspector_id = Long.parseLong(inspectorId);
-        Long equipment_id = Long.parseLong(equipmentId);
-        Long use_times = Long.parseLong(useTimes);
+        Long inspectorId = Long.parseLong(inspector_id);
+        Long equipmentId = Long.parseLong(equipment_id);
+        Long useTimes = Long.parseLong(use_times);
         AedSituation situation = aedSituationMapper.findRecordByRecordId(recordId);
-        situation.setEquipmentId(equipment_id);
-        situation.setInspectorId(inspector_id);
+        situation.setEquipmentId(equipmentId);
+        situation.setInspectorId(inspectorId);
         situation.setInspectTime(inspectTime);
         situation.setRecordContent(recordContent);
-        situation.setUseTimes(use_times);
+        situation.setUseTimes(useTimes);
         situation.setFuselage(Integer.parseInt(fuselage));
         situation.setElectrode(Integer.parseInt(electrode));
         situation.setValidity(Integer.parseInt(validity));

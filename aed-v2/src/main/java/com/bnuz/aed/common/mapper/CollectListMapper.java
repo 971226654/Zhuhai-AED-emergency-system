@@ -14,4 +14,8 @@ public interface CollectListMapper {
 
     List<Map<String, Object>> findAllCollectById(@Param("userId") Long userId);
 
+    int insertCollection(@Param("userId") Long userId, @Param("infoId") Long infoId);
+
+    int deleteCollection(@Param("collectionId") Long collectionId);
+
 }

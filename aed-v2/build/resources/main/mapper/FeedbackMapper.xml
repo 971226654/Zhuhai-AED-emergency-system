@@ -21,4 +21,30 @@
         LEFT JOIN FeedbackResult r ON f.feedbackId = r.feedbackId;
     </select>
 
+    <select id="findFeedbackById" resultType="map">
+        SELECT * FROM Feedback f
+        LEFT JOIN FeedbackResult r ON f.feedbackId = r.feedbackId
+        WHERE f.feedbackId = #{feedbackId};
+    </select>
+
+    <insert id="insertFeedback" parameterType="com.bnuz.aed.entity.base.Feedback">
+        INSERT INTO
+        Feedback(feedbackContent, userId, picture)
+        VALUES (#{feedbackContent}, #{userId}, #{picture});
+    </insert>
+
+    <insert id="insertFeedbackResult" parameterType="com.bnuz.aed.entity.base.FeedbackResult">
+        INSERT INTO
+        FeedbackResult(feedbackId, result, managerId)
+        VALUES (#{feedbackId}, #{result}, #{managerId});
+    </insert>
+
+    <delete id="deleteFeedback">
+        DELETE FROM Feedback WHERE feedbackId = #{feedbackId};
+    </delete>
+
+    <delete id="deleteFeedbackResult">
+        DELETE FROM FeedbackResult WHERE feedbackId = #{feedbackId};
+    </delete>
+
 </mapper>
