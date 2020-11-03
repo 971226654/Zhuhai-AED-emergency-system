@@ -1,4 +1,4 @@
-package com.bnuz.aed.common.tools;
+package com.bnuz.aed.common.tools.utils;
 
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;

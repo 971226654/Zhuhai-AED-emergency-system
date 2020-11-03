@@ -48,7 +48,4 @@ public class AedSituation implements Serializable {
 	/** 目前是否可用 */
 	private Integer available;
 
-	/** 使用次数 */
-	private Long useTimes;
-
 }

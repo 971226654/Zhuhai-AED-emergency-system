@@ -8,15 +8,16 @@
 
     <insert id="insertAuditResult" parameterType="com.bnuz.aed.entity.base.AuditResult">
         INSERT INTO
-        AuditResult (auditId, result, managerId)
-        VALUES (#{auditId}, #{result}, #{managerId});
+        AuditResult (auditId, result, managerId, resultTime)
+        VALUES (#{auditId}, #{result}, #{managerId}, #{resultTime});
     </insert>
 
     <update id="updateMaterial" parameterType="com.bnuz.aed.entity.base.AuditResult">
         UPDATE AuditResult
         <set>
             <if test="result != null">result = #{result},</if>
-            <if test="managerId != null">managerId = #{managerId}</if>
+            <if test="managerId != null">managerId = #{managerId},</if>
+            <if test="resultTime != null">resultTime = #{resultTime}</if>
         </set>
         WHERE auditId = #{auditId};
     </update>

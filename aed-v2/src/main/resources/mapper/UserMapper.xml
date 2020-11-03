@@ -7,12 +7,50 @@
     </select>
 
     <insert id="insertUser" parameterType="com.bnuz.aed.entity.base.User">
-        INSERT INTO User(userName, wxOpenid, manager, inspector)
-        VALUES (#{userName}, #{wxOpenid}, 0, 0);
+        INSERT INTO User(wxOpenid, manager, inspector, role)
+        VALUES (#{wxOpenid}, 0, 0, #{role});
     </insert>
 
-    <select id="findUserByName" resultType="int">
-        SELECT userId FROM User WHERE userName = #{userName};
+    <select id="findUserByOpenid" resultType="com.bnuz.aed.entity.base.User">
+        SELECT * FROM User WHERE wxOpenid = #{openid};
     </select>
+
+    <select id="findUserByUserId" resultType="com.bnuz.aed.entity.base.User">
+        SELECT * FROM User WHERE userId = #{userId};
+    </select>
+
+    <select id="findAllInspectors" resultType="com.bnuz.aed.entity.base.User">
+        SELECT * FROM User WHERE role = 'INSPECTOR';
+    </select>
+
+    <select id="findAllManagers" resultType="com.bnuz.aed.entity.base.User">
+        SELECT * FROM User WHERE role = 'MANAGER';
+    </select>
+
+    <select id="findUserRole" resultType="String">
+        SELECT role FROM User WHERE userId = #{userId};
+    </select>
+
+    <select id="findUserOpenid" resultType="String">
+        SELECT wxOpenid FROM User WHERE userId = #{userId};
+    </select>
+
+    <select id="checkUserExpired" resultType="int">
+        SELECT COUNT(*) FROM User WHERE userId = #{userId};
+    </select>
+
+    <update id="updateUserInfoByUserId" parameterType="com.bnuz.aed.entity.base.User">
+        UPDATE User
+        <set>
+            <if test="userName != null">userName = #{userName},</if>
+            <if test="wxOpenid != null">wxOpenid = #{wxOpenid},</if>
+            <if test="phoneNumber != null">phoneNumber = #{phoneNumber},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="idCard != null">idCard = #{idCard},</if>
+            <if test="responsibleArea != null">responsibleArea = #{responsibleArea},</if>
+            <if test="role != null">role = #{role}</if>
+        </set>
+        WHERE userId = #{userId};
+    </update>
 
 </mapper>

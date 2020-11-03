@@ -29,14 +29,14 @@
 
     <insert id="insertFeedback" parameterType="com.bnuz.aed.entity.base.Feedback">
         INSERT INTO
-        Feedback(feedbackContent, userId, picture)
-        VALUES (#{feedbackContent}, #{userId}, #{picture});
+        Feedback(feedbackContent, userId, feedbackStars, picture, feedbackTime)
+        VALUES (#{feedbackContent}, #{userId}, #{feedbackStars}, #{picture}, #{feedbackTime});
     </insert>
 
     <insert id="insertFeedbackResult" parameterType="com.bnuz.aed.entity.base.FeedbackResult">
         INSERT INTO
-        FeedbackResult(feedbackId, result, managerId)
-        VALUES (#{feedbackId}, #{result}, #{managerId});
+        FeedbackResult(feedbackId, result, managerId, resultTime)
+        VALUES (#{feedbackId}, #{result}, #{managerId}, #{resultTime});
     </insert>
 
     <delete id="deleteFeedback">

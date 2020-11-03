@@ -1,8 +1,9 @@
 package com.bnuz.aed.common.tools;
 
-import com.alibaba.fastjson.JSON;
+import cn.hutool.json.JSONUtil;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 
 /**
@@ -29,7 +30,7 @@ public class ServerResponse {
 
     @Override
     public String toString() {
-        return JSON.toJSONString(this);
+        return JSONUtil.toJsonStr(this);
     }
 
     public ServerResponse(int code) {

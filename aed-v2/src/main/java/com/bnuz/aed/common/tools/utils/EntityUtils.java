@@ -1,4 +1,4 @@
-package com.bnuz.aed.common.tools;
+package com.bnuz.aed.common.tools.utils;
 
 
 import java.lang.reflect.Constructor;

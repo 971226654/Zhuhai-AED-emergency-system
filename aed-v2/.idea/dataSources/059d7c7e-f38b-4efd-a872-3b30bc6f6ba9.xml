@@ -881,631 +881,725 @@
     <table id="283" parent="3" name="Material"/>
     <table id="284" parent="3" name="RealtimeInfo"/>
     <table id="285" parent="3" name="User"/>
-    <column id="286" parent="275" name="equipmentId">
+    <table id="286" parent="3" name="role_permission">
+      <Comment>角色权限</Comment>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
+    </table>
+    <column id="287" parent="275" name="equipmentId">
       <Position>1</Position>
       <Comment>设备ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="287" parent="275" name="inspectorId">
+    <column id="288" parent="275" name="inspectorId">
       <Position>2</Position>
       <Comment>检查员ID</Comment>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <column id="288" parent="275" name="displayTime">
+    <column id="289" parent="275" name="displayTime">
       <Position>3</Position>
       <Comment>摆放时间</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="289" parent="275" name="productionTime">
+    <column id="290" parent="275" name="productionTime">
       <Position>4</Position>
       <Comment>生产时间</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="290" parent="275" name="purchaseTime">
+    <column id="291" parent="275" name="purchaseTime">
       <Position>5</Position>
       <Comment>购买时间</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="291" parent="275" name="factoryName">
+    <column id="292" parent="275" name="factoryName">
       <Position>6</Position>
       <Comment>厂家名</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="292" parent="275" name="model">
+    <column id="293" parent="275" name="model">
       <Position>7</Position>
       <Comment>设备型号</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="293" parent="275" name="status">
+    <column id="294" parent="275" name="status">
       <Position>8</Position>
       <Comment>目前是否可用</Comment>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="294" parent="275" name="appearance">
+    <column id="295" parent="275" name="appearance">
       <Position>9</Position>
       <Comment>目前外观(七牛云图片地址)</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <index id="295" parent="275" name="equipmentId">
+    <index id="296" parent="275" name="equipmentId">
       <ColNames>equipmentId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="296" parent="275" name="equipmentId_2">
+    <index id="297" parent="275" name="equipmentId_2">
       <ColNames>equipmentId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="297" parent="275" name="equipmentId_3">
+    <index id="298" parent="275" name="equipmentId_3">
       <ColNames>equipmentId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="298" parent="275" name="equipmentId_4">
+    <index id="299" parent="275" name="equipmentId_4">
       <ColNames>equipmentId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="299" parent="275" name="EquipmentToInspector">
+    <index id="300" parent="275" name="EquipmentToInspector">
       <ColNames>inspectorId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="300" parent="275" name="PRIMARY">
+    <key id="301" parent="275" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>equipmentId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="301" parent="275" name="EquipmentToInspector">
+    <foreign-key id="302" parent="275" name="EquipmentToInspector">
       <ColNames>inspectorId</ColNames>
       <RefTableName>User</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <column id="302" parent="276" name="equipmentId">
+    <column id="303" parent="276" name="equipmentId">
       <Position>1</Position>
       <Comment>设备ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="303" parent="276" name="longitude">
+    <column id="304" parent="276" name="longitude">
       <Position>2</Position>
       <Comment>经度</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="304" parent="276" name="latitude">
+    <column id="305" parent="276" name="latitude">
       <Position>3</Position>
       <Comment>纬度</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="305" parent="276" name="country">
+    <column id="306" parent="276" name="country">
       <Position>4</Position>
       <Comment>国家或地区</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="306" parent="276" name="city">
+    <column id="307" parent="276" name="city">
       <Position>5</Position>
       <Comment>城市</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="307" parent="276" name="address">
+    <column id="308" parent="276" name="address">
       <Position>6</Position>
       <Comment>详细地址</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <key id="308" parent="276" name="PRIMARY">
+    <key id="309" parent="276" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>equipmentId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="309" parent="276" name="PositionToEquipment">
+    <foreign-key id="310" parent="276" name="PositionToEquipment">
       <ColNames>equipmentId</ColNames>
       <RefTableName>AedEquipment</RefTableName>
       <RefColNames>equipmentId</RefColNames>
     </foreign-key>
-    <column id="310" parent="277" name="recordId">
+    <column id="311" parent="277" name="recordId">
       <Position>1</Position>
       <Comment>记录ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="311" parent="277" name="equipmentId">
+    <column id="312" parent="277" name="equipmentId">
       <Position>2</Position>
       <Comment>设备ID</Comment>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <column id="312" parent="277" name="inspectorId">
+    <column id="313" parent="277" name="inspectorId">
       <Position>3</Position>
       <Comment>检查员ID</Comment>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <column id="313" parent="277" name="inspectTime">
+    <column id="314" parent="277" name="inspectTime">
       <Position>4</Position>
       <Comment>检查时间</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="314" parent="277" name="recordContent">
+    <column id="315" parent="277" name="recordContent">
       <Position>5</Position>
       <Comment>设备具体情况</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="315" parent="277" name="electrode">
+    <column id="316" parent="277" name="electrode">
       <Position>6</Position>
       <Comment>电极片是否完好</Comment>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="316" parent="277" name="fuselage">
+    <column id="317" parent="277" name="fuselage">
       <Position>7</Position>
       <Comment>机身是否损坏</Comment>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="317" parent="277" name="validity">
+    <column id="318" parent="277" name="validity">
       <Position>8</Position>
       <Comment>是否在有效期内</Comment>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="318" parent="277" name="battery">
+    <column id="319" parent="277" name="battery">
       <Position>9</Position>
       <Comment>电池是否损坏</Comment>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="319" parent="277" name="available">
+    <column id="320" parent="277" name="available">
       <Position>10</Position>
       <Comment>目前是否可用</Comment>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="320" parent="277" name="useTimes">
+    <column id="321" parent="277" name="useTimes">
       <Position>11</Position>
       <Comment>被使用次数</Comment>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <index id="321" parent="277" name="SituationToEquipment">
+    <index id="322" parent="277" name="SituationToEquipment">
       <ColNames>equipmentId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="322" parent="277" name="SituationToInspector">
+    <index id="323" parent="277" name="SituationToInspector">
       <ColNames>inspectorId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="323" parent="277" name="PRIMARY">
+    <key id="324" parent="277" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>recordId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="324" parent="277" name="SituationToEquipment">
+    <foreign-key id="325" parent="277" name="SituationToEquipment">
       <ColNames>equipmentId</ColNames>
       <RefTableName>AedEquipment</RefTableName>
       <RefColNames>equipmentId</RefColNames>
     </foreign-key>
-    <foreign-key id="325" parent="277" name="SituationToInspector">
+    <foreign-key id="326" parent="277" name="SituationToInspector">
       <ColNames>inspectorId</ColNames>
       <RefTableName>User</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <column id="326" parent="278" name="auditId">
+    <column id="327" parent="278" name="auditId">
       <Position>1</Position>
       <Comment>审核ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="327" parent="278" name="userId">
+    <column id="328" parent="278" name="userId">
       <Position>2</Position>
       <Comment>审核申请人(用户)</Comment>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <column id="328" parent="278" name="phoneNumber">
+    <column id="329" parent="278" name="phoneNumber">
       <Position>3</Position>
       <Comment>手机号码</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="329" parent="278" name="idCard">
+    <column id="330" parent="278" name="idCard">
       <Position>4</Position>
       <Comment>身份证</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <index id="330" parent="278" name="auditId">
+    <column id="331" parent="278" name="auditTime">
+      <Position>5</Position>
+      <Comment>审核时间</Comment>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <index id="332" parent="278" name="auditId">
       <ColNames>auditId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="331" parent="278" name="auditId_2">
+    <index id="333" parent="278" name="auditId_2">
       <ColNames>auditId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="332" parent="278" name="auditId_3">
+    <index id="334" parent="278" name="auditId_3">
       <ColNames>auditId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="333" parent="278" name="auditId_4">
+    <index id="335" parent="278" name="auditId_4">
       <ColNames>auditId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="334" parent="278" name="auditId_5">
+    <index id="336" parent="278" name="auditId_5">
       <ColNames>auditId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="335" parent="278" name="auditId_6">
+    <index id="337" parent="278" name="auditId_6">
       <ColNames>auditId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="336" parent="278" name="auditId_7">
+    <index id="338" parent="278" name="auditId_7">
       <ColNames>auditId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="337" parent="278" name="examineId">
+    <index id="339" parent="278" name="auditId_8">
       <ColNames>auditId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="338" parent="278" name="AuditToUser">
+    <index id="340" parent="278" name="examineId">
+      <ColNames>auditId</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="341" parent="278" name="AuditToUser">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="339" parent="278" name="PRIMARY">
+    <key id="342" parent="278" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>auditId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="340" parent="278" name="AuditToUser">
+    <foreign-key id="343" parent="278" name="AuditToUser">
       <ColNames>userId</ColNames>
       <RefTableName>User</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <column id="341" parent="279" name="auditId">
+    <column id="344" parent="279" name="auditId">
       <Position>1</Position>
       <Comment>审核ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="342" parent="279" name="result">
+    <column id="345" parent="279" name="result">
       <Position>2</Position>
       <Comment>审核结果</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="343" parent="279" name="managerId">
+    <column id="346" parent="279" name="managerId">
       <Position>3</Position>
       <Comment>审核人(管理员)</Comment>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <index id="344" parent="279" name="AuResultToManager">
+    <column id="347" parent="279" name="resultTime">
+      <Position>4</Position>
+      <Comment>处理时间</Comment>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <index id="348" parent="279" name="AuResultToManager">
       <ColNames>managerId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="345" parent="279" name="PRIMARY">
+    <key id="349" parent="279" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>auditId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="346" parent="279" name="ResultToAudit">
+    <foreign-key id="350" parent="279" name="ResultToAudit">
       <ColNames>auditId</ColNames>
       <RefTableName>Audit</RefTableName>
       <RefColNames>auditId</RefColNames>
     </foreign-key>
-    <foreign-key id="347" parent="279" name="AuResultToManager">
+    <foreign-key id="351" parent="279" name="AuResultToManager">
       <ColNames>managerId</ColNames>
       <RefTableName>User</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <column id="348" parent="280" name="collectionId">
+    <column id="352" parent="280" name="collectionId">
       <Position>1</Position>
       <Comment>收藏ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="349" parent="280" name="userId">
+    <column id="353" parent="280" name="userId">
       <Position>2</Position>
       <Comment>收藏者(用户)</Comment>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <column id="350" parent="280" name="infoId">
+    <column id="354" parent="280" name="infoId">
       <Position>3</Position>
       <Comment>资讯ID</Comment>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <index id="351" parent="280" name="CollectListToUser">
+    <index id="355" parent="280" name="CollectListToUser">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="352" parent="280" name="CollectListToInfo">
+    <index id="356" parent="280" name="CollectListToInfo">
       <ColNames>infoId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="353" parent="280" name="PRIMARY">
+    <key id="357" parent="280" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>collectionId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="354" parent="280" name="CollectListToUser">
+    <foreign-key id="358" parent="280" name="CollectListToUser">
       <ColNames>userId</ColNames>
       <RefTableName>User</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <foreign-key id="355" parent="280" name="CollectListToInfo">
+    <foreign-key id="359" parent="280" name="CollectListToInfo">
       <ColNames>infoId</ColNames>
       <RefTableName>RealtimeInfo</RefTableName>
       <RefColNames>infoId</RefColNames>
     </foreign-key>
-    <column id="356" parent="281" name="feedbackId">
+    <column id="360" parent="281" name="feedbackId">
       <Position>1</Position>
       <Comment>反馈ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="357" parent="281" name="feedbackContent">
+    <column id="361" parent="281" name="feedbackContent">
       <Position>2</Position>
       <Comment>反馈内容</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="358" parent="281" name="userId">
+    <column id="362" parent="281" name="userId">
       <Position>3</Position>
       <Comment>反馈人(用户)</Comment>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <column id="359" parent="281" name="feedbackStars">
+    <column id="363" parent="281" name="feedbackStars">
       <Position>4</Position>
       <Comment>评分星星</Comment>
       <DataType>int(255)|0s</DataType>
     </column>
-    <column id="360" parent="281" name="picture">
+    <column id="364" parent="281" name="picture">
       <Position>5</Position>
       <Comment>七牛云图片地址</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <index id="361" parent="281" name="feedbackId">
+    <column id="365" parent="281" name="feedbackTime">
+      <Position>6</Position>
+      <Comment>反馈时间</Comment>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <index id="366" parent="281" name="feedbackId">
       <ColNames>feedbackId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="362" parent="281" name="feedbackId_2">
+    <index id="367" parent="281" name="feedbackId_2">
       <ColNames>feedbackId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="363" parent="281" name="feedbackId_3">
+    <index id="368" parent="281" name="feedbackId_3">
       <ColNames>feedbackId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="364" parent="281" name="feedbackId_4">
+    <index id="369" parent="281" name="feedbackId_4">
       <ColNames>feedbackId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="365" parent="281" name="FeedbackToUser">
+    <index id="370" parent="281" name="feedbackId_5">
+      <ColNames>feedbackId</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="371" parent="281" name="FeedbackToUser">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="366" parent="281" name="PRIMARY">
+    <key id="372" parent="281" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>feedbackId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="367" parent="281" name="FeedbackToUser">
+    <foreign-key id="373" parent="281" name="FeedbackToUser">
       <ColNames>userId</ColNames>
       <RefTableName>User</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <column id="368" parent="282" name="feedbackId">
+    <column id="374" parent="282" name="feedbackId">
       <Position>1</Position>
       <Comment>反馈ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="369" parent="282" name="result">
+    <column id="375" parent="282" name="result">
       <Position>2</Position>
       <Comment>反馈结果</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="370" parent="282" name="managerId">
+    <column id="376" parent="282" name="managerId">
       <Position>3</Position>
       <Comment>审核人(管理员ID)</Comment>
       <DataType>bigint(20)|0s</DataType>
     </column>
-    <index id="371" parent="282" name="FeResultToManager">
+    <column id="377" parent="282" name="resultTime">
+      <Position>4</Position>
+      <Comment>处理时间</Comment>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <index id="378" parent="282" name="FeResultToManager">
       <ColNames>managerId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="372" parent="282" name="PRIMARY">
+    <key id="379" parent="282" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>feedbackId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="373" parent="282" name="ResultToFeedback">
+    <foreign-key id="380" parent="282" name="ResultToFeedback">
       <ColNames>feedbackId</ColNames>
       <RefTableName>Feedback</RefTableName>
       <RefColNames>feedbackId</RefColNames>
     </foreign-key>
-    <foreign-key id="374" parent="282" name="FeResultToManager">
+    <foreign-key id="381" parent="282" name="FeResultToManager">
       <ColNames>managerId</ColNames>
       <RefTableName>User</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <column id="375" parent="283" name="auditId">
+    <column id="382" parent="283" name="auditId">
       <Position>1</Position>
       <Comment>审核ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="376" parent="283" name="materialContent">
+    <column id="383" parent="283" name="materialContent">
       <Position>2</Position>
       <Comment>材料内容</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="377" parent="283" name="picture">
+    <column id="384" parent="283" name="picture">
       <Position>3</Position>
       <Comment>七牛云图片</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <key id="378" parent="283" name="PRIMARY">
+    <key id="385" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>auditId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="379" parent="283" name="MaterialToAudit">
+    <foreign-key id="386" parent="283" name="MaterialToAudit">
       <ColNames>auditId</ColNames>
       <RefTableName>Audit</RefTableName>
       <RefColNames>auditId</RefColNames>
     </foreign-key>
-    <column id="380" parent="284" name="infoId">
+    <column id="387" parent="284" name="infoId">
       <Position>1</Position>
       <Comment>资讯或急救知识ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="381" parent="284" name="releaseTime">
+    <column id="388" parent="284" name="releaseTime">
       <Position>2</Position>
       <Comment>发布时间</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="382" parent="284" name="title">
+    <column id="389" parent="284" name="title">
       <Position>3</Position>
       <Comment>标题</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="383" parent="284" name="content">
+    <column id="390" parent="284" name="content">
       <Position>4</Position>
       <Comment>内容</Comment>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(1024)|0s</DataType>
     </column>
-    <column id="384" parent="284" name="intro">
+    <column id="391" parent="284" name="intro">
       <Position>5</Position>
       <Comment>简介</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="385" parent="284" name="author">
+    <column id="392" parent="284" name="author">
       <Position>6</Position>
       <Comment>作者或转载标识</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="386" parent="284" name="knowledge">
+    <column id="393" parent="284" name="knowledge">
       <Position>7</Position>
       <Comment>是否是急救知识</Comment>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="387" parent="284" name="info">
+    <column id="394" parent="284" name="info">
       <Position>8</Position>
       <Comment>是否是资讯</Comment>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="388" parent="284" name="media">
+    <column id="395" parent="284" name="media">
       <Position>9</Position>
       <Comment>七牛云图片视频地址</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <key id="389" parent="284" name="PRIMARY">
+    <key id="396" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>infoId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="390" parent="285" name="userId">
+    <column id="397" parent="285" name="userId">
       <Position>1</Position>
       <Comment>用户ID</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="391" parent="285" name="userName">
+    <column id="398" parent="285" name="userName">
       <Position>2</Position>
       <Comment>用户名</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="392" parent="285" name="wxOpenid">
+    <column id="399" parent="285" name="wxOpenid">
       <Position>3</Position>
       <Comment>微信openid</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="393" parent="285" name="inspector">
+    <column id="400" parent="285" name="inspector">
       <Position>4</Position>
       <Comment>是否是检查员</Comment>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="394" parent="285" name="manager">
+    <column id="401" parent="285" name="manager">
       <Position>5</Position>
       <Comment>是否是管理员</Comment>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="395" parent="285" name="phoneNumber">
+    <column id="402" parent="285" name="phoneNumber">
       <Position>6</Position>
       <Comment>手机号码</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="396" parent="285" name="email">
+    <column id="403" parent="285" name="email">
       <Position>7</Position>
       <Comment>电子邮箱</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="397" parent="285" name="idCard">
+    <column id="404" parent="285" name="idCard">
       <Position>8</Position>
       <Comment>身份证</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="398" parent="285" name="responsibleArea">
+    <column id="405" parent="285" name="responsibleArea">
       <Position>9</Position>
       <Comment>负责区域</Comment>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <index id="399" parent="285" name="userId">
+    <column id="406" parent="285" name="role">
+      <Position>10</Position>
+      <Comment>角色</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="407" parent="285" name="userId">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="400" parent="285" name="userId_10">
+    <index id="408" parent="285" name="userId_10">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="401" parent="285" name="userId_11">
+    <index id="409" parent="285" name="userId_11">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="402" parent="285" name="userId_12">
+    <index id="410" parent="285" name="userId_12">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="403" parent="285" name="userId_13">
+    <index id="411" parent="285" name="userId_13">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="404" parent="285" name="userId_14">
+    <index id="412" parent="285" name="userId_14">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="405" parent="285" name="userId_15">
+    <index id="413" parent="285" name="userId_15">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="406" parent="285" name="userId_16">
+    <index id="414" parent="285" name="userId_16">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="407" parent="285" name="userId_2">
+    <index id="415" parent="285" name="userId_17">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="408" parent="285" name="userId_3">
+    <index id="416" parent="285" name="userId_18">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="409" parent="285" name="userId_4">
+    <index id="417" parent="285" name="userId_19">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="410" parent="285" name="userId_5">
+    <index id="418" parent="285" name="userId_2">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="411" parent="285" name="userId_6">
+    <index id="419" parent="285" name="userId_20">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="412" parent="285" name="userId_7">
+    <index id="420" parent="285" name="userId_3">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="413" parent="285" name="userId_8">
+    <index id="421" parent="285" name="userId_4">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="414" parent="285" name="userId_9">
+    <index id="422" parent="285" name="userId_5">
       <ColNames>userId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="415" parent="285" name="PRIMARY">
+    <index id="423" parent="285" name="userId_6">
+      <ColNames>userId</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="424" parent="285" name="userId_7">
+      <ColNames>userId</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="425" parent="285" name="userId_8">
+      <ColNames>userId</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="426" parent="285" name="userId_9">
+      <ColNames>userId</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="427" parent="285" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="428" parent="286" name="id">
+      <Position>1</Position>
+      <Comment>编号</Comment>
+      <DataType>char(19)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="429" parent="286" name="role_name">
+      <Position>2</Position>
+      <Comment>角色名称</Comment>
+      <DataType>char(19)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="430" parent="286" name="name">
+      <Position>3</Position>
+      <Comment>名称</Comment>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="431" parent="286" name="methed">
+      <Position>4</Position>
+      <Comment>访问方法</Comment>
+      <DataType>varchar(100)|0s</DataType>
+    </column>
+    <column id="432" parent="286" name="path">
+      <Position>5</Position>
+      <Comment>访问路径</Comment>
+      <DataType>varchar(100)|0s</DataType>
+    </column>
+    <index id="433" parent="286" name="idx_role">
+      <ColNames>role_name</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="434" parent="286" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

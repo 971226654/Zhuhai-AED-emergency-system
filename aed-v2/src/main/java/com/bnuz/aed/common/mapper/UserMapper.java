@@ -16,6 +16,20 @@ public interface UserMapper {
 
     int insertUser(User user);
 
-    int findUserByName(@Param("userName") String userName);
+    User findUserByOpenid(@Param("openid") String openid);
+
+    User findUserByUserId(@Param("userId") Long userId);
+
+    List<User> findAllInspectors();
+
+    List<User> findAllManagers();
+
+    String findUserRole(@Param("userId") Long userId);
+
+    String findUserOpenid(@Param("userId") Long userId);
+
+    int checkUserExpired(@Param("userId") Long userId);
+
+    int updateUserInfoByUserId(User user);
 
 }

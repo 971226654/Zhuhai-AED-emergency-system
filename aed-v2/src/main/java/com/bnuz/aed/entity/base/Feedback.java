@@ -26,7 +26,13 @@ public class Feedback implements Serializable {
 	/** 反馈人(用户) */
 	private Long userId;
 
+	/** 反馈星星 */
+	private int feedbackStars;
+
 	/** 七牛云图片地址 */
 	private String picture;
+
+	/** 反馈时间 */
+	private String feedbackTime;
 
 }

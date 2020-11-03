@@ -57,22 +57,40 @@ public class AedSituationController {
         }
     }
 
+    @GetMapping("/situations/{id}")
+    @ApiOperation("通过记录id查询该条设备检查记录")
+    public ServerResponse getRecordByRecordId(@PathVariable String id) {
+        Long recordId = Long.parseLong(id);
+        AedSituation situation = aedSituationMapper.findRecordByRecordId(recordId);
+        if (situation != null) {
+            return ServerResponse.createBySuccess(situation);
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
+
     @PostMapping("/situations/inspectorId/{id}")
     @ApiOperation("添加一条设备检查记录，by 检查员ID")
     public ServerResponse addRecord(@PathVariable String id, String equipment_id,
                                     String inspectTime, String recordContent,
                                     String fuselage, String electrode,
                                     String validity, String battery,
-                                    String available, String use_times) {
+                                    String available) {
+        System.out.println("id:" + id + "\n"
+                + "equipment_id:" + equipment_id + "\n"
+                + "inspectTime:" + inspectTime + "\n"
+                + "recordContent:" + recordContent + "\n"
+                + "fuselage:" + fuselage + "\n"
+                + "electrode:" + electrode + "\n"
+                + "validity:" + validity + "\n"
+                + "available:" + available + "\n");
         Long inspectorId = Long.parseLong(id);
         Long equipmentId = Long.parseLong(equipment_id);
-        Long useTimes = Long.parseLong(use_times);
         AedSituation situation = new AedSituation();
         situation.setInspectorId(inspectorId);
         situation.setEquipmentId(equipmentId);
         situation.setInspectTime(inspectTime);
         situation.setRecordContent(recordContent);
-        situation.setUseTimes(useTimes);
         situation.setFuselage(Integer.parseInt(fuselage));
         situation.setElectrode(Integer.parseInt(electrode));
         situation.setValidity(Integer.parseInt(validity));
@@ -92,17 +110,15 @@ public class AedSituationController {
                                        String inspector_id, String inspectTime,
                                        String recordContent, String fuselage,
                                        String electrode, String validity,
-                                       String battery, String available, String use_times) {
+                                       String battery, String available) {
         Long recordId = Long.parseLong(id);
         Long inspectorId = Long.parseLong(inspector_id);
         Long equipmentId = Long.parseLong(equipment_id);
-        Long useTimes = Long.parseLong(use_times);
         AedSituation situation = aedSituationMapper.findRecordByRecordId(recordId);
         situation.setEquipmentId(equipmentId);
         situation.setInspectorId(inspectorId);
         situation.setInspectTime(inspectTime);
         situation.setRecordContent(recordContent);
-        situation.setUseTimes(useTimes);
         situation.setFuselage(Integer.parseInt(fuselage));
         situation.setElectrode(Integer.parseInt(electrode));
         situation.setValidity(Integer.parseInt(validity));

@@ -3,7 +3,7 @@ package com.bnuz.aed.controller;
 import com.bnuz.aed.common.mapper.AuditMapper;
 import com.bnuz.aed.common.mapper.AuditResultMapper;
 import com.bnuz.aed.common.mapper.MaterialMapper;
-import com.bnuz.aed.common.tools.QiniuCloudUtils;
+import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.Audit;
 import com.bnuz.aed.entity.base.AuditResult;
@@ -63,12 +63,13 @@ public class AuditController {
     @ApiOperation("通过用户ID新增一个审核")
     public ServerResponse addAudit(@PathVariable String id, String phoneNumber,
                                    String idCard, String materialContent,
-                                   @RequestPart MultipartFile file) {
+                                   @RequestPart MultipartFile file, String auditTime) {
         Long userId = Long.parseLong(id);
         Audit audit = new Audit();
         audit.setUserId(userId);
         audit.setPhoneNumber(phoneNumber);
         audit.setIdCard(idCard);
+        audit.setAuditTime(auditTime);
         int count1 = auditMapper.insertAudit(audit);
         Long auditId = auditMapper.findAuditByUserId(userId).getAuditId();
         int count2 = 0;
@@ -101,13 +102,14 @@ public class AuditController {
     @PostMapping("/audits/result/{id}")
     @ApiOperation("通过auditId使管理员新增一个审核结果")
     public ServerResponse addAuditResult(@PathVariable String id, String result,
-                                         String manager_id) {
+                                         String manager_id, String resultTime) {
         Long auditId = Long.parseLong(id);
         Long managerId = Long.parseLong(manager_id);
         AuditResult auditResult = new AuditResult();
         auditResult.setAuditId(auditId);
         auditResult.setResult(result);
         auditResult.setManagerId(managerId);
+        auditResult.setResultTime(resultTime);
 
         int count = auditResultMapper.insertAuditResult(auditResult);
         if (count > 0) {
@@ -122,12 +124,13 @@ public class AuditController {
     @ApiOperation("通过用户ID修改一个审核")
     public ServerResponse updateAudit(@PathVariable String id, String phoneNumber,
                                       String idCard, String materialContent,
-                                      @RequestPart MultipartFile file) {
+                                      @RequestPart MultipartFile file, String auditTime) {
         Long userId = Long.parseLong(id);
         Audit audit = auditMapper.findAuditByUserId(userId);
         Long auditId = audit.getAuditId();
         audit.setPhoneNumber(phoneNumber);
         audit.setIdCard(idCard);
+        audit.setAuditTime(auditTime);
         int count1 = auditMapper.updateAudit(audit);
         int count2 = 0;
         Material material = materialMapper.findMaterialsByAid(auditId);
@@ -177,14 +180,15 @@ public class AuditController {
     }
 
     @PutMapping("/audits/result/{id}")
-    @ApiOperation("通过auditId使管理员新增一个审核结果")
+    @ApiOperation("通过auditId使管理员修改一个审核结果")
     public ServerResponse updateAuditResult(@PathVariable String id, String result,
-                                            String manager_id) {
+                                            String manager_id, String resultTime) {
         Long auditId = Long.parseLong(id);
         Long managerId = Long.parseLong(manager_id);
         AuditResult auditResult = auditResultMapper.findAuditResultByAid(auditId);
         auditResult.setResult(result);
         auditResult.setManagerId(managerId);
+        auditResult.setResultTime(resultTime);
         int count = auditResultMapper.updateAuditResult(auditResult);
         if (count > 0) {
             return ServerResponse.createBySuccess("UPDATE SUCCESS!");

@@ -1,15 +1,22 @@
 package com.bnuz.aed.controller;
 
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.bnuz.aed.common.mapper.UserMapper;
-import com.bnuz.aed.common.tools.ResponseCode;
+import com.bnuz.aed.common.tools.utils.JwtTokenUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
+import com.bnuz.aed.common.tools.utils.WechatUtils;
 import com.bnuz.aed.entity.base.User;
+import com.bnuz.aed.entity.expand.UserAuth;
+import com.bnuz.aed.entity.expand.UserInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Leia Liang
@@ -32,31 +39,157 @@ public class UserController {
         }
     }
 
-    //TODO: 不返回userId
-    @PostMapping("/users")
-    @ApiOperation("创建一个用户,返回该用户id")
-    public ServerResponse createUser(@RequestParam String name, @RequestParam String openid) {
-        User user = new User();
-        user.setUserName(name);
-        user.setWxOpenid(openid);
-        int count  = userMapper.insertUser(user);
-        int userId = userMapper.findUserByName(name);
-        if (userId > 0 && count > 0) {
-            return ServerResponse.createByFreeStyle(ResponseCode.CREATED.getCode(),
-                    ResponseCode.CREATED.getDesc(), userId);
+
+    @PostMapping("/login/mini")
+    @ApiOperation("小程序创建一个用户,返回该用户id、role封装好的token")
+    public ServerResponse createUserByMini(@RequestBody String codeJson) {
+        JSONObject code = JSONUtil.parseObj(codeJson);
+        System.out.println("code: " + code.getStr("code"));
+        JSONObject key = WechatUtils.getOpenIdByMini(code.getStr("code"));
+        System.out.println(key);
+//        return ServerResponse.createBySuccess(key);
+        if (Objects.equals(key.getStr("errcode"), "40029")) {
+            return ServerResponse.createByFail(key.getStr("errmsg"));
+        }
+        String openid = key.getStr("openid");
+        User check_user = userMapper.findUserByOpenid(openid);
+        int insert_count;
+        Long userId;
+        String role;
+        // 判断数据库是否有这个openid,有就不注册(插入数据库)
+        if (check_user == null) {
+            User new_user = new User();
+            new_user.setWxOpenid(openid);
+            new_user.setRole("USER");
+            insert_count = userMapper.insertUser(new_user);
+            userId = userMapper.findUserByOpenid(openid).getUserId();
+            role = "USER";
+        } else {
+            insert_count = -1;
+            userId = check_user.getUserId();
+            role = check_user.getRole();
+        }
+        if (insert_count > 0) {
+            return ServerResponse.createBySuccess("注册并登录成功！返回token",
+                    JwtTokenUtils.generateToken(String.valueOf(userId), role));
+        } else if (insert_count == -1){
+            return ServerResponse.createBySuccess("登录成功！返回token",
+            JwtTokenUtils.generateToken(String.valueOf(userId), role));
+        } else {
+            return ServerResponse.createByFail("请检查code！");
+        }
+
+    }
+
+    @PostMapping("/login/web")
+    @ApiOperation("web创建一个用户，返回该用户id、role封装好的token，该方法用于普通用户想成为安全员必须先登录")
+    public ServerResponse createUserByWeb(@RequestBody String codeJson) {
+        JSONObject code = JSONUtil.parseObj(codeJson);
+        System.out.println("code: " + code.getStr("code"));
+        JSONObject access = WechatUtils.getAccessTokenByWeb(code.getStr("code"));
+        System.out.println(access);
+        if (Objects.equals(access.getStr("errcode"), "40029")) {
+            return ServerResponse.createByFail(access.getStr("errmsg"));
+        }
+        if (Objects.equals(access.getStr("errcode"), "40030")) {
+            return ServerResponse.createByFail(access.getStr("errmsg"));
+        }
+        String accessToken = access.getStr("access_token");
+        String openid = access.getStr("openid");
+        JSONObject info = WechatUtils.getInfoByWeb(accessToken, openid);
+        String nickName = info.getStr("nickname");
+        int insert_count;
+        Long userId;
+        String role;
+        User check_user = userMapper.findUserByOpenid(openid);
+        // 判断数据库是否有这个openid,有就不注册(插入数据库)
+        if (check_user == null) {
+            User new_user = new User();
+            new_user.setWxOpenid(openid);
+            new_user.setUserName(nickName);
+            new_user.setRole("USER");
+            insert_count = userMapper.insertUser(new_user);
+            userId = userMapper.findUserByOpenid(openid).getUserId();
+            role = "USER";
+        } else {
+            insert_count = -1;
+            userId = check_user.getUserId();
+            role = check_user.getRole();
+        }
+
+        if (insert_count > 0) {
+            return ServerResponse.createBySuccess("注册并登录成功！返回token",
+                    JwtTokenUtils.generateToken(String.valueOf(userId), role));
+        } else if (insert_count == -1){
+            return ServerResponse.createBySuccess("登录成功！返回token",
+                    JwtTokenUtils.generateToken(String.valueOf(userId), role));
+        } else {
+            return ServerResponse.createByFail("请检查code！");
+        }
+
+    }
+
+
+    @PutMapping("/users")
+    @ApiOperation("修改某个一个用户的信息,暂时不要用")
+    public ServerResponse updateUser(HttpServletRequest request, @RequestBody UserInfo info) {
+        UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
+        Long userId = Long.parseLong(auth.getUserId());
+        User user = userMapper.findUserByUserId(userId);
+        user.setUserName(info.getUserName());
+        user.setPhoneNumber(info.getPhoneNumber());
+        user.setEmail(info.getEmail());
+        user.setIdCard(info.getIdCard());
+        int count = userMapper.updateUserInfoByUserId(user);
+        if (count > 0) {
+            return ServerResponse.createBySuccess("UPDATE SUCCESS!");
         } else {
             return ServerResponse.createByFail();
         }
     }
 
-    
-// TODO: 用Token保存userId进行前端的请求
+    @DeleteMapping("/users")
+    @ApiOperation("删除一个用户")
+    public ServerResponse deleteUser(HttpServletRequest request) {
+        return null;
+    }
 
-//    @PutMapping("/users/{id}")
-//    @ApiOperation("修改某个一个用户的信息")
-//    public ServerResponse updateUser(@PathVariable String id) {
-//        BeanUtils.copyProperties();
-//    }
+    @GetMapping("/inspectors")
+    @ApiOperation("查找目前所有检查员信息")
+    public ServerResponse getAllInspectors() {
+        List<User> inspectors = userMapper.findAllInspectors();
+        if (inspectors != null) {
+            return ServerResponse.createBySuccess(inspectors);
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
+
+    @GetMapping("/inspectors/{id}")
+    @ApiOperation("查找该id的检查员信息")
+    public ServerResponse getInspector(@PathVariable String id) {
+        Long inspectorId = Long.parseLong(id);
+        User inspector = userMapper.findUserByUserId(inspectorId);
+        String msg;
+        if ("INSPECTOR".equals(inspector.getRole())) {
+            msg = "该ID为检查员，信息在data";
+            return ServerResponse.createBySuccess(msg, inspector);
+        } else {
+            msg = "该ID不是检查员";
+            return ServerResponse.createByFail(msg);
+        }
+    }
+
+    @GetMapping("/managers")
+    @ApiOperation("查找目前所有管理员信息")
+    public ServerResponse getAllManagers() {
+        List<User> managers = userMapper.findAllManagers();
+        if (managers != null) {
+            return ServerResponse.createBySuccess(managers);
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
 
 
 }

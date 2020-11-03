@@ -29,4 +29,7 @@ public class Audit implements Serializable {
 	/** 身份证 */
 	private String idCard;
 
+	/** 审核时间 */
+	private String auditTime;
+
 }

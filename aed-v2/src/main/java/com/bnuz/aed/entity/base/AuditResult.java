@@ -26,4 +26,7 @@ public class AuditResult implements Serializable {
 	/** 审核人(管理员) */
 	private Long managerId;
 
+	/** 处理时间 */
+	private String resultTime;
+
 }

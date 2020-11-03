@@ -2,7 +2,7 @@ package com.bnuz.aed.controller;
 
 import com.bnuz.aed.common.mapper.AedEquipmentMapper;
 import com.bnuz.aed.common.mapper.AedPositionMapper;
-import com.bnuz.aed.common.tools.QiniuCloudUtils;
+import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.AedEquipment;
 import com.bnuz.aed.entity.expand.AedOutput;

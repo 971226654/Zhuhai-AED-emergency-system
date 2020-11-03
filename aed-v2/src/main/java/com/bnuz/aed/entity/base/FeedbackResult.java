@@ -26,4 +26,7 @@ public class FeedbackResult implements Serializable {
 	/** 审核人(管理员ID) */
 	private Long managerId;
 
+	/** 处理时间 */
+	private String resultTime;
+
 }

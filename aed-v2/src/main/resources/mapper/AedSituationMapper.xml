@@ -18,9 +18,9 @@
 
     <insert id="insertRecordByObject" parameterType="com.bnuz.aed.entity.base.AedSituation">
         INSERT INTO
-        AedSituation(equipmentId,inspectTime,inspectorId,recordContent,fuselage,electrode,validity,battery,available,useTimes)
+        AedSituation(equipmentId,inspectTime,inspectorId,recordContent,fuselage,electrode,validity,battery,available)
         VALUES
-        (#{equipmentId},#{inspectTime},#{inspectorId},#{recordContent},#{fuselage},#{electrode},#{validity},#{battery},#{available},#{useTimes});
+        (#{equipmentId},#{inspectTime},#{inspectorId},#{recordContent},#{fuselage},#{electrode},#{validity},#{battery},#{available});
     </insert>
 
     <select id="findRecordByRecordId" resultType="com.bnuz.aed.entity.base.AedSituation">
@@ -38,8 +38,7 @@
             <if test="electrode != null">electrode = #{electrode},</if>
             <if test="validity != null">validity = #{validity},</if>
             <if test="battery != null">battery = #{battery},</if>
-            <if test="available != null">available = #{available},</if>
-            <if test="useTimes != null">useTimes = #{useTimes}</if>
+            <if test="available != null">available = #{available}</if>
         </set>
         WHERE recordId = #{recordId};
     </update>

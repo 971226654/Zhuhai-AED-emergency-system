@@ -1,7 +1,7 @@
 package com.bnuz.aed.controller;
 
 import com.bnuz.aed.common.mapper.FeedbackMapper;
-import com.bnuz.aed.common.tools.QiniuCloudUtils;
+import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.Feedback;
 import com.bnuz.aed.entity.base.FeedbackResult;
@@ -74,12 +74,15 @@ public class FeedbackController {
 
     @PostMapping("/feedbacks/{id}")
     @ApiOperation("通过userId新增一条反馈")
-    public ServerResponse addFeedback(@PathVariable String id, String feedbackContent,
-                                      @RequestPart MultipartFile file) {
+    public ServerResponse addFeedback(@PathVariable String id, String feedbackContent, String stars,
+                                      @RequestPart MultipartFile file, String feedbackTime) {
         Long userId = Long.parseLong(id);
+        int feedbackStars = Integer.parseInt(stars);
         Feedback feedback = new Feedback();
         feedback.setUserId(userId);
+        feedback.setFeedbackStars(feedbackStars);
         feedback.setFeedbackContent(feedbackContent);
+        feedback.setFeedbackTime(feedbackTime);
         if (!file.isEmpty()) {
             System.out.println(file.getOriginalFilename());
             try {
@@ -102,13 +105,15 @@ public class FeedbackController {
 
     @PostMapping("/feedbacks/result/{id}")
     @ApiOperation("通过feedbackId新增一条反馈结果")
-    public ServerResponse addFeedbackResult(@PathVariable String id, String result, String manager_id) {
+    public ServerResponse addFeedbackResult(@PathVariable String id, String result,
+                                            String manager_id, String resultTime) {
         Long feedbackId = Long.parseLong(id);
         Long managerId = Long.parseLong(manager_id);
         FeedbackResult feedbackResult = new FeedbackResult();
         feedbackResult.setFeedbackId(feedbackId);
         feedbackResult.setResult(result);
         feedbackResult.setManagerId(managerId);
+        feedbackResult.setResultTime(resultTime);
         int count = feedbackMapper.insertFeedbackResult(feedbackResult);
         if (count > 0) {
             return ServerResponse.createBySuccess("INSERT SUCCESS!");

@@ -26,12 +26,6 @@ public class User implements Serializable {
 	/** 微信openid */
 	private String wxOpenid;
 
-	/** 是否是检查员 */
-	private int inspector;
-
-	/** 是否是管理员 */
-	private int manager;
-
 	/** 手机号码 */
 	private String phoneNumber;
 
@@ -43,5 +37,8 @@ public class User implements Serializable {
 
 	/** 负责区域 */
 	private String responsibleArea;
+
+	/** 角色 */
+	private String role;
 
 }

@@ -22,6 +22,8 @@ public class AuditOutput {
 
     private String idCard;
 
+    private String auditTime;
+
     private AuditResult auditResult;
 
     private Material material;

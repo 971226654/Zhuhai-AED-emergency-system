@@ -1,7 +1,7 @@
 package com.bnuz.aed.controller;
 
 import com.bnuz.aed.common.mapper.RealtimeInfoMapper;
-import com.bnuz.aed.common.tools.QiniuCloudUtils;
+import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.RealtimeInfo;
 import io.swagger.annotations.Api;
