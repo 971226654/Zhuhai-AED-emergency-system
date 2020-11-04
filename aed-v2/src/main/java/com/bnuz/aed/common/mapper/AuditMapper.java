@@ -17,6 +17,8 @@ public interface AuditMapper {
 
     Map<String, Object> findAuditsByUserId(@Param("userId") Long userId);
 
+    Map<String, Object> findAuditByAuditId(@Param("auditId") Long auditId);
+
     int insertAudit(Audit audit);
 
     Audit findAuditByUserId(@Param("userId") Long userId);

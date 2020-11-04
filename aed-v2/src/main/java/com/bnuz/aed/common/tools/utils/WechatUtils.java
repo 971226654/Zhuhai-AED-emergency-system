@@ -1,7 +1,6 @@
 package com.bnuz.aed.common.tools.utils;
 
 import cn.hutool.json.JSONObject;
-import com.bnuz.aed.common.tools.utils.HttpsClientUtils;
 
 import java.util.HashMap;
 import java.util.Map;

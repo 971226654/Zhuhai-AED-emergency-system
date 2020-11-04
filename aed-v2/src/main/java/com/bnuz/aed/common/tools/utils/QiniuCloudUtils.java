@@ -31,7 +31,7 @@ public class QiniuCloudUtils {
     private static final String bucketName = "zhuhaiaed";
 
     /** 图片上传路径 */
-    public static final String DOMAIN = "qhw2didnp.hn-bkt.clouddn.com";
+    public static final String DOMAIN = "qiniu.zhuhaiaed.xyz";
 
     /** 密钥 */
     private static final Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);

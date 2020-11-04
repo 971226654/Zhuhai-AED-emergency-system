@@ -22,6 +22,10 @@
         SELECT * FROM Audit WHERE userId = #{userId};
     </select>
 
+    <select id="findAuditByAuditId" resultMap="auditMap">
+        SELECT * FROM Audit WHERE auditId = #{auditId};
+    </select>
+
     <insert id="insertAudit" parameterType="com.bnuz.aed.entity.base.Audit">
         INSERT INTO
         Audit (userId, phoneNumber, idCard, auditTime)

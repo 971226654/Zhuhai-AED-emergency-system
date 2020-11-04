@@ -15,7 +15,7 @@ plugins {
 }
 
 group = 'com.bnuz'
-version = '1.0.91.20201103_alpha'
+version = '1.0.91.20201104_alpha'
 sourceCompatibility = '14'
 
 configurations {
@@ -33,7 +33,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.+'
     implementation 'mysql:mysql-connector-java'
     implementation 'org.apache.httpcomponents:httpclient'

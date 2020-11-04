@@ -27,13 +27,25 @@ public class FeedbackController {
 
     private QiniuCloudUtils qiniuCloudUtils = new QiniuCloudUtils();
 
-    @GetMapping("feedbacks/{id}")
+    @GetMapping("/feedbacks/user/{id}")
     @ApiOperation("通过userId查询该用户的反馈记录（带结果）")
     public ServerResponse getFeedbacksByUserId(@PathVariable String id) {
         Long userId = Long.parseLong(id);
         List<Map<String, Object>> outputs = feedbackMapper.findAllFeedbackByUserId(userId);
         if (outputs != null) {
             return ServerResponse.createBySuccess(outputs);
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
+
+    @GetMapping("/feedbacks/{id}")
+    @ApiOperation("通过feedbackId查询该用户的反馈记录（带结果）")
+    public ServerResponse getFeedbackByFeedbackId(@PathVariable String id) {
+        Long feedbackId = Long.parseLong(id);
+        Map<String, Object> output = feedbackMapper.findFeedbackById(feedbackId);
+        if (output != null) {
+            return ServerResponse.createBySuccess(output);
         } else {
             return ServerResponse.createByFail();
         }
@@ -50,7 +62,7 @@ public class FeedbackController {
         }
     }
 
-    @GetMapping("feedbacks/count")
+    @GetMapping("/feedbacks/count")
     @ApiOperation("查询有多少条反馈记录")
     public ServerResponse getFeedbacksCount() {
         int count = feedbackMapper.sumFeedbacks();

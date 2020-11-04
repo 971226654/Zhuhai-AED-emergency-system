@@ -53,4 +53,8 @@
         WHERE userId = #{userId};
     </update>
 
+    <delete id="deleteUserByUserId">
+        DELETE FROM User WHERE userId = #{userId};
+    </delete>
+
 </mapper>

@@ -1,5 +1,6 @@
 package com.bnuz.aed.controller;
 
+import cn.hutool.core.collection.ListUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.bnuz.aed.common.mapper.UserMapper;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Leia Liang
@@ -27,6 +27,8 @@ public class UserController {
 
     @Autowired
     private UserMapper userMapper;
+
+    private final static List<String> wxErrCode = ListUtil.toList("40029", "40030");
 
     @GetMapping("/users")
     @ApiOperation("获取所有用户信息列表")
@@ -39,7 +41,6 @@ public class UserController {
         }
     }
 
-
     @PostMapping("/login/mini")
     @ApiOperation("小程序创建一个用户,返回该用户id、role封装好的token")
     public ServerResponse createUserByMini(@RequestBody String codeJson) {
@@ -48,7 +49,7 @@ public class UserController {
         JSONObject key = WechatUtils.getOpenIdByMini(code.getStr("code"));
         System.out.println(key);
 //        return ServerResponse.createBySuccess(key);
-        if (Objects.equals(key.getStr("errcode"), "40029")) {
+        if (wxErrCode.contains(key.getStr("errcode"))) {
             return ServerResponse.createByFail(key.getStr("errmsg"));
         }
         String openid = key.getStr("openid");
@@ -88,10 +89,7 @@ public class UserController {
         System.out.println("code: " + code.getStr("code"));
         JSONObject access = WechatUtils.getAccessTokenByWeb(code.getStr("code"));
         System.out.println(access);
-        if (Objects.equals(access.getStr("errcode"), "40029")) {
-            return ServerResponse.createByFail(access.getStr("errmsg"));
-        }
-        if (Objects.equals(access.getStr("errcode"), "40030")) {
+        if (wxErrCode.contains(access.getStr("errcode"))) {
             return ServerResponse.createByFail(access.getStr("errmsg"));
         }
         String accessToken = access.getStr("access_token");
@@ -151,7 +149,14 @@ public class UserController {
     @DeleteMapping("/users")
     @ApiOperation("删除一个用户")
     public ServerResponse deleteUser(HttpServletRequest request) {
-        return null;
+        UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
+        Long userId = Long.parseLong(auth.getUserId());
+        int count = userMapper.deleteUserByUserId(userId);
+        if (count > 0) {
+            return ServerResponse.createBySuccess("DELETE SUCCESS!");
+        } else {
+            return ServerResponse.createByFail();
+        }
     }
 
     @GetMapping("/inspectors")

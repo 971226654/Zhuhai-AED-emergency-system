@@ -1,5 +1,6 @@
 package com.bnuz.aed.common.config.aspect;
 
+import com.bnuz.aed.common.config.AuthConfig;
 import com.bnuz.aed.common.tools.ResponseCode;
 import com.bnuz.aed.common.tools.utils.CdxException;
 import com.bnuz.aed.entity.expand.UserAuth;
@@ -8,14 +9,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @author Leia Liang
@@ -24,16 +23,10 @@ import java.util.List;
 @Configuration
 public class ControllerAspect {
 
-    @Value("${auth.manager}")
-    private List<String> ManagerAuths;
+    @Autowired
+    private AuthConfig authConfig;
 
-    @Value("${auth.inspector}")
-    private List<String> InspectorAuths;
-
-    @Value("${auth.user}")
-    private List<String> UserAuths;
-
-     // 定义切点Pointcut
+    /** 定义切点Pointcut */
     @Pointcut("execution(* com.bnuz.aed.controller..*.*(..))")
     public void controllerValidationPoint() {
 
@@ -63,7 +56,7 @@ public class ControllerAspect {
 
             String role = userAuth.getRole();
             if ("MANAGER".equals(role)) {
-                if (ManagerAuths.contains(method)) {
+                if (authConfig.getManager().contains(method)) {
                     request.setAttribute("UserAuth", userAuth);
                     System.out.println("Pass Validation.");
                 } else {
@@ -71,7 +64,7 @@ public class ControllerAspect {
                     throw new CdxException(ResponseCode.FORBIDDEN.getCode(), "No Validation.");
                 }
             } else if ("INSPECTOR".equals(role)) {
-                if (InspectorAuths.contains(method)) {
+                if (authConfig.getInspector().contains(method)) {
                     request.setAttribute("UserAuth", userAuth);
                     System.out.println("Pass Validation.");
                 } else {
@@ -79,7 +72,7 @@ public class ControllerAspect {
                     throw new CdxException(ResponseCode.FORBIDDEN.getCode(), "No Validation.");
                 }
             } else if ("USER".equals(role)) {
-                if (UserAuths.contains(method)) {
+                if (authConfig.getUser().contains(method)) {
                     request.setAttribute("UserAuth", userAuth);
                     System.out.println("Pass Validation.");
                 } else {

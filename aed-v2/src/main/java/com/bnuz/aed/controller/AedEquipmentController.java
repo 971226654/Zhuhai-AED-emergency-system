@@ -6,6 +6,7 @@ import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.AedEquipment;
 import com.bnuz.aed.entity.expand.AedOutput;
+import com.bnuz.aed.entity.expand.UserAuth;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
@@ -57,7 +59,7 @@ public class AedEquipmentController {
 
     @PostMapping("/equipments")
     @ApiOperation("新增一个AED设备,所需字段摆放时间,生产时间,购买时间,厂家名称,设备型号,目前状态（是否可用）,外观照片")
-    public ServerResponse addEquipment(String displayTime, String productionTime,
+    public ServerResponse addEquipment(HttpServletRequest request, String displayTime, String productionTime,
                                        String purchaseTime, String factoryName,
                                        String model, int status,
                                        @RequestPart MultipartFile file) {

@@ -47,11 +47,23 @@ public class AuditController {
         }
     }
 
-    @GetMapping("/audits/{id}")
+    @GetMapping("/audits/user/{id}")
     @ApiOperation("通过用户ID获取本用户的审核信息")
-    public ServerResponse getAuditsById(@PathVariable String id) {
+    public ServerResponse getAuditsByUserId(@PathVariable String id) {
         Long userId = Long.parseLong(id);
         Map<String, Object> output = auditMapper.findAuditsByUserId(userId);
+        if (output != null) {
+            return ServerResponse.createBySuccess(output);
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
+
+    @GetMapping("/audits/{id}")
+    @ApiOperation("通过审核ID获取本用户的审核信息")
+    public ServerResponse getAuditById(@PathVariable String id) {
+        Long auditId = Long.parseLong(id);
+        Map<String, Object> output = auditMapper.findAuditByAuditId(auditId);
         if (output != null) {
             return ServerResponse.createBySuccess(output);
         } else {
