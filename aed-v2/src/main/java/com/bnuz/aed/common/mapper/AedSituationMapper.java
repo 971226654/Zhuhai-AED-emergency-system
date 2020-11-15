@@ -1,6 +1,7 @@
 package com.bnuz.aed.common.mapper;
 
 import com.bnuz.aed.entity.base.AedSituation;
+import com.bnuz.aed.entity.params.SituationPostParam;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,7 +19,7 @@ public interface AedSituationMapper {
 
     List<AedSituation> findRecordsByInspectorId(@Param("inspectorId") Long inspectorId);
 
-    int insertRecordByObject(AedSituation situation);
+    int insertRecordByObject(SituationPostParam param);
 
     int updateRecordByObject(AedSituation situation);
 

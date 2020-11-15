@@ -16,7 +16,7 @@
         WHERE inspectorId = #{inspectorId};
     </select>
 
-    <insert id="insertRecordByObject" parameterType="com.bnuz.aed.entity.base.AedSituation">
+    <insert id="insertRecordByObject" parameterType="com.bnuz.aed.entity.params.SituationPostParam">
         INSERT INTO
         AedSituation(equipmentId,inspectTime,inspectorId,recordContent,fuselage,electrode,validity,battery,available)
         VALUES

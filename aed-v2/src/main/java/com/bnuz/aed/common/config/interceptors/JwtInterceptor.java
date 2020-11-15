@@ -51,6 +51,7 @@ public class JwtInterceptor implements HandlerInterceptor {
             }
         } else {
             response.setStatus(ResponseCode.UNAUTHORIZED.getCode());
+            response.setHeader("message", "UNAUTHORIZED");
             System.out.println("token过期或无效，请重新登录");
         }
         return false;

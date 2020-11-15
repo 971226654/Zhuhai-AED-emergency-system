@@ -1,6 +1,9 @@
 package com.bnuz.aed.entity.base;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 import java.io.Serializable;
 
@@ -13,35 +16,37 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@ApiModel(value = "AED设备的实体类")
 public class AedEquipment implements Serializable {
 
 	private static final long serialVersionUID = -4309564230972272665L;
 
-	/** 设备ID */
+	@ApiModelProperty(value = "设备ID", required = true)
 	private Long equipmentId;
 
-	/** 检查员ID */
+	@ApiModelProperty(value = "检查员ID", required = true)
 	private Long inspectorId;
 
-	/** 摆放时间 */
+	@ApiModelProperty(value = "摆放时间", required = true)
 	private String displayTime;
 
-	/** 生产时间 */
+	@ApiModelProperty(value = "生产时间", required = true)
 	private String productionTime;
 
-	/** 购买时间 */
+	@ApiModelProperty(value = "购买时间", required = true)
 	private String purchaseTime;
 
-	/** 厂家名称 */
+	@ApiModelProperty(value = "厂家名称", required = true)
 	private String factoryName;
 
-	/** 设备型号 */
+	@ApiModelProperty(value = "设备型号", required = true)
 	private String model;
 
-	/** 目前是否可用 */
+	@ApiModelProperty(value = "设备状态", required = true)
+	@Range(min = 0, max = 1)
 	private int status;
 
-	/** 外观 */
+	@ApiModelProperty(value = "外观", required = true)
 	private String appearance;
 
 }

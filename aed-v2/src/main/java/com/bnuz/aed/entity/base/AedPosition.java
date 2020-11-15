@@ -1,5 +1,7 @@
 package com.bnuz.aed.entity.base;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.io.Serializable;
@@ -12,27 +14,27 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ApiModel(value = "POST&PUT: 增加/修改AED设备地理位置使用的Param类")
 public class AedPosition implements Serializable {
 
 	private static final long serialVersionUID = -435338639237062148L;
 
-	/** 设备ID */
+	@ApiModelProperty(value = "设备ID", required = true)
 	private Long equipmentId;
 
-	/** 经度 */
+	@ApiModelProperty(value = "经度", required = true)
 	private String longitude;
 
-	/** 纬度 */
+	@ApiModelProperty(value = "纬度", required = true)
 	private String latitude;
 
-	/** 国家或地区 */
+	@ApiModelProperty(value = "国家", required = true)
 	private String country;
 
-	/** 城市 */
+	@ApiModelProperty(value = "城市", required = true)
 	private String city;
 
-	/** 详细地址 */
+	@ApiModelProperty(value = "详细地址", required = true)
 	private String address;
 
 }

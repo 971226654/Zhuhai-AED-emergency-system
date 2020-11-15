@@ -1,6 +1,9 @@
 package com.bnuz.aed.entity.base;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,34 +16,37 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(value = "资讯实体类")
 public class RealtimeInfo implements Serializable {
 
 	private static final long serialVersionUID = 1997232631727375869L;
 
-	/** 资讯id */
+	@ApiModelProperty(value = "资讯id", required = true)
 	private Long infoId;
 
-	/** 发布时间 */
+	@ApiModelProperty(value = "发布时间", required = true)
 	private String releaseTime;
 
-	/** 标题 */
+	@ApiModelProperty(value = "标题", required = true)
 	private String title;
 
-	/** 内容 */
+	@ApiModelProperty(value = "内容", required = true)
 	private String content;
 
-	/** 简介 */
+	@ApiModelProperty(value = "简介", required = true)
 	private String intro;
 
-	/** 作者或转载标识 */
+	@ApiModelProperty(value = "作者或转载标识", required = true)
 	private String author;
 
-	/** 是否是急救知识 */
+	@ApiModelProperty(value = "是否是急救知识", required = true)
+	@Range(min = 0, max = 1)
 	private int knowledge;
 
-	/** 是否是资讯 */
+	@ApiModelProperty(value = "是否是资讯", required = true)
+	@Range(min = 0, max = 1)
 	private int info;
 
-	/** 七牛云图片视频地址*/
+	@ApiModelProperty(value = "七牛云图片视频地址", required = true)
 	private String media;
 }

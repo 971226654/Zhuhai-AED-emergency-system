@@ -5,12 +5,17 @@ import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.Feedback;
 import com.bnuz.aed.entity.base.FeedbackResult;
+import com.bnuz.aed.entity.expand.UserAuth;
+import com.bnuz.aed.entity.params.FeedbackParam;
+import com.bnuz.aed.entity.params.FeedbackResultParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +24,7 @@ import java.util.Map;
  * @author Leia Liang
  */
 @RestController
-@Api(tags = "反馈模块接口")
+@Api(tags = "FeedbackController", description = "反馈模块接口")
 public class FeedbackController {
 
     @Autowired
@@ -27,10 +32,11 @@ public class FeedbackController {
 
     private QiniuCloudUtils qiniuCloudUtils = new QiniuCloudUtils();
 
-    @GetMapping("/feedbacks/user/{id}")
+    @GetMapping("/feedbacks/user")
     @ApiOperation("通过userId查询该用户的反馈记录（带结果）")
-    public ServerResponse getFeedbacksByUserId(@PathVariable String id) {
-        Long userId = Long.parseLong(id);
+    public ServerResponse getFeedbacksByUserId(HttpServletRequest request) {
+        UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
+        Long userId = Long.parseLong(auth.getUserId());
         List<Map<String, Object>> outputs = feedbackMapper.findAllFeedbackByUserId(userId);
         if (outputs != null) {
             return ServerResponse.createBySuccess(outputs);
@@ -39,11 +45,11 @@ public class FeedbackController {
         }
     }
 
-    @GetMapping("/feedbacks/{id}")
+    @GetMapping("/feedbacks/{feedbackId}")
     @ApiOperation("通过feedbackId查询该用户的反馈记录（带结果）")
-    public ServerResponse getFeedbackByFeedbackId(@PathVariable String id) {
-        Long feedbackId = Long.parseLong(id);
-        Map<String, Object> output = feedbackMapper.findFeedbackById(feedbackId);
+    public ServerResponse getFeedbackByFeedbackId(@PathVariable String feedbackId) {
+        Long id = Long.parseLong(feedbackId);
+        Map<String, Object> output = feedbackMapper.findFeedbackById(id);
         if (output != null) {
             return ServerResponse.createBySuccess(output);
         } else {
@@ -84,17 +90,19 @@ public class FeedbackController {
         }
     }
 
-    @PostMapping("/feedbacks/{id}")
+    @PostMapping("/feedbacks")
     @ApiOperation("通过userId新增一条反馈")
-    public ServerResponse addFeedback(@PathVariable String id, String feedbackContent, String stars,
-                                      @RequestPart MultipartFile file, String feedbackTime) {
-        Long userId = Long.parseLong(id);
-        int feedbackStars = Integer.parseInt(stars);
+    public ServerResponse addFeedback(HttpServletRequest request,
+                                      @Validated FeedbackParam params,
+                                      @RequestPart MultipartFile file) {
+        System.out.println(params.toString());
+        UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
+        Long userId = Long.parseLong(auth.getUserId());
         Feedback feedback = new Feedback();
         feedback.setUserId(userId);
-        feedback.setFeedbackStars(feedbackStars);
-        feedback.setFeedbackContent(feedbackContent);
-        feedback.setFeedbackTime(feedbackTime);
+        feedback.setFeedbackStars(params.getFeedbackStars());
+        feedback.setFeedbackContent(params.getFeedbackContent());
+        feedback.setFeedbackTime(params.getFeedbackTime());
         if (!file.isEmpty()) {
             System.out.println(file.getOriginalFilename());
             try {
@@ -115,17 +123,18 @@ public class FeedbackController {
         }
     }
 
-    @PostMapping("/feedbacks/result/{id}")
+    @PostMapping("/feedbacks/result")
     @ApiOperation("通过feedbackId新增一条反馈结果")
-    public ServerResponse addFeedbackResult(@PathVariable String id, String result,
-                                            String manager_id, String resultTime) {
-        Long feedbackId = Long.parseLong(id);
-        Long managerId = Long.parseLong(manager_id);
+    public ServerResponse addFeedbackResult(HttpServletRequest request,
+                                            @Validated FeedbackResultParam params) {
+        System.out.println(params.toString());
+        UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
+        Long managerId = Long.parseLong(auth.getUserId());
         FeedbackResult feedbackResult = new FeedbackResult();
-        feedbackResult.setFeedbackId(feedbackId);
-        feedbackResult.setResult(result);
+        feedbackResult.setFeedbackId(params.getFeedbackId());
+        feedbackResult.setResult(params.getResult());
         feedbackResult.setManagerId(managerId);
-        feedbackResult.setResultTime(resultTime);
+        feedbackResult.setResultTime(params.getResultTime());
         int count = feedbackMapper.insertFeedbackResult(feedbackResult);
         if (count > 0) {
             return ServerResponse.createBySuccess("INSERT SUCCESS!");
@@ -134,11 +143,11 @@ public class FeedbackController {
         }
     }
 
-    @DeleteMapping("/feedbacks/{id}")
+    @DeleteMapping("/feedbacks/{feedbackId}")
     @ApiOperation("通过feedbackId删除一条反馈")
-    public ServerResponse deleteFeedback(@PathVariable String id) {
-        Long feedbackId = Long.parseLong(id);
-        Map<String, Object> feedback = feedbackMapper.findFeedbackById(feedbackId);
+    public ServerResponse deleteFeedback(@PathVariable String feedbackId) {
+        Long id = Long.parseLong(feedbackId);
+        Map<String, Object> feedback = feedbackMapper.findFeedbackById(id);
         if (feedback.get("picture") != null) {
             String oldUrl = (String)feedback.get("picture");
             int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
@@ -148,8 +157,8 @@ public class FeedbackController {
                 System.out.println("图片删除成功！");
             }
         }
-        int count2 = feedbackMapper.deleteFeedbackResult(feedbackId);
-        int count1 = feedbackMapper.deleteFeedback(feedbackId);
+        int count2 = feedbackMapper.deleteFeedbackResult(id);
+        int count1 = feedbackMapper.deleteFeedback(id);
         if (count1 > 0) {
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {
@@ -157,11 +166,11 @@ public class FeedbackController {
         }
     }
 
-    @DeleteMapping("/feedbacks/result/{id}")
+    @DeleteMapping("/feedbacks/result/{feedbackId}")
     @ApiOperation("通过feedbackId删除一条反馈结果")
-    public ServerResponse deleteFeedbackResult(@PathVariable String id) {
-        Long feedbackId = Long.parseLong(id);
-        int count = feedbackMapper.deleteFeedbackResult(feedbackId);
+    public ServerResponse deleteFeedbackResult(@PathVariable String feedbackId) {
+        Long id = Long.parseLong(feedbackId);
+        int count = feedbackMapper.deleteFeedbackResult(id);
         if (count > 0) {
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {

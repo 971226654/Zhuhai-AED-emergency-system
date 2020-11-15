@@ -4,9 +4,11 @@ import com.bnuz.aed.common.mapper.RealtimeInfoMapper;
 import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.RealtimeInfo;
+import com.bnuz.aed.entity.params.RealtimeInfoParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,7 +19,7 @@ import java.util.List;
  * @author Leia Liang
  */
 @RestController
-@Api(tags = "资讯模块接口")
+@Api(tags = "RealtimeInfoController", description = "资讯模块接口")
 public class RealtimeInfoController {
 
     @Autowired
@@ -47,11 +49,11 @@ public class RealtimeInfoController {
         }
     }
 
-    @GetMapping("/infos/{id}")
+    @GetMapping("/infos/{infoId}")
     @ApiOperation("根据id获取资讯或急救知识")
-    public ServerResponse getInfoOrKnow(@PathVariable String id) {
-        Long infoId = Long.parseLong(id);
-        RealtimeInfo info = realtimeInfoMapper.findInfoOrKnowById(infoId);
+    public ServerResponse getInfoOrKnow(@PathVariable String infoId) {
+        Long id = Long.parseLong(infoId);
+        RealtimeInfo info = realtimeInfoMapper.findInfoOrKnowById(id);
         if (info != null) {
             return ServerResponse.createBySuccess(info);
         } else {
@@ -61,18 +63,17 @@ public class RealtimeInfoController {
 
     @PostMapping("/infos")
     @ApiOperation("新增一条资讯或急救知识")
-    public ServerResponse addInfoOrKnow(String releaseTime, String title,
-                                        String content, String intro,
-                                        String author, int knowledge, int info,
+    public ServerResponse addInfoOrKnow(@Validated RealtimeInfoParam params,
                                         @RequestPart MultipartFile file) {
+        System.out.println(params.toString());
         RealtimeInfo infoVo = new RealtimeInfo();
-        infoVo.setReleaseTime(releaseTime);
-        infoVo.setTitle(title);
-        infoVo.setContent(content);
-        infoVo.setIntro(intro);
-        infoVo.setAuthor(author);
-        infoVo.setKnowledge(knowledge);
-        infoVo.setInfo(info);
+        infoVo.setReleaseTime(params.getReleaseTime());
+        infoVo.setTitle(params.getTitle());
+        infoVo.setContent(params.getContent());
+        infoVo.setIntro(params.getIntro());
+        infoVo.setAuthor(params.getAuthor());
+        infoVo.setKnowledge(params.getKnowledge());
+        infoVo.setInfo(params.getInfo());
         if (!file.isEmpty()) {
             System.out.println(file.getOriginalFilename());
             try {
@@ -93,21 +94,20 @@ public class RealtimeInfoController {
         }
     }
 
-    @PutMapping("/infos/{id}")
-    @ApiOperation("修改一条资讯或急救知识，by 设备ID")
-    public ServerResponse updateInfoOrKnow(@PathVariable String id, String releaseTime,
-                                           String title, String content, String intro,
-                                           String author, int knowledge, int info,
+    @PutMapping("/infos")
+    @ApiOperation("修改一条资讯或急救知识")
+    public ServerResponse updateInfoOrKnow(@Validated RealtimeInfo params,
                                            @RequestPart MultipartFile file) {
-        Long infoId = Long.parseLong(id);
+        System.out.println(params.toString());
+        Long infoId = params.getInfoId();
         RealtimeInfo infoVo = realtimeInfoMapper.findInfoOrKnowById(infoId);
-        infoVo.setReleaseTime(releaseTime);
-        infoVo.setTitle(title);
-        infoVo.setContent(content);
-        infoVo.setIntro(intro);
-        infoVo.setAuthor(author);
-        infoVo.setKnowledge(knowledge);
-        infoVo.setInfo(info);
+        infoVo.setReleaseTime(params.getReleaseTime());
+        infoVo.setTitle(params.getTitle());
+        infoVo.setContent(params.getContent());
+        infoVo.setIntro(params.getIntro());
+        infoVo.setAuthor(params.getAuthor());
+        infoVo.setKnowledge(params.getKnowledge());
+        infoVo.setInfo(params.getInfo());
         if (!file.isEmpty()) {
             System.out.println(file.getOriginalFilename());
             try {
@@ -132,18 +132,18 @@ public class RealtimeInfoController {
         }
     }
 
-    @DeleteMapping("/infos/{id}")
+    @DeleteMapping("/infos/{infoId}")
     @ApiOperation("删除一条资讯或急救知识")
-    public ServerResponse deleteInfoOrKnow(@PathVariable String id) {
-        Long infoId = Long.parseLong(id);
-        String oldUrl = realtimeInfoMapper.findMediaById(infoId);
+    public ServerResponse deleteInfoOrKnow(@PathVariable String infoId) {
+        Long id = Long.parseLong(infoId);
+        String oldUrl = realtimeInfoMapper.findMediaById(id);
         int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
         if (statusCode == -1) {
             System.out.println("图片删除失败！");
         } else {
             System.out.println("图片删除成功！");
         }
-        int count = realtimeInfoMapper.deleteInfoOrKnow(infoId);
+        int count = realtimeInfoMapper.deleteInfoOrKnow(id);
         if (count > 0) {
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {

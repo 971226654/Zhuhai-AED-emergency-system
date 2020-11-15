@@ -3,9 +3,11 @@ package com.bnuz.aed.controller;
 import com.bnuz.aed.common.mapper.AedSituationMapper;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.AedSituation;
+import com.bnuz.aed.entity.params.SituationPostParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  * @author Leia Liang
  */
 @RestController
-@Api(tags = "Aed设备检查记录模块接口")
+@Api(tags = "AedSituationController", description = "Aed设备检查记录模块接口")
 public class AedSituationController {
 
     @Autowired
@@ -33,11 +35,11 @@ public class AedSituationController {
         }
     }
 
-    @GetMapping("/situations/equipmentId/{id}")
+    @GetMapping("/situations/equipment/{equipmentId}")
     @ApiOperation("通过设备ID查询本设备的检查记录")
-    public ServerResponse getRecordsByEquipmentId(@PathVariable String id) {
-        Long equipmentId = Long.parseLong(id);
-        List<AedSituation> outputs = aedSituationMapper.findRecordsByEquipmentId(equipmentId);
+    public ServerResponse getRecordsByEquipmentId(@PathVariable String equipmentId) {
+        Long id = Long.parseLong(equipmentId);
+        List<AedSituation> outputs = aedSituationMapper.findRecordsByEquipmentId(id);
         if (outputs != null) {
             return ServerResponse.createBySuccess(outputs);
         } else {
@@ -45,11 +47,11 @@ public class AedSituationController {
         }
     }
 
-    @GetMapping("/situations/inspectorId/{id}")
+    @GetMapping("/situations/inspector/{inspectorId}")
     @ApiOperation("通过检查员id查询该检查员所检查的所有设备记录")
-    public ServerResponse getRecordsByInspectorId(@PathVariable String id) {
-        Long inspectorId = Long.parseLong(id);
-        List<AedSituation> outputs = aedSituationMapper.findRecordsByInspectorId(inspectorId);
+    public ServerResponse getRecordsByInspectorId(@PathVariable String inspectorId) {
+        Long id = Long.parseLong(inspectorId);
+        List<AedSituation> outputs = aedSituationMapper.findRecordsByInspectorId(id);
         if (outputs != null) {
             return ServerResponse.createBySuccess(outputs);
         } else {
@@ -57,11 +59,11 @@ public class AedSituationController {
         }
     }
 
-    @GetMapping("/situations/{id}")
+    @GetMapping("/situations/{recordId}")
     @ApiOperation("通过记录id查询该条设备检查记录")
-    public ServerResponse getRecordByRecordId(@PathVariable String id) {
-        Long recordId = Long.parseLong(id);
-        AedSituation situation = aedSituationMapper.findRecordByRecordId(recordId);
+    public ServerResponse getRecordByRecordId(@PathVariable String recordId) {
+        Long id = Long.parseLong(recordId);
+        AedSituation situation = aedSituationMapper.findRecordByRecordId(id);
         if (situation != null) {
             return ServerResponse.createBySuccess(situation);
         } else {
@@ -69,34 +71,11 @@ public class AedSituationController {
         }
     }
 
-    @PostMapping("/situations/inspectorId/{id}")
-    @ApiOperation("添加一条设备检查记录，by 检查员ID")
-    public ServerResponse addRecord(@PathVariable String id, String equipment_id,
-                                    String inspectTime, String recordContent,
-                                    String fuselage, String electrode,
-                                    String validity, String battery,
-                                    String available) {
-        System.out.println("id:" + id + "\n"
-                + "equipment_id:" + equipment_id + "\n"
-                + "inspectTime:" + inspectTime + "\n"
-                + "recordContent:" + recordContent + "\n"
-                + "fuselage:" + fuselage + "\n"
-                + "electrode:" + electrode + "\n"
-                + "validity:" + validity + "\n"
-                + "available:" + available + "\n");
-        Long inspectorId = Long.parseLong(id);
-        Long equipmentId = Long.parseLong(equipment_id);
-        AedSituation situation = new AedSituation();
-        situation.setInspectorId(inspectorId);
-        situation.setEquipmentId(equipmentId);
-        situation.setInspectTime(inspectTime);
-        situation.setRecordContent(recordContent);
-        situation.setFuselage(Integer.parseInt(fuselage));
-        situation.setElectrode(Integer.parseInt(electrode));
-        situation.setValidity(Integer.parseInt(validity));
-        situation.setBattery(Integer.parseInt(battery));
-        situation.setAvailable(Integer.parseInt(available));
-        int count = aedSituationMapper.insertRecordByObject(situation);
+    @PostMapping("/situations")
+    @ApiOperation("添加一条设备检查记录")
+    public ServerResponse addRecord(@Validated SituationPostParam params) {
+        System.out.println(params.toString());
+        int count = aedSituationMapper.insertRecordByObject(params);
         if (count > 0) {
             return ServerResponse.createBySuccess("INSERT SUCCESS!");
         } else {
@@ -104,26 +83,10 @@ public class AedSituationController {
         }
     }
 
-    @PutMapping("/situations/{id}")
+    @PutMapping("/situations")
     @ApiOperation("修改一条设备检查记录，by 记录ID")
-    public ServerResponse updateRecord(@PathVariable String id, String equipment_id,
-                                       String inspector_id, String inspectTime,
-                                       String recordContent, String fuselage,
-                                       String electrode, String validity,
-                                       String battery, String available) {
-        Long recordId = Long.parseLong(id);
-        Long inspectorId = Long.parseLong(inspector_id);
-        Long equipmentId = Long.parseLong(equipment_id);
-        AedSituation situation = aedSituationMapper.findRecordByRecordId(recordId);
-        situation.setEquipmentId(equipmentId);
-        situation.setInspectorId(inspectorId);
-        situation.setInspectTime(inspectTime);
-        situation.setRecordContent(recordContent);
-        situation.setFuselage(Integer.parseInt(fuselage));
-        situation.setElectrode(Integer.parseInt(electrode));
-        situation.setValidity(Integer.parseInt(validity));
-        situation.setBattery(Integer.parseInt(battery));
-        situation.setAvailable(Integer.parseInt(available));
+    public ServerResponse updateRecord(@Validated AedSituation situation) {
+        System.out.println(situation.toString());
         int count = aedSituationMapper.updateRecordByObject(situation);
         if (count > 0) {
             return ServerResponse.createBySuccess("UPDATE SUCCESS!");
@@ -132,11 +95,11 @@ public class AedSituationController {
         }
     }
 
-    @DeleteMapping("/situations/{id}")
+    @DeleteMapping("/situations/{recordId}")
     @ApiOperation("删除一条检查记录，by 记录ID")
-    public ServerResponse deleteRecord(@PathVariable String id) {
-        Long recordId = Long.parseLong(id);
-        int count = aedSituationMapper.deleteRecordByRecordId(recordId);
+    public ServerResponse deleteRecord(@PathVariable String recordId) {
+        Long id = Long.parseLong(recordId);
+        int count = aedSituationMapper.deleteRecordByRecordId(id);
         if (count > 0) {
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {

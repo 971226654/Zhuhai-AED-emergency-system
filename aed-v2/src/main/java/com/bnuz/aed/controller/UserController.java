@@ -22,7 +22,7 @@ import java.util.List;
  * @author Leia Liang
  */
 @RestController
-@Api(tags = "用户模块接口")
+@Api(tags = "UserController", description = "用户模块接口")
 public class UserController {
 
     @Autowired
@@ -146,12 +146,11 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/users")
+    @DeleteMapping("/users/{userId}")
     @ApiOperation("删除一个用户")
-    public ServerResponse deleteUser(HttpServletRequest request) {
-        UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
-        Long userId = Long.parseLong(auth.getUserId());
-        int count = userMapper.deleteUserByUserId(userId);
+    public ServerResponse deleteUser(@PathVariable String userId) {
+        Long id = Long.parseLong(userId);
+        int count = userMapper.deleteUserByUserId(id);
         if (count > 0) {
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {
@@ -170,11 +169,11 @@ public class UserController {
         }
     }
 
-    @GetMapping("/inspectors/{id}")
+    @GetMapping("/inspectors/{inspectorId}")
     @ApiOperation("查找该id的检查员信息")
-    public ServerResponse getInspector(@PathVariable String id) {
-        Long inspectorId = Long.parseLong(id);
-        User inspector = userMapper.findUserByUserId(inspectorId);
+    public ServerResponse getInspector(@PathVariable String inspectorId) {
+        Long id = Long.parseLong(inspectorId);
+        User inspector = userMapper.findUserByUserId(id);
         String msg;
         if ("INSPECTOR".equals(inspector.getRole())) {
             msg = "该ID为检查员，信息在data";

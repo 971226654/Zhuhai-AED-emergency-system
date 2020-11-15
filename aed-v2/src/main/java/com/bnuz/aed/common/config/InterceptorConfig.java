@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -24,7 +25,20 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registration.addPathPatterns("/**");
 
         // 排除配置
-        registration.excludePathPatterns("/login/web", "/login/mini");
+        registration.excludePathPatterns("/login/web", "/login/mini", "/v3/**",
+                "/swagger-ui.html/**", "/swagger-resources/**", "/webjars/**");
         //registration.excludePathPatterns("/**");
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        //其他静态资源
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/");
+        //swagger增加url映射
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 }

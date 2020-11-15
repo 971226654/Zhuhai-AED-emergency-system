@@ -42,7 +42,8 @@ public class QiniuCloudUtils {
     private UploadManager uploadManager = new UploadManager(cfg);
 
     /** 可接收的后缀名(暂时为图片) */
-    private static String[] FILE_SUFFIX = new String[]{"png", "bmp", "jpg", "jpeg", "pdf"};
+    private static String[] FILE_SUFFIX = new String[]{"png", "bmp", "jpg", "jpeg",
+            "pdf", "mp4", "flv"};
 
     /** 判断是否是允许的格式 */
     private static boolean isFileAllowed(String fileName) {

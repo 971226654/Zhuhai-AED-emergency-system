@@ -2,10 +2,18 @@ com/bnuz/aed/entity/base/AedPosition.java
  com.bnuz.aed.entity.base.AedPosition
 com/bnuz/aed/common/tools/utils/CdxException.java
  com.bnuz.aed.common.tools.utils.CdxException
+com/bnuz/aed/entity/params/AuditParam.java
+ com.bnuz.aed.entity.params.AuditParam
 com/bnuz/aed/common/tools/utils/HttpsClientUtils.java
  com.bnuz.aed.common.tools.utils.HttpsClientUtils
 com/bnuz/aed/common/tools/utils/WechatUtils.java
  com.bnuz.aed.common.tools.utils.WechatUtils
+com/bnuz/aed/entity/params/EquipmentPutParam.java
+ com.bnuz.aed.entity.params.EquipmentPutParam
+com/bnuz/aed/entity/params/SituationPostParam.java
+ com.bnuz.aed.entity.params.SituationPostParam
+com/bnuz/aed/entity/params/AuditResultParam.java
+ com.bnuz.aed.entity.params.AuditResultParam
 com/bnuz/aed/controller/HelloController.java
  com.bnuz.aed.controller.HelloController
 com/bnuz/aed/service/impl/UserServiceImpl.java
@@ -37,12 +45,20 @@ com/bnuz/aed/AedApplication.java
  com.bnuz.aed.AedApplication
 com/bnuz/aed/entity/expand/AedOutput.java
  com.bnuz.aed.entity.expand.AedOutput
+com/bnuz/aed/entity/params/EquipmentPostParam.java
+ com.bnuz.aed.entity.params.EquipmentPostParam
+com/bnuz/aed/entity/params/FeedbackResultParam.java
+ com.bnuz.aed.entity.params.FeedbackResultParam
+com/bnuz/aed/entity/params/RealtimeInfoParam.java
+ com.bnuz.aed.entity.params.RealtimeInfoParam
 com/bnuz/aed/common/tools/utils/EntityUtils.java
  com.bnuz.aed.common.tools.utils.EntityUtils
 com/bnuz/aed/controller/AedEquipmentController.java
  com.bnuz.aed.controller.AedEquipmentController
 com/bnuz/aed/common/config/aspect/ControllerAspect.java
  com.bnuz.aed.common.config.aspect.ControllerAspect
+com/bnuz/aed/entity/params/FeedbackParam.java
+ com.bnuz.aed.entity.params.FeedbackParam
 com/bnuz/aed/entity/base/CollectList.java
  com.bnuz.aed.entity.base.CollectList
 com/bnuz/aed/common/mapper/AedSituationMapper.java
