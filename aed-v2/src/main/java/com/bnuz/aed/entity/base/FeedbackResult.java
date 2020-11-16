@@ -1,5 +1,7 @@
 package com.bnuz.aed.entity.base;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.io.Serializable;
@@ -12,21 +14,21 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ApiModel(value = "反馈结果的实体类")
 public class FeedbackResult implements Serializable {
 
 	private static final long serialVersionUID = 3797186095642979705L;
 
-	/** 反馈ID */
+	@ApiModelProperty(value = "反馈ID")
 	private Long feedbackId;
 
-	/** 反馈结果 */
+	@ApiModelProperty(value = "反馈结果")
 	private String result;
 
-	/** 审核人(管理员ID) */
+	@ApiModelProperty(value = "审核人(管理员ID)")
 	private Long managerId;
 
-	/** 处理时间 */
+	@ApiModelProperty(value = "处理时间")
 	private String resultTime;
 
 }

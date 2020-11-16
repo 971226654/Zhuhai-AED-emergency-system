@@ -26,7 +26,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
         // 排除配置
         registration.excludePathPatterns("/login/web", "/login/mini", "/v3/**",
-                "/swagger-ui.html/**", "/swagger-resources/**", "/webjars/**");
+                "/swagger-ui/**", "/swagger-resources/**", "/webjars/**");
         //registration.excludePathPatterns("/**");
     }
 

@@ -1,5 +1,7 @@
 package com.bnuz.aed.entity.base;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.io.Serializable;
@@ -12,24 +14,24 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ApiModel(value = "审核的实体类")
 public class Audit implements Serializable {
 
 	private static final long serialVersionUID = 1752438241560823088L;
 
-	/** 审核ID */
+	@ApiModelProperty(value = "审核ID")
 	private Long auditId;
 
-	/** 用户ID */
+	@ApiModelProperty(value = "用户ID")
 	private Long userId;
 
-	/** 手机号码 */
+	@ApiModelProperty(value = "手机号码")
 	private String phoneNumber;
 
-	/** 身份证 */
+	@ApiModelProperty(value = "身份证")
 	private String idCard;
 
-	/** 审核时间 */
+	@ApiModelProperty(value = "审核时间")
 	private String auditTime;
 
 }

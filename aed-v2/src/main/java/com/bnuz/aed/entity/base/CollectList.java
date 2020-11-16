@@ -1,5 +1,7 @@
 package com.bnuz.aed.entity.base;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.io.Serializable;
@@ -12,17 +14,18 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(value = "收藏列表的实体类")
 public class CollectList implements Serializable {
 
 	private static final long serialVersionUID = -8649986576428315969L;
 
-	/** 收藏ID */
+	@ApiModelProperty(value = "收藏ID")
 	private Long collectionId;
 
-	/** 收藏者(普通用户) */
+	@ApiModelProperty(value = "收藏者(普通用户)")
 	private Long userId;
 
-	/** 资讯ID */
+	@ApiModelProperty(value = "资讯ID")
 	private Long infoId;
 
 }

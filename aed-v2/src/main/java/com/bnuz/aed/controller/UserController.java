@@ -12,7 +12,9 @@ import com.bnuz.aed.entity.expand.UserAuth;
 import com.bnuz.aed.entity.expand.UserInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +24,7 @@ import java.util.List;
  * @author Leia Liang
  */
 @RestController
+@ResponseBody
 @Api(tags = "UserController", description = "用户模块接口")
 public class UserController {
 
@@ -129,8 +132,8 @@ public class UserController {
 
 
     @PutMapping("/users")
-    @ApiOperation("修改某个一个用户的信息,暂时不要用")
-    public ServerResponse updateUser(HttpServletRequest request, @RequestBody UserInfo info) {
+    @ApiOperation("修改某个一个用户的信息")
+    public ServerResponse updateUser(HttpServletRequest request, @Validated @RequestBody UserInfo info) {
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
         User user = userMapper.findUserByUserId(userId);
@@ -138,6 +141,8 @@ public class UserController {
         user.setPhoneNumber(info.getPhoneNumber());
         user.setEmail(info.getEmail());
         user.setIdCard(info.getIdCard());
+        user.setResponsibleArea(info.getResponsibleArea());
+        user.setRole(info.getRole());
         int count = userMapper.updateUserInfoByUserId(user);
         if (count > 0) {
             return ServerResponse.createBySuccess("UPDATE SUCCESS!");
@@ -148,7 +153,7 @@ public class UserController {
 
     @DeleteMapping("/users/{userId}")
     @ApiOperation("删除一个用户")
-    public ServerResponse deleteUser(@PathVariable String userId) {
+    public ServerResponse deleteUser(@PathVariable @ApiParam(value = "用户ID") String userId) {
         Long id = Long.parseLong(userId);
         int count = userMapper.deleteUserByUserId(id);
         if (count > 0) {

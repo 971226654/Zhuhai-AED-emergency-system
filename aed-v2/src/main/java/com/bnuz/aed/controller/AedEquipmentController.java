@@ -11,6 +11,7 @@ import com.bnuz.aed.entity.params.EquipmentPutParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ import java.util.List;
  * @author Leia Liang
  */
 @RestController
+@ResponseBody
 @Api(tags = "AedEquipmentController", description = "AED设备接口")
 public class AedEquipmentController {
 
@@ -47,7 +49,7 @@ public class AedEquipmentController {
 
     @GetMapping("/equipments/{equipmentId}")
     @ApiOperation("通过equipmentId获得某一个AED设备")
-    public ServerResponse getEquipmentById(@PathVariable String equipmentId) {
+    public ServerResponse getEquipmentById(@PathVariable @ApiParam(value = "设备ID") String equipmentId) {
         Long id = Long.parseLong(equipmentId);
         AedOutput output = aedEquipmentMapper.findEquipmentByIdExpand(id);
         if (output != null) {
@@ -61,13 +63,21 @@ public class AedEquipmentController {
     @PostMapping("/equipments")
     @ApiOperation("新增一个AED设备")
     public ServerResponse addEquipment(@Validated EquipmentPostParam params,
-                                       @RequestPart MultipartFile file) {
+                                       @RequestPart @ApiParam(value = "设备图片") MultipartFile file) {
         System.out.println(params.toString());
         AedEquipment equipment = new AedEquipment();
         equipment.setDisplayTime(params.getDisplayTime());
         equipment.setProductionTime(params.getProductionTime());
-        equipment.setPurchaseTime(params.getPurchaseTime());
-        equipment.setFactoryName(params.getFactoryName());
+        if (params.getPurchaseTime().isEmpty()) {
+            equipment.setPurchaseTime("null");
+        } else {
+            equipment.setPurchaseTime(params.getPurchaseTime());
+        }
+        if (params.getFactoryName().isEmpty()) {
+            equipment.setFactoryName("null");
+        } else {
+            equipment.setFactoryName(params.getFactoryName());
+        }
         equipment.setModel(params.getModel());
         equipment.setStatus(params.getStatus());
         if (!file.isEmpty()) {
@@ -93,7 +103,7 @@ public class AedEquipmentController {
     @PutMapping("/equipments")
     @ApiOperation("修改某一个AED设备的基本信息")
     public ServerResponse updateEquipment(@Validated EquipmentPutParam params,
-                                          @RequestPart MultipartFile file) {
+                                          @RequestPart @ApiParam(value = "设备图片") MultipartFile file) {
         System.out.println(params.toString());
         Long id = params.getEquipmentId();
         AedEquipment equipment = aedEquipmentMapper.findEquipmentByIdBase(id);
@@ -132,7 +142,7 @@ public class AedEquipmentController {
 
     @DeleteMapping("/equipments/{equipmentId}")
     @ApiOperation("删除一个AED设备的基本信息和地理信息，by 设备ID")
-    public ServerResponse deleteEquipment(@PathVariable String equipmentId){
+    public ServerResponse deleteEquipment(@PathVariable @ApiParam(value = "设备ID") String equipmentId){
         Long id = Long.parseLong(equipmentId);
         String oldUrl = aedEquipmentMapper.findImageById(id);
         int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);

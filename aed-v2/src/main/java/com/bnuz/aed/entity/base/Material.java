@@ -1,5 +1,7 @@
 package com.bnuz.aed.entity.base;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.io.Serializable;
@@ -10,18 +12,18 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ApiModel(value = "审核材料的实体类")
 public class Material implements Serializable {
 
     private static final long serialVersionUID = -5884655138207608940L;
 
-    /** 审核ID */
+    @ApiModelProperty(value = "审核ID")
     private Long auditId;
 
-    /** 材料内容 */
+    @ApiModelProperty(value = "材料内容")
     private String materialContent;
 
-    /** 七牛云图片 */
+    @ApiModelProperty(value = "七牛云图片")
     private String picture;
 
 }

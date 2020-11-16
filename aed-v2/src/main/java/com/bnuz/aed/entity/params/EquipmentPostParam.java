@@ -22,10 +22,10 @@ public class EquipmentPostParam {
     @ApiModelProperty(value = "AED设备的生产时间", required = true)
     private String productionTime;
 
-    @ApiModelProperty(value = "AED设备的购买时间", required = true)
+    @ApiModelProperty(value = "AED设备的购买时间")
     private String purchaseTime;
 
-    @ApiModelProperty(value = "AED设备的厂家名称", required = true)
+    @ApiModelProperty(value = "AED设备的厂家名称")
     private String factoryName;
 
     @ApiModelProperty(value = "AED设备的型号", required = true)

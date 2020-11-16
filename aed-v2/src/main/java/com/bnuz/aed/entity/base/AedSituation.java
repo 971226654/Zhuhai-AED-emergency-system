@@ -1,6 +1,9 @@
 package com.bnuz.aed.entity.base;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,39 +16,44 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ApiModel(value = "AED设备检查记录的实体类")
 public class AedSituation implements Serializable {
 
 	private static final long serialVersionUID = 4456634333773776256L;
 
-	/** 检查记录ID */
+	@ApiModelProperty(value = "检查记录ID", required = true)
 	private Long recordId;
 
-	/** 设备ID */
+	@ApiModelProperty(value = "设备ID", required = true)
 	private Long equipmentId;
 
-	/** 检查时间 */
+	@ApiModelProperty(value = "检查时间", required = true)
 	private String inspectTime;
 
-	/** 检查员ID */
+	@ApiModelProperty(value = "检查员ID", required = true)
 	private Long inspectorId;
 
-	/** 设备具体情况 */
+	@ApiModelProperty(value = "设备具体情况", required = true)
 	private String recordContent;
 
-	/** 机身有无损坏 */
+	@ApiModelProperty(value = "机身有无损坏", required = true)
+	@Range(min = 0, max = 1)
 	private Integer fuselage;
 
-	/** 电极片是否完好 */
+	@ApiModelProperty(value = "电极片是否完好", required = true)
+	@Range(min = 0, max = 1)
 	private Integer electrode;
 
-	/** 是否在有效期内 */
+	@ApiModelProperty(value = "是否在有效期内", required = true)
+	@Range(min = 0, max = 1)
 	private Integer validity;
 
-	/** 电池是否损坏 */
+	@ApiModelProperty(value = "电池是否损坏", required = true)
+	@Range(min = 0, max = 1)
 	private Integer battery;
 
-	/** 目前是否可用 */
+	@ApiModelProperty(value = "目前是否可用", required = true)
+	@Range(min = 0, max = 1)
 	private Integer available;
 
 }

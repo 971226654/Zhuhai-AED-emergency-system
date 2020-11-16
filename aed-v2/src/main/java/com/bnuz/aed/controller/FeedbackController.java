@@ -10,6 +10,7 @@ import com.bnuz.aed.entity.params.FeedbackParam;
 import com.bnuz.aed.entity.params.FeedbackResultParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ import java.util.Map;
  * @author Leia Liang
  */
 @RestController
+@ResponseBody
 @Api(tags = "FeedbackController", description = "反馈模块接口")
 public class FeedbackController {
 
@@ -47,7 +49,7 @@ public class FeedbackController {
 
     @GetMapping("/feedbacks/{feedbackId}")
     @ApiOperation("通过feedbackId查询该用户的反馈记录（带结果）")
-    public ServerResponse getFeedbackByFeedbackId(@PathVariable String feedbackId) {
+    public ServerResponse getFeedbackByFeedbackId(@PathVariable @ApiParam(value = "反馈ID") String feedbackId) {
         Long id = Long.parseLong(feedbackId);
         Map<String, Object> output = feedbackMapper.findFeedbackById(id);
         if (output != null) {
@@ -94,7 +96,7 @@ public class FeedbackController {
     @ApiOperation("通过userId新增一条反馈")
     public ServerResponse addFeedback(HttpServletRequest request,
                                       @Validated FeedbackParam params,
-                                      @RequestPart MultipartFile file) {
+                                      @RequestPart @ApiParam(value = "反馈图片") MultipartFile file) {
         System.out.println(params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
@@ -145,7 +147,7 @@ public class FeedbackController {
 
     @DeleteMapping("/feedbacks/{feedbackId}")
     @ApiOperation("通过feedbackId删除一条反馈")
-    public ServerResponse deleteFeedback(@PathVariable String feedbackId) {
+    public ServerResponse deleteFeedback(@PathVariable @ApiParam(value = "反馈ID") String feedbackId) {
         Long id = Long.parseLong(feedbackId);
         Map<String, Object> feedback = feedbackMapper.findFeedbackById(id);
         if (feedback.get("picture") != null) {
@@ -168,7 +170,7 @@ public class FeedbackController {
 
     @DeleteMapping("/feedbacks/result/{feedbackId}")
     @ApiOperation("通过feedbackId删除一条反馈结果")
-    public ServerResponse deleteFeedbackResult(@PathVariable String feedbackId) {
+    public ServerResponse deleteFeedbackResult(@PathVariable @ApiParam(value = "反馈ID") String feedbackId) {
         Long id = Long.parseLong(feedbackId);
         int count = feedbackMapper.deleteFeedbackResult(id);
         if (count > 0) {

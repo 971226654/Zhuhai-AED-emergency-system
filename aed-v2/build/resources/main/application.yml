@@ -1,5 +1,8 @@
 server:
   port: 9090
+  ssl:
+    key-store: classpath:4769340_www.zhuhaiaed.xyz.pfx
+    key-store-password: OwsRwh0v
 
 spring:
   datasource:

@@ -5,6 +5,7 @@ import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.expand.UserAuth;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.util.Map;
  * @author Leia Liang
  */
 @RestController
+@ResponseBody
 @Api(tags = "CollectListController", description = "收藏模块接口")
 public class CollectListController {
 
@@ -38,7 +40,7 @@ public class CollectListController {
     @PostMapping("/collections")
     @ApiOperation("通过userId添加一条收藏")
     public ServerResponse addCollection(HttpServletRequest request,
-                                        @RequestParam String info_id) {
+                                        @RequestParam @ApiParam(value = "资讯知识ID") String info_id) {
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
         Long infoId = Long.parseLong(info_id);
@@ -52,7 +54,7 @@ public class CollectListController {
 
     @DeleteMapping("/collections/{collectionId}")
     @ApiOperation("通过collectionId删除一条收藏")
-    public ServerResponse deleteCollection(@PathVariable String collectionId) {
+    public ServerResponse deleteCollection(@PathVariable @ApiParam(value = "收藏ID") String collectionId) {
         Long id = Long.parseLong(collectionId);
         int count = collectListMapper.deleteCollection(id);
         if (count > 0) {

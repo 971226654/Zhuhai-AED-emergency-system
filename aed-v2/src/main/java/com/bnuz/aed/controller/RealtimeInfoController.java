@@ -7,6 +7,7 @@ import com.bnuz.aed.entity.base.RealtimeInfo;
 import com.bnuz.aed.entity.params.RealtimeInfoParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.util.List;
  * @author Leia Liang
  */
 @RestController
+@ResponseBody
 @Api(tags = "RealtimeInfoController", description = "资讯模块接口")
 public class RealtimeInfoController {
 
@@ -51,7 +53,7 @@ public class RealtimeInfoController {
 
     @GetMapping("/infos/{infoId}")
     @ApiOperation("根据id获取资讯或急救知识")
-    public ServerResponse getInfoOrKnow(@PathVariable String infoId) {
+    public ServerResponse getInfoOrKnow(@PathVariable @ApiParam(value = "资讯知识ID") String infoId) {
         Long id = Long.parseLong(infoId);
         RealtimeInfo info = realtimeInfoMapper.findInfoOrKnowById(id);
         if (info != null) {
@@ -64,7 +66,7 @@ public class RealtimeInfoController {
     @PostMapping("/infos")
     @ApiOperation("新增一条资讯或急救知识")
     public ServerResponse addInfoOrKnow(@Validated RealtimeInfoParam params,
-                                        @RequestPart MultipartFile file) {
+                                        @RequestPart @ApiParam(value = "资讯图片") MultipartFile file) {
         System.out.println(params.toString());
         RealtimeInfo infoVo = new RealtimeInfo();
         infoVo.setReleaseTime(params.getReleaseTime());
@@ -97,7 +99,7 @@ public class RealtimeInfoController {
     @PutMapping("/infos")
     @ApiOperation("修改一条资讯或急救知识")
     public ServerResponse updateInfoOrKnow(@Validated RealtimeInfo params,
-                                           @RequestPart MultipartFile file) {
+                                           @RequestPart @ApiParam(value = "资讯图片") MultipartFile file) {
         System.out.println(params.toString());
         Long infoId = params.getInfoId();
         RealtimeInfo infoVo = realtimeInfoMapper.findInfoOrKnowById(infoId);
@@ -134,7 +136,7 @@ public class RealtimeInfoController {
 
     @DeleteMapping("/infos/{infoId}")
     @ApiOperation("删除一条资讯或急救知识")
-    public ServerResponse deleteInfoOrKnow(@PathVariable String infoId) {
+    public ServerResponse deleteInfoOrKnow(@PathVariable @ApiParam(value = "资讯知识ID") String infoId) {
         Long id = Long.parseLong(infoId);
         String oldUrl = realtimeInfoMapper.findMediaById(id);
         int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);

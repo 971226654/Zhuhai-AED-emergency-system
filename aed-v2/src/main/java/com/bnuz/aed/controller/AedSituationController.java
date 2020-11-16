@@ -6,6 +6,7 @@ import com.bnuz.aed.entity.base.AedSituation;
 import com.bnuz.aed.entity.params.SituationPostParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
  * @author Leia Liang
  */
 @RestController
+@ResponseBody
 @Api(tags = "AedSituationController", description = "Aed设备检查记录模块接口")
 public class AedSituationController {
 
@@ -37,7 +39,7 @@ public class AedSituationController {
 
     @GetMapping("/situations/equipment/{equipmentId}")
     @ApiOperation("通过设备ID查询本设备的检查记录")
-    public ServerResponse getRecordsByEquipmentId(@PathVariable String equipmentId) {
+    public ServerResponse getRecordsByEquipmentId(@PathVariable @ApiParam(value = "设备ID") String equipmentId) {
         Long id = Long.parseLong(equipmentId);
         List<AedSituation> outputs = aedSituationMapper.findRecordsByEquipmentId(id);
         if (outputs != null) {
@@ -49,7 +51,7 @@ public class AedSituationController {
 
     @GetMapping("/situations/inspector/{inspectorId}")
     @ApiOperation("通过检查员id查询该检查员所检查的所有设备记录")
-    public ServerResponse getRecordsByInspectorId(@PathVariable String inspectorId) {
+    public ServerResponse getRecordsByInspectorId(@PathVariable @ApiParam(value = "检查员ID") String inspectorId) {
         Long id = Long.parseLong(inspectorId);
         List<AedSituation> outputs = aedSituationMapper.findRecordsByInspectorId(id);
         if (outputs != null) {
@@ -61,7 +63,7 @@ public class AedSituationController {
 
     @GetMapping("/situations/{recordId}")
     @ApiOperation("通过记录id查询该条设备检查记录")
-    public ServerResponse getRecordByRecordId(@PathVariable String recordId) {
+    public ServerResponse getRecordByRecordId(@PathVariable @ApiParam(value = "检查记录ID") String recordId) {
         Long id = Long.parseLong(recordId);
         AedSituation situation = aedSituationMapper.findRecordByRecordId(id);
         if (situation != null) {
@@ -97,7 +99,7 @@ public class AedSituationController {
 
     @DeleteMapping("/situations/{recordId}")
     @ApiOperation("删除一条检查记录，by 记录ID")
-    public ServerResponse deleteRecord(@PathVariable String recordId) {
+    public ServerResponse deleteRecord(@PathVariable @ApiParam(value = "检查记录ID") String recordId) {
         Long id = Long.parseLong(recordId);
         int count = aedSituationMapper.deleteRecordByRecordId(id);
         if (count > 0) {

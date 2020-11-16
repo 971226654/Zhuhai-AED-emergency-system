@@ -13,6 +13,7 @@ import com.bnuz.aed.entity.params.AuditParam;
 import com.bnuz.aed.entity.params.AuditResultParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ import java.util.Map;
  * @author Leia Liang
  */
 @RestController
+@ResponseBody
 @Api(tags = "AuditController", description = "审核模块接口")
 public class AuditController {
 
@@ -67,7 +69,7 @@ public class AuditController {
 
     @GetMapping("/audits/{auditId}")
     @ApiOperation("通过审核ID获取本用户的审核信息")
-    public ServerResponse getAuditById(@PathVariable String auditId) {
+    public ServerResponse getAuditById(@PathVariable @ApiParam(value = "审核ID") String auditId) {
         Long id = Long.parseLong(auditId);
         Map<String, Object> output = auditMapper.findAuditByAuditId(id);
         if (output != null) {
@@ -81,7 +83,7 @@ public class AuditController {
     @ApiOperation("通过用户ID新增一个审核")
     public ServerResponse addAudit(HttpServletRequest request,
                                    @Validated AuditParam params,
-                                   @RequestPart MultipartFile file) {
+                                   @RequestPart @ApiParam(value = "材料图片") MultipartFile file) {
         System.out.println(params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
@@ -145,7 +147,7 @@ public class AuditController {
     @ApiOperation("通过用户ID修改一个审核")
     public ServerResponse updateAudit(HttpServletRequest request,
                                       @Validated AuditParam params,
-                                      @RequestPart MultipartFile file) {
+                                      @RequestPart @ApiParam(value = "材料图片") MultipartFile file) {
         System.out.println(params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
@@ -224,7 +226,7 @@ public class AuditController {
 
     @DeleteMapping("/audits/{auditId}")
     @ApiOperation("通过auditId删除一个审核")
-    public ServerResponse deleteAudit(@PathVariable String auditId) {
+    public ServerResponse deleteAudit(@PathVariable @ApiParam(value = "审核ID") String auditId) {
         String msg = "";
         Long id = Long.parseLong(auditId);
         int count1 = auditResultMapper.deleteAuditResult(id);
@@ -257,7 +259,7 @@ public class AuditController {
 
     @DeleteMapping("/audits/result/{auditId}")
     @ApiOperation("通过auditId删除一个审核结果")
-    public ServerResponse deleteAuditResult(@PathVariable String auditId) {
+    public ServerResponse deleteAuditResult(@PathVariable @ApiParam(value = "审核ID") String auditId) {
         Long id = Long.parseLong(auditId);
         int count = auditResultMapper.deleteAuditResult(id);
         if (count > 0) {
@@ -269,7 +271,7 @@ public class AuditController {
 
     @DeleteMapping("/materials/{auditId}")
     @ApiOperation("通过auditId删除一个审核材料")
-    public ServerResponse deleteMaterial(@PathVariable String auditId) {
+    public ServerResponse deleteMaterial(@PathVariable @ApiParam(value = "审核ID") String auditId) {
         Long id = Long.parseLong(auditId);
         int count = materialMapper.deleteMaterial(id);
         if (count > 0) {
