@@ -2,7 +2,7 @@ package com.bnuz.aed.controller;
 
 import com.bnuz.aed.common.mapper.CollectListMapper;
 import com.bnuz.aed.common.tools.ServerResponse;
-import com.bnuz.aed.entity.expand.UserAuth;
+import com.bnuz.aed.entity.base.UserAuth;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

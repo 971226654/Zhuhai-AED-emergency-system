@@ -2,6 +2,7 @@ package com.bnuz.aed.common.tools.utils;
 
 import cn.hutool.json.JSONObject;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,10 @@ public class WechatUtils {
     /** 网页的SECRET */
     private static final String SECRET_WEB = "40a565ac2046e3b857df3c5641d6a88e";
 
-    /** 网页的URL */
+    /** 网页获取code */
+    private static final String CODE_WEB = "https://open.weixin.qq.com/connect/oauth2/authorize";
+
+    /** 网页获取access_token */
     private static final String URL_WEB = "https://api.weixin.qq.com/sns/oauth2/access_token";
 
     /** 网页刷新access_token */
@@ -125,7 +129,21 @@ public class WechatUtils {
         Map<String, Object> params = new HashMap<>();
         params.put("access_token", accessToken);
         params.put("openid", openid);
+        params.put("lang", "zh_CN");
         return HttpsClientUtils.doGet(URL_INFO_WEB, params);
+    }
+
+    public static String getCode(String state) {
+        StringBuilder url = new StringBuilder();
+        url.append(CODE_WEB);
+        url.append("?appid=" + APP_ID_WEB);
+        String redirectUri = "https://zhuhaiaed.xyz:9090/login/web";
+        url.append("&redirect_uri=").append(URLEncoder.encode(redirectUri));
+        url.append("&response_type=code");
+        url.append("&scope=snsapi_userinfo");
+        url.append("&state=").append(state);
+        url.append("#wechat_redirect");
+        return url.toString();
     }
 
 }

@@ -5,7 +5,7 @@ import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.Feedback;
 import com.bnuz.aed.entity.base.FeedbackResult;
-import com.bnuz.aed.entity.expand.UserAuth;
+import com.bnuz.aed.entity.base.UserAuth;
 import com.bnuz.aed.entity.params.FeedbackParam;
 import com.bnuz.aed.entity.params.FeedbackResultParam;
 import io.swagger.annotations.Api;

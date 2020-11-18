@@ -8,7 +8,7 @@ import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.Audit;
 import com.bnuz.aed.entity.base.AuditResult;
 import com.bnuz.aed.entity.base.Material;
-import com.bnuz.aed.entity.expand.UserAuth;
+import com.bnuz.aed.entity.base.UserAuth;
 import com.bnuz.aed.entity.params.AuditParam;
 import com.bnuz.aed.entity.params.AuditResultParam;
 import io.swagger.annotations.Api;

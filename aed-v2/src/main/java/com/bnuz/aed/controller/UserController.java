@@ -8,8 +8,10 @@ import com.bnuz.aed.common.tools.utils.JwtTokenUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.common.tools.utils.WechatUtils;
 import com.bnuz.aed.entity.base.User;
-import com.bnuz.aed.entity.expand.UserAuth;
-import com.bnuz.aed.entity.expand.UserInfo;
+import com.bnuz.aed.entity.base.UserAuth;
+import com.bnuz.aed.entity.expand.UserOutput;
+import com.bnuz.aed.entity.params.RefreshTokenParam;
+import com.bnuz.aed.entity.params.UserInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -18,7 +20,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Leia Liang
@@ -33,6 +37,10 @@ public class UserController {
 
     private final static List<String> wxErrCode = ListUtil.toList("40029", "40030");
 
+    private final static List<String> wxCodeErrCode = ListUtil.toList("10003",
+            "10004", "10005", "10006", "10009", "10010", "10011", "10012", "10013",
+            "10015", "10016");
+
     @GetMapping("/users")
     @ApiOperation("获取所有用户信息列表")
     public ServerResponse getAllUsers() {
@@ -44,9 +52,21 @@ public class UserController {
         }
     }
 
+    @PostMapping("/refresh")
+    @ApiOperation("刷新Token")
+    public ServerResponse refreshToken(@RequestBody RefreshTokenParam param) {
+        System.out.println("RefreshTokenParam: " + param.toString());
+        String new_token = JwtTokenUtils.generateToken(
+                String.valueOf(param.getUserId()),
+                param.getRole());
+        System.out.println("new_token: " + new_token);
+        return ServerResponse.createBySuccess("返回新的token", new_token);
+    }
+
     @PostMapping("/login/mini")
     @ApiOperation("小程序创建一个用户,返回该用户id、role封装好的token")
     public ServerResponse createUserByMini(@RequestBody String codeJson) {
+        System.out.println("codeJson: " + codeJson);
         JSONObject code = JSONUtil.parseObj(codeJson);
         System.out.println("code: " + code.getStr("code"));
         JSONObject key = WechatUtils.getOpenIdByMini(code.getStr("code"));
@@ -57,73 +77,101 @@ public class UserController {
         }
         String openid = key.getStr("openid");
         User check_user = userMapper.findUserByOpenid(openid);
+        UserOutput output;
         int insert_count;
-        Long userId;
-        String role;
         // 判断数据库是否有这个openid,有就不注册(插入数据库)
         if (check_user == null) {
+            output = new UserOutput();
             User new_user = new User();
             new_user.setWxOpenid(openid);
             new_user.setRole("USER");
             insert_count = userMapper.insertUser(new_user);
-            userId = userMapper.findUserByOpenid(openid).getUserId();
-            role = "USER";
+            Long userId = userMapper.findUserByOpenid(openid).getUserId();
+            String role = "USER";
+            String token = JwtTokenUtils.generateToken(String.valueOf(userId), role);
+            output.setUserId(userId);
+            output.setWxOpenid(openid);
+            output.setRole(role);
+            output.setToken(token);
         } else {
             insert_count = -1;
-            userId = check_user.getUserId();
-            role = check_user.getRole();
+            output = new UserOutput(check_user);
+            String token = JwtTokenUtils.generateToken(String.valueOf(output.getUserId()), output.getRole());
+            output.setToken(token);
         }
+
         if (insert_count > 0) {
-            return ServerResponse.createBySuccess("注册并登录成功！返回token",
-                    JwtTokenUtils.generateToken(String.valueOf(userId), role));
+            return ServerResponse.createBySuccess("注册并登录成功！返回token", output);
         } else if (insert_count == -1){
-            return ServerResponse.createBySuccess("登录成功！返回token",
-            JwtTokenUtils.generateToken(String.valueOf(userId), role));
+            return ServerResponse.createBySuccess("登录成功！返回token", output);
         } else {
             return ServerResponse.createByFail("请检查code！");
         }
 
     }
 
+    @PostMapping("/login/getCodeMap")
+    @ApiOperation("web请求登录授权获得code用")
+    public Map<String, String> getWebLoginCodeMap(HttpServletRequest request) {
+        String sessionId = request.getSession().getId();
+        System.out.println("Login SessionId: " + sessionId);
+        String uri = WechatUtils.getCode(sessionId);
+        System.out.println("getCodeURI: " + uri);
+        Map<String, String> map = new HashMap<>();
+        map.put("sessionId", sessionId);
+        map.put("uri", uri);
+        return map;
+    }
+
     @PostMapping("/login/web")
     @ApiOperation("web创建一个用户，返回该用户id、role封装好的token，该方法用于普通用户想成为安全员必须先登录")
-    public ServerResponse createUserByWeb(@RequestBody String codeJson) {
-        JSONObject code = JSONUtil.parseObj(codeJson);
-        System.out.println("code: " + code.getStr("code"));
-        JSONObject access = WechatUtils.getAccessTokenByWeb(code.getStr("code"));
+    public ServerResponse createUserByWeb(HttpServletRequest request) {
+        String state = request.getParameter("state");
+        if (wxCodeErrCode.contains(state)) {
+            return ServerResponse.createByFail("code获取出错，errCode: " + state);
+        }
+        String code = request.getParameter("code");
+        JSONObject access = WechatUtils.getAccessTokenByWeb(code);
         System.out.println(access);
         if (wxErrCode.contains(access.getStr("errcode"))) {
             return ServerResponse.createByFail(access.getStr("errmsg"));
         }
+
         String accessToken = access.getStr("access_token");
         String openid = access.getStr("openid");
         JSONObject info = WechatUtils.getInfoByWeb(accessToken, openid);
         String nickName = info.getStr("nickname");
+
+        UserOutput output;
         int insert_count;
-        Long userId;
-        String role;
         User check_user = userMapper.findUserByOpenid(openid);
         // 判断数据库是否有这个openid,有就不注册(插入数据库)
         if (check_user == null) {
+            output = new UserOutput();
             User new_user = new User();
             new_user.setWxOpenid(openid);
             new_user.setUserName(nickName);
             new_user.setRole("USER");
             insert_count = userMapper.insertUser(new_user);
-            userId = userMapper.findUserByOpenid(openid).getUserId();
-            role = "USER";
+            Long userId = userMapper.findUserByOpenid(openid).getUserId();
+            String role = "USER";
+            String token = JwtTokenUtils.generateToken(String.valueOf(userId), role);
+            output.setUserId(userId);
+            output.setWxOpenid(openid);
+            output.setUserName(nickName);
+            output.setRole(role);
+            output.setToken(token);
         } else {
             insert_count = -1;
-            userId = check_user.getUserId();
-            role = check_user.getRole();
+            output = new UserOutput(check_user);
+            String token = JwtTokenUtils.generateToken(String.valueOf(output.getUserId()), output.getRole());
+            output.setToken(token);
         }
 
         if (insert_count > 0) {
-            return ServerResponse.createBySuccess("注册并登录成功！返回token",
-                    JwtTokenUtils.generateToken(String.valueOf(userId), role));
+            return ServerResponse.createBySuccess("注册并登录成功！返回token", output);
         } else if (insert_count == -1){
-            return ServerResponse.createBySuccess("登录成功！返回token",
-                    JwtTokenUtils.generateToken(String.valueOf(userId), role));
+            return ServerResponse.createBySuccess("登录成功！返回token", output);
         } else {
             return ServerResponse.createByFail("请检查code！");
         }
