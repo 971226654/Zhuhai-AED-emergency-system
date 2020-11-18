@@ -41,6 +41,10 @@ public class UserController {
             "10004", "10005", "10006", "10009", "10010", "10011", "10012", "10013",
             "10015", "10016");
 
+    private static String OPENID = "";
+
+    private static String ACCESS_TOKEN = "";
+
     @GetMapping("/users")
     @ApiOperation("获取所有用户信息列表")
     public ServerResponse getAllUsers() {
@@ -75,28 +79,30 @@ public class UserController {
         if (wxErrCode.contains(key.getStr("errcode"))) {
             return ServerResponse.createByFail(key.getStr("errmsg"));
         }
-        String openid = key.getStr("openid");
-        User check_user = userMapper.findUserByOpenid(openid);
+        OPENID = key.getStr("openid");
+        User check_user = userMapper.findUserByOpenid(OPENID);
         UserOutput output;
         int insert_count;
         // 判断数据库是否有这个openid,有就不注册(插入数据库)
         if (check_user == null) {
             output = new UserOutput();
             User new_user = new User();
-            new_user.setWxOpenid(openid);
+            new_user.setWxOpenid(OPENID);
             new_user.setRole("USER");
-            insert_count = userMapper.insertUser(new_user);
-            Long userId = userMapper.findUserByOpenid(openid).getUserId();
+            insert_count = userMapper.insertUserByOpenidAndRole(new_user);
+            Long userId = userMapper.findUserByOpenid(OPENID).getUserId();
             String role = "USER";
             String token = JwtTokenUtils.generateToken(String.valueOf(userId), role);
+            System.out.println("mini-token: " + token);
             output.setUserId(userId);
-            output.setWxOpenid(openid);
+            output.setWxOpenid(OPENID);
             output.setRole(role);
             output.setToken(token);
         } else {
             insert_count = -1;
             output = new UserOutput(check_user);
             String token = JwtTokenUtils.generateToken(String.valueOf(output.getUserId()), output.getRole());
+            System.out.println("mini-token: " + token);
             output.setToken(token);
         }
 
@@ -112,7 +118,7 @@ public class UserController {
 
     @PostMapping("/login/getCodeMap")
     @ApiOperation("web请求登录授权获得code用")
-    public Map<String, String> getWebLoginCodeMap(HttpServletRequest request) {
+    public ServerResponse getWebLoginCodeMap(HttpServletRequest request) {
         String sessionId = request.getSession().getId();
         System.out.println("Login SessionId: " + sessionId);
         String uri = WechatUtils.getCode(sessionId);
@@ -120,64 +126,65 @@ public class UserController {
         Map<String, String> map = new HashMap<>();
         map.put("sessionId", sessionId);
         map.put("uri", uri);
-        return map;
+        return ServerResponse.createBySuccess("获取成功", map);
     }
 
-    @PostMapping("/login/web")
-    @ApiOperation("web创建一个用户，返回该用户id、role封装好的token，该方法用于普通用户想成为安全员必须先登录")
+    @RequestMapping(value = "/login/callback")
+    @ApiOperation("微信网页第三方回调函数,不要调用")
     public ServerResponse createUserByWeb(HttpServletRequest request) {
         String state = request.getParameter("state");
         if (wxCodeErrCode.contains(state)) {
             return ServerResponse.createByFail("code获取出错，errCode: " + state);
         }
         String code = request.getParameter("code");
+        System.out.println("code: " + code);
         JSONObject access = WechatUtils.getAccessTokenByWeb(code);
-        System.out.println(access);
+        System.out.println("access: " + access);
         if (wxErrCode.contains(access.getStr("errcode"))) {
             return ServerResponse.createByFail(access.getStr("errmsg"));
         }
 
-        String accessToken = access.getStr("access_token");
-        String openid = access.getStr("openid");
-        JSONObject info = WechatUtils.getInfoByWeb(accessToken, openid);
-        String nickName = info.getStr("nickname");
+        ACCESS_TOKEN = access.getStr("access_token");
+        OPENID = access.getStr("openid");
 
-        UserOutput output;
         int insert_count;
-        User check_user = userMapper.findUserByOpenid(openid);
+        User check_user = userMapper.findUserByOpenid(OPENID);
         // 判断数据库是否有这个openid,有就不注册(插入数据库)
         if (check_user == null) {
-            output = new UserOutput();
             User new_user = new User();
-            new_user.setWxOpenid(openid);
-            new_user.setUserName(nickName);
+            new_user.setWxOpenid(OPENID);
             new_user.setRole("USER");
-            insert_count = userMapper.insertUser(new_user);
-            Long userId = userMapper.findUserByOpenid(openid).getUserId();
-            String role = "USER";
-            String token = JwtTokenUtils.generateToken(String.valueOf(userId), role);
-            output.setUserId(userId);
-            output.setWxOpenid(openid);
-            output.setUserName(nickName);
-            output.setRole(role);
-            output.setToken(token);
+            insert_count = userMapper.insertUserByOpenidAndRole(new_user);
         } else {
             insert_count = -1;
-            output = new UserOutput(check_user);
-            String token = JwtTokenUtils.generateToken(String.valueOf(output.getUserId()), output.getRole());
-            output.setToken(token);
         }
 
         if (insert_count > 0) {
-            return ServerResponse.createBySuccess("注册并登录成功！返回token", output);
+            return ServerResponse.createBySuccess("注册并登录成功!");
         } else if (insert_count == -1){
-            return ServerResponse.createBySuccess("登录成功！返回token", output);
+            return ServerResponse.createBySuccess("登录成功!");
         } else {
             return ServerResponse.createByFail("请检查code！");
         }
 
     }
 
+    @GetMapping("/login/web")
+    @ApiOperation("web第三方扫码后调用")
+    public ServerResponse getUserInfosFromWeb() {
+        JSONObject info = WechatUtils.getInfoByWeb(ACCESS_TOKEN, OPENID);
+        User check_user = userMapper.findUserByOpenid(OPENID);
+        UserOutput output = new UserOutput(check_user);
+        String token = JwtTokenUtils.generateToken(String.valueOf(output.getUserId()), output.getRole());
+        System.out.println("web-token: " + token);
+        output.setToken(token);
+        Map<String, Object> map = new HashMap<>();
+        map.put("UserOutput", output);
+        map.put("WechatInfo", info);
+        ACCESS_TOKEN = "";
+        OPENID = "";
+        return ServerResponse.createBySuccess("返回扫码后登录信息", map);
+    }
 
     @PutMapping("/users")
     @ApiOperation("修改某个一个用户的信息")
@@ -247,6 +254,5 @@ public class UserController {
             return ServerResponse.createByFail();
         }
     }
-
 
 }

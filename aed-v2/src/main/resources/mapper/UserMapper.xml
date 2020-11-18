@@ -6,9 +6,14 @@
         SELECT * FROM User;
     </select>
 
-    <insert id="insertUser" parameterType="com.bnuz.aed.entity.base.User">
-        INSERT INTO User(wxOpenid, manager, inspector, role)
-        VALUES (#{wxOpenid}, 0, 0, #{role});
+    <insert id="insertUserByOpenidAndRole" parameterType="com.bnuz.aed.entity.base.User">
+        INSERT INTO User(wxOpenid, role)
+        VALUES (#{wxOpenid}, #{role});
+    </insert>
+
+    <insert id="insertUserByOpenidAndRoleAndName" parameterType="com.bnuz.aed.entity.base.User">
+        INSERT INTO User(userName, wxOpenid, role)
+        VALUES (#{userName}, #{wxOpenid}, #{role});
     </insert>
 
     <select id="findUserByOpenid" resultType="com.bnuz.aed.entity.base.User">

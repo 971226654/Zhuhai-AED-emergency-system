@@ -14,7 +14,9 @@ public interface UserMapper {
 
     List<User> findAllUsers();
 
-    int insertUser(User user);
+    int insertUserByOpenidAndRole(User user);
+
+    int insertUserByOpenidAndRoleAndName(User user);
 
     User findUserByOpenid(@Param("openid") String openid);
 

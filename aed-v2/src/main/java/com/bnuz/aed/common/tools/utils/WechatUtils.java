@@ -137,7 +137,7 @@ public class WechatUtils {
         StringBuilder url = new StringBuilder();
         url.append(CODE_WEB);
         url.append("?appid=" + APP_ID_WEB);
-        String redirectUri = "https://zhuhaiaed.xyz:9090/login/web";
+        String redirectUri = "https://zhuhaiaed.xyz:9090/login/callback";
         url.append("&redirect_uri=").append(URLEncoder.encode(redirectUri));
         url.append("&response_type=code");
         url.append("&scope=snsapi_userinfo");

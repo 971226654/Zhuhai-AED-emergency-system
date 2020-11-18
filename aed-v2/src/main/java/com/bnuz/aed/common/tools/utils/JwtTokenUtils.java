@@ -3,10 +3,13 @@ package com.bnuz.aed.common.tools.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import java.util.Date;
 
 /**
@@ -19,7 +22,7 @@ public class JwtTokenUtils {
     /** token过期时间 */
     private static final long EXPIRE = 1000 * 60 * 60 * 24;
     /** 密钥 */
-    private static final String SECRET_KEY = "ukc8BDbRigUDaY6pZFfWus2jZWLPHO";
+    private static final String SECRET_KEY = "ZhuHai-aed";
 
     /**
      * 生成Token
@@ -28,24 +31,36 @@ public class JwtTokenUtils {
      * @return
      */
     public static String generateToken(String userId, String role){
+        SecretKey key = generalKey();
+        long nowMillis = System.currentTimeMillis();
+        Date now = new Date(nowMillis);
+        Date exp = new Date(nowMillis + EXPIRE);
+        System.out.println("token-time: [now]" + now + "\n[exp]" + exp);
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setHeaderParam("alg", "HS256")
                 .setSubject("user")
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE))
+                .setIssuedAt(now)
+                .setExpiration(exp)
                 .claim("userId", userId)
                 .claim("role", role)
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
+    }
+
+    /** 生成KEY */
+    public static SecretKey generalKey() {
+        byte[] encodedKey = Base64.decodeBase64(SECRET_KEY);
+        return new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
     }
 
     /** 从token中获取JWT中的负载 */
     public static Claims getClaimsFromToken(String token) {
+        SecretKey secretKey = generalKey();
         Claims claims = null;
         try {
             claims = Jwts.parser()
-                    .setSigningKey(SECRET_KEY)
+                    .setSigningKey(secretKey)
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception e) {
@@ -60,11 +75,12 @@ public class JwtTokenUtils {
      * @return
      */
     public static boolean checkToken(String token) {
+        SecretKey secretKey = generalKey();
         if(StringUtils.isEmpty(token)) {
             return false;
         }
         try {
-            Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -31,36 +34,22 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/InterceptorConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/InterceptorConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/aspect/ControllerAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/aspect/ControllerAspect.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/interceptors/JwtInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/interceptors/JwtInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/EntityUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/mapper/UserMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/JwtTokenUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/JwtTokenUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/WechatUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/WechatUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AuditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AuditController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/CollectListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/CollectListController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/FeedbackController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/FeedbackController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/expand/UserAuth.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/expand/UserInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/UserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/InterceptorConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/aspect/ControllerAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/aspect/ControllerAspect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/interceptors/JwtInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/interceptors/JwtInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/EntityUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/mapper/UserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/JwtTokenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/JwtTokenUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/WechatUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/WechatUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AuditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/CollectListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/CollectListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/FeedbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/FeedbackController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/expand/UserAuth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/UserAuth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/expand/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/params/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,17 +159,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.aed-v2 [bootJar]">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="aed-v2 [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -274,7 +252,9 @@
       <workItem from="1605491811267" duration="14305000" />
       <workItem from="1605537575102" duration="872000" />
       <workItem from="1605583844365" duration="7085000" />
-      <workItem from="1605666795378" duration="15124000" />
+      <workItem from="1605666795378" duration="20746000" />
+      <workItem from="1605700276077" duration="1498000" />
+      <workItem from="1605702986152" duration="4793000" />
     </task>
     <servers />
   </component>
@@ -374,30 +354,30 @@
     </state>
     <state x="870" y="215" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1603159533833" />
     <state x="906" y="224" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1600615637253" />
-    <state width="1458" height="391" key="GridCell.Tab.0.bottom" timestamp="1605688218698">
-      <screen x="0" y="0" width="1500" height="960" />
+    <state width="1877" height="300" key="GridCell.Tab.0.bottom" timestamp="1605712449298">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1397" height="372" key="GridCell.Tab.0.bottom/0.0.1440.920@0.0.1440.920" timestamp="1605676601060" />
-    <state width="1458" height="391" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1605688218698" />
-    <state width="1877" height="300" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602669432230" />
-    <state width="1458" height="391" key="GridCell.Tab.0.center" timestamp="1605688218698">
-      <screen x="0" y="0" width="1500" height="960" />
+    <state width="1458" height="224" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1605698387216" />
+    <state width="1877" height="300" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605712449298" />
+    <state width="1877" height="300" key="GridCell.Tab.0.center" timestamp="1605712449298">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1397" height="372" key="GridCell.Tab.0.center/0.0.1440.920@0.0.1440.920" timestamp="1605676601060" />
-    <state width="1458" height="391" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1605688218698" />
-    <state width="1877" height="300" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602669432229" />
-    <state width="1458" height="391" key="GridCell.Tab.0.left" timestamp="1605688218698">
-      <screen x="0" y="0" width="1500" height="960" />
+    <state width="1458" height="224" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1605698387216" />
+    <state width="1877" height="300" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605712449298" />
+    <state width="1877" height="300" key="GridCell.Tab.0.left" timestamp="1605712449297">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1397" height="372" key="GridCell.Tab.0.left/0.0.1440.920@0.0.1440.920" timestamp="1605676601059" />
-    <state width="1458" height="391" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1605688218698" />
-    <state width="1877" height="300" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602669432229" />
-    <state width="1458" height="391" key="GridCell.Tab.0.right" timestamp="1605688218698">
-      <screen x="0" y="0" width="1500" height="960" />
+    <state width="1458" height="224" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1605698387216" />
+    <state width="1877" height="300" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605712449297" />
+    <state width="1877" height="300" key="GridCell.Tab.0.right" timestamp="1605712449298">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1397" height="372" key="GridCell.Tab.0.right/0.0.1440.920@0.0.1440.920" timestamp="1605676601060" />
-    <state width="1458" height="391" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1605688218698" />
-    <state width="1877" height="300" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602669432229" />
+    <state width="1458" height="224" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1605698387216" />
+    <state width="1877" height="300" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605712449298" />
     <state width="1458" height="391" key="GridCell.Tab.1.bottom" timestamp="1605687959686">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
@@ -438,11 +418,11 @@
       <screen x="0" y="0" width="1440" height="920" />
     </state>
     <state width="1397" height="379" key="GridCell.Tab.2.right/0.0.1440.920@0.0.1440.920" timestamp="1604496944593" />
-    <state x="318" y="205" key="IDE.errors.dialog" timestamp="1605158987380">
-      <screen x="0" y="0" width="1440" height="920" />
+    <state x="331" y="214" key="IDE.errors.dialog" timestamp="1605689816020">
+      <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="318" y="205" key="IDE.errors.dialog/0.0.1440.920@0.0.1440.920" timestamp="1605158987380" />
-    <state x="331" y="214" key="IDE.errors.dialog/0.0.1500.960@0.0.1500.960" timestamp="1601258404740" />
+    <state x="331" y="214" key="IDE.errors.dialog/0.0.1500.960@0.0.1500.960" timestamp="1605689816020" />
     <state x="79" y="70" width="1009" height="751" key="SettingsEditor" timestamp="1604381904729">
       <screen x="0" y="0" width="1440" height="920" />
     </state>

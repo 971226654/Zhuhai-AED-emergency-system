@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 /**
  * @author Leia Liang
@@ -28,6 +29,13 @@ public class JwtInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         System.out.println("url: " + request.getRequestURI());
         System.out.println("http method: " + request.getMethod());
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String name = headerNames.nextElement();
+            //根据名称获取请求头的值
+            String value = request.getHeader(name);
+            System.out.println("---"+ name + "===" + value);
+        }
         String token = request.getHeader("token");
         System.out.println("token: " + token);
         // 如果进入了拦截器且token为空，则是没有登录
