@@ -22,9 +22,6 @@ public class SituationPostParam {
     @ApiModelProperty(value = "AED设备检查时间", required = true)
     private String inspectTime;
 
-    @ApiModelProperty(value = "检查员ID", required = true)
-    private Long inspectorId;
-
     @ApiModelProperty(value = "设备具体情况", required = true)
     private String recordContent;
 

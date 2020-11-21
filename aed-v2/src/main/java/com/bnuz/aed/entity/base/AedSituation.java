@@ -1,5 +1,6 @@
 package com.bnuz.aed.entity.base;
 
+import com.bnuz.aed.entity.params.SituationPostParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -55,5 +56,16 @@ public class AedSituation implements Serializable {
 	@ApiModelProperty(value = "目前是否可用", required = true)
 	@Range(min = 0, max = 1)
 	private Integer available;
+
+	public AedSituation(SituationPostParam param) {
+		this.equipmentId = param.getEquipmentId();
+		this.inspectTime = param.getInspectTime();
+		this.recordContent = param.getRecordContent();
+		this.fuselage = param.getFuselage();
+		this.electrode = param.getElectrode();
+		this.validity = param.getValidity();
+		this.available = param.getAvailable();
+		this.battery = param.getBattery();
+	}
 
 }

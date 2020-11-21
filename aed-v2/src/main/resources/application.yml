@@ -79,6 +79,9 @@ auth:
     - addEquipment
     - updateEquipment
     - deleteEquipment
+    - refreshToken
+    - getWebLoginCodeMap
+    - getUserInfosFromWeb
   inspector:
     - hello
     - getInspector
@@ -109,6 +112,9 @@ auth:
     - deleteRecord
     - getAllEquipments
     - getEquipmentById
+    - refreshToken
+    - getWebLoginCodeMap
+    - getUserInfosFromWeb
   user:
     - hello
     - createUserByMini
@@ -131,3 +137,6 @@ auth:
     - deleteMaterial
     - getAllEquipments
     - getEquipmentById
+    - refreshToken
+    - getWebLoginCodeMap
+    - getUserInfosFromWeb

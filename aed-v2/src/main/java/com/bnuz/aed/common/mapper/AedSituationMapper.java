@@ -19,7 +19,7 @@ public interface AedSituationMapper {
 
     List<AedSituation> findRecordsByInspectorId(@Param("inspectorId") Long inspectorId);
 
-    int insertRecordByObject(SituationPostParam param);
+    int insertRecordByObject(AedSituation situation);
 
     int updateRecordByObject(AedSituation situation);
 

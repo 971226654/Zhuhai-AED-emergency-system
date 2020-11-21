@@ -3,6 +3,7 @@ package com.bnuz.aed.controller;
 import com.bnuz.aed.common.mapper.AedSituationMapper;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.AedSituation;
+import com.bnuz.aed.entity.base.UserAuth;
 import com.bnuz.aed.entity.params.SituationPostParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -75,9 +77,13 @@ public class AedSituationController {
 
     @PostMapping("/situations")
     @ApiOperation("添加一条设备检查记录")
-    public ServerResponse addRecord(@Validated SituationPostParam params) {
+    public ServerResponse addRecord(@Validated SituationPostParam params, HttpServletRequest request) {
         System.out.println(params.toString());
-        int count = aedSituationMapper.insertRecordByObject(params);
+        UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
+        Long inspectorId = Long.parseLong(auth.getUserId());
+        AedSituation situation = new AedSituation(params);
+        situation.setInspectorId(inspectorId);
+        int count = aedSituationMapper.insertRecordByObject(situation);
         if (count > 0) {
             return ServerResponse.createBySuccess("INSERT SUCCESS!");
         } else {

@@ -30,12 +30,12 @@ public class JwtInterceptor implements HandlerInterceptor {
         System.out.println("url: " + request.getRequestURI());
         System.out.println("http method: " + request.getMethod());
         Enumeration<String> headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String name = headerNames.nextElement();
-            //根据名称获取请求头的值
-            String value = request.getHeader(name);
-            System.out.println("---"+ name + "===" + value);
-        }
+//        while (headerNames.hasMoreElements()) {
+//            String name = headerNames.nextElement();
+//            //根据名称获取请求头的值
+//            String value = request.getHeader(name);
+//            System.out.println("---"+ name + "===" + value);
+//        }
         String token = request.getHeader("token");
         System.out.println("token: " + token);
         // 如果进入了拦截器且token为空，则是没有登录
@@ -45,14 +45,10 @@ public class JwtInterceptor implements HandlerInterceptor {
             System.out.println("没有token");
             return false;
         }
-        // 如果不是映射到方法直接通过
-        if(!(handler instanceof HandlerMethod)){
-            return true;
-        }
         // 判断token是否有效
         if (JwtTokenUtils.checkToken(token)) {
             // 判断token是否过期
-            if (JwtTokenUtils.isTokenExpired(token)) {
+            if (!JwtTokenUtils.isTokenExpired(token)) {
                 Claims claims = JwtTokenUtils.getClaimsFromToken(token);
                 if (claims != null) {
                     String res_userId = (String)claims.get("userId");

@@ -4,6 +4,7 @@ import cn.hutool.core.collection.ListUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.bnuz.aed.common.mapper.UserMapper;
+import com.bnuz.aed.common.tools.ResponseCode;
 import com.bnuz.aed.common.tools.utils.JwtTokenUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.common.tools.utils.WechatUtils;
@@ -41,7 +42,7 @@ public class UserController {
             "10004", "10005", "10006", "10009", "10010", "10011", "10012", "10013",
             "10015", "10016");
 
-    private static String OPENID = "";
+    private static String OPENID_WEB = "";
 
     private static String ACCESS_TOKEN = "";
 
@@ -79,23 +80,23 @@ public class UserController {
         if (wxErrCode.contains(key.getStr("errcode"))) {
             return ServerResponse.createByFail(key.getStr("errmsg"));
         }
-        OPENID = key.getStr("openid");
-        User check_user = userMapper.findUserByOpenid(OPENID);
+        String openid = key.getStr("openid");
+        User check_user = userMapper.findUserByOpenid(openid);
         UserOutput output;
         int insert_count;
         // 判断数据库是否有这个openid,有就不注册(插入数据库)
         if (check_user == null) {
             output = new UserOutput();
             User new_user = new User();
-            new_user.setWxOpenid(OPENID);
+            new_user.setWxOpenid(openid);
             new_user.setRole("USER");
             insert_count = userMapper.insertUserByOpenidAndRole(new_user);
-            Long userId = userMapper.findUserByOpenid(OPENID).getUserId();
+            Long userId = userMapper.findUserByOpenid(openid).getUserId();
             String role = "USER";
             String token = JwtTokenUtils.generateToken(String.valueOf(userId), role);
             System.out.println("mini-token: " + token);
             output.setUserId(userId);
-            output.setWxOpenid(OPENID);
+            output.setWxOpenid(openid);
             output.setRole(role);
             output.setToken(token);
         } else {
@@ -145,14 +146,14 @@ public class UserController {
         }
 
         ACCESS_TOKEN = access.getStr("access_token");
-        OPENID = access.getStr("openid");
+        OPENID_WEB = access.getStr("openid");
 
         int insert_count;
-        User check_user = userMapper.findUserByOpenid(OPENID);
+        User check_user = userMapper.findUserByOpenid(OPENID_WEB);
         // 判断数据库是否有这个openid,有就不注册(插入数据库)
         if (check_user == null) {
             User new_user = new User();
-            new_user.setWxOpenid(OPENID);
+            new_user.setWxOpenid(OPENID_WEB);
             new_user.setRole("USER");
             insert_count = userMapper.insertUserByOpenidAndRole(new_user);
         } else {
@@ -172,8 +173,12 @@ public class UserController {
     @GetMapping("/login/web")
     @ApiOperation("web第三方扫码后调用")
     public ServerResponse getUserInfosFromWeb() {
-        JSONObject info = WechatUtils.getInfoByWeb(ACCESS_TOKEN, OPENID);
-        User check_user = userMapper.findUserByOpenid(OPENID);
+        if (ACCESS_TOKEN.isEmpty() || OPENID_WEB.isEmpty()) {
+            return ServerResponse.createByFreeStyle(ResponseCode.FAIL.getCode(), "微信方还未回调");
+        }
+        System.out.println("----getUserInfosFromWeb-----openid: " + OPENID_WEB);
+        JSONObject info = WechatUtils.getInfoByWeb(ACCESS_TOKEN, OPENID_WEB);
+        User check_user = userMapper.findUserByOpenid(OPENID_WEB);
         UserOutput output = new UserOutput(check_user);
         String token = JwtTokenUtils.generateToken(String.valueOf(output.getUserId()), output.getRole());
         System.out.println("web-token: " + token);
@@ -182,7 +187,7 @@ public class UserController {
         map.put("UserOutput", output);
         map.put("WechatInfo", info);
         ACCESS_TOKEN = "";
-        OPENID = "";
+        OPENID_WEB = "";
         return ServerResponse.createBySuccess("返回扫码后登录信息", map);
     }
 

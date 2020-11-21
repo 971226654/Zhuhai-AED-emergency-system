@@ -133,6 +133,11 @@ public class WechatUtils {
         return HttpsClientUtils.doGet(URL_INFO_WEB, params);
     }
 
+    /**
+     * 生成二维码用的url
+     * @param state sessionID
+     * @return 拼接好的URL
+     */
     public static String getCode(String state) {
         StringBuilder url = new StringBuilder();
         url.append(CODE_WEB);
