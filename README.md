@@ -1,3 +1,3 @@
 # Zhuhai-AED-emergency-system
- 珠海AED急救系统 
+ AED急救指引系统 
  毕设作品
