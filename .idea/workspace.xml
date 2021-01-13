@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cce844b-a30b-4122-9b76-7aa06e530fb2" name="默认的" comment="" />
+    <list default="true" id="3cce844b-a30b-4122-9b76-7aa06e530fb2" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aed-v2/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/aed-v2/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aed-v2/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/aed-v2/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aed-v2/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/aed-v2/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aed-v2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aed-v2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aed-v2/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/aed-v2/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aed-v2/src/main/java/com/bnuz/aed/AedApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/aed-v2/src/main/java/com/bnuz/aed/AedApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aed-v2/src/main/java/com/bnuz/aed/common/config/aspect/ControllerAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/aed-v2/src/main/java/com/bnuz/aed/common/config/aspect/ControllerAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aed-v2/src/main/java/com/bnuz/aed/common/config/interceptors/JwtInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/aed-v2/src/main/java/com/bnuz/aed/common/config/interceptors/JwtInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aed-v2/src/main/java/com/bnuz/aed/common/tools/ServerResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/aed-v2/src/main/java/com/bnuz/aed/common/tools/ServerResponse.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,11 +39,25 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/aed-v2" />
     <property name="project.structure.last.edited" value="模块" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.35371703" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -44,32 +69,14 @@
       <updated>1600072699580</updated>
       <workItem from="1600072701416" duration="643000" />
       <workItem from="1600073356166" duration="180000" />
+      <workItem from="1608302514372" duration="407000" />
+      <workItem from="1608303036836" duration="423000" />
+      <workItem from="1608303665352" duration="245000" />
+      <workItem from="1608303933627" duration="153000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="301" y="109" key="#Plugins" timestamp="1600072781036">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state x="301" y="109" key="#Plugins/0.0.1500.960@0.0.1500.960" timestamp="1600072781036" />
-    <state x="164" y="123" width="1086" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600073436506">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state x="164" y="123" width="1086" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1600073436506" />
-    <state x="489" y="223" key="FileChooserDialogImpl" timestamp="1600073527852">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state x="489" y="223" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1600073527852" />
-    <state x="189" y="42" key="SettingsEditor" timestamp="1600073446730">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state x="189" y="42" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1600073446730" />
-    <state x="237" y="67" key="new project wizard" timestamp="1600073533781">
-      <screen x="0" y="0" width="1500" height="960" />
-    </state>
-    <state x="237" y="67" key="new project wizard/0.0.1500.960@0.0.1500.960" timestamp="1600073533781" />
   </component>
 </project>

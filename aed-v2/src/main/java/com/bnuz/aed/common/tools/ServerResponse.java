@@ -1,31 +1,24 @@
 package com.bnuz.aed.common.tools;
 
 import cn.hutool.json.JSONUtil;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 
 /**
  * @author Leia Liang
  */
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ServerResponse {
 
-    /**
-     * 状态码
-     */
+    /** 状态码 */
     private int code;
 
-    /**
-     * 消息
-     */
+    /** 消息 */
     private String message;
 
-    /**
-     * 数据
-     */
+    /** 数据 */
     private Object data;
 
     @Override
@@ -33,24 +26,9 @@ public class ServerResponse {
         return JSONUtil.toJsonStr(this);
     }
 
-    public ServerResponse(int code) {
-        this.code = code;
-    }
-
-    public ServerResponse(int code, Object data) {
-        this.code = code;
-        this.data = data;
-    }
-
     public ServerResponse(int code, String message) {
         this.code = code;
         this.message = message;
-    }
-
-    public ServerResponse(int code, String message, Object data) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
     }
 
     public boolean isSuccess() {

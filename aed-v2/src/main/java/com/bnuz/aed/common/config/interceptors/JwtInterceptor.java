@@ -29,7 +29,7 @@ public class JwtInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         System.out.println("url: " + request.getRequestURI());
         System.out.println("http method: " + request.getMethod());
-        Enumeration<String> headerNames = request.getHeaderNames();
+//        Enumeration<String> headerNames = request.getHeaderNames();
 //        while (headerNames.hasMoreElements()) {
 //            String name = headerNames.nextElement();
 //            //根据名称获取请求头的值

@@ -20,9 +20,7 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
 @MapperScan(basePackages = {"com.bnuz.aed.common.mapper"})
 public class AedApplication {
 
-    /**
-     * 跨域过滤器
-     */
+    /** 跨域过滤器 */
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

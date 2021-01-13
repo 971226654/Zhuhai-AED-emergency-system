@@ -47,9 +47,6 @@ public class ControllerAspect {
         System.out.println(joinPoint.toString());
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
 
-//        Object[] args = joinPoint.getArgs();
-//        HttpServletRequest request = (HttpServletRequest) args[0];
-
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 
         HttpServletRequest request = null;
