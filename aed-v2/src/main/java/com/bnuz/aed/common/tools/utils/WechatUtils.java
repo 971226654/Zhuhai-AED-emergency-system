@@ -2,6 +2,7 @@ package com.bnuz.aed.common.tools.utils;
 
 import cn.hutool.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -143,7 +144,11 @@ public class WechatUtils {
         url.append(CODE_WEB);
         url.append("?appid=" + APP_ID_WEB);
         String redirectUri = "https://zhuhaiaed.xyz:9090/login/callback";
-        url.append("&redirect_uri=").append(URLEncoder.encode(redirectUri));
+        try {
+            url.append("&redirect_uri=").append(URLEncoder.encode(redirectUri, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         url.append("&response_type=code");
         url.append("&scope=snsapi_userinfo");
         url.append("&state=").append(state);

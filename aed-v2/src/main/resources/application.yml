@@ -31,12 +31,16 @@ auth:
   manager:
     - hello
     - getAllUsers
-    - getAllManagers
-    - getAllInspectors
+    - refreshToken
     - createUserByMini
+    - getWebLoginCodeMap
     - createUserByWeb
+    - getUserInfosFromWeb
     - updateUser
     - deleteUser
+    - getAllInspectors
+    - getInspector
+    - getAllManagers
     - getAllInfos
     - getAllKnows
     - getInfoOrKnow
@@ -44,6 +48,7 @@ auth:
     - updateInfoOrKnow
     - deleteInfoOrKnow
     - getFeedbacksByUserId
+    - getFeedbackByFeedbackId
     - getAllFeedbacks
     - getFeedbacksCount
     - getFeedbackResultsCount
@@ -79,30 +84,36 @@ auth:
     - addEquipment
     - updateEquipment
     - deleteEquipment
-    - refreshToken
-    - getWebLoginCodeMap
-    - getUserInfosFromWeb
   inspector:
     - hello
-    - getInspector
+    - getAllUsers
+    - refreshToken
     - createUserByMini
+    - getWebLoginCodeMap
     - createUserByWeb
+    - getUserInfosFromWeb
     - updateUser
+    - deleteUser
+    - getAllInspectors
+    - getInspector
     - getAllInfos
     - getAllKnows
     - getInfoOrKnow
+    - addInfoOrKnow
+    - updateInfoOrKnow
+    - deleteInfoOrKnow
     - getFeedbacksByUserId
+    - getFeedbackByFeedbackId
+    - getAllFeedbacks
+    - getFeedbacksCount
+    - getFeedbackResultsCount
     - addFeedback
+    - addFeedbackResult
     - deleteFeedback
+    - deleteFeedbackResult
     - getCollectionsById
     - addCollection
     - deleteCollection
-    - getAuditsByUserId
-    - getAuditById
-    - addAudit
-    - updateAudit
-    - deleteAudit
-    - deleteMaterial
     - getAllRecords
     - getRecordsByEquipmentId
     - getRecordsByInspectorId
@@ -112,31 +123,44 @@ auth:
     - deleteRecord
     - getAllEquipments
     - getEquipmentById
-    - refreshToken
-    - getWebLoginCodeMap
-    - getUserInfosFromWeb
   user:
     - hello
+    - getAllUsers
+    - refreshToken
     - createUserByMini
+    - getWebLoginCodeMap
     - createUserByWeb
+    - getUserInfosFromWeb
     - updateUser
+    - deleteUser
     - getAllInfos
     - getAllKnows
     - getInfoOrKnow
+    - addInfoOrKnow
+    - updateInfoOrKnow
+    - deleteInfoOrKnow
     - getFeedbacksByUserId
+    - getFeedbackByFeedbackId
+    - getAllFeedbacks
+    - getFeedbacksCount
+    - getFeedbackResultsCount
     - addFeedback
+    - addFeedbackResult
     - deleteFeedback
+    - deleteFeedbackResult
     - getCollectionsById
     - addCollection
     - deleteCollection
+    - getAllAudits
     - getAuditsByUserId
     - getAuditById
     - addAudit
+    - addAuditResult
     - updateAudit
+    - updateAuditResult
     - deleteAudit
+    - deleteAuditResult
     - deleteMaterial
+    - getAllRecords
     - getAllEquipments
     - getEquipmentById
-    - refreshToken
-    - getWebLoginCodeMap
-    - getUserInfosFromWeb
