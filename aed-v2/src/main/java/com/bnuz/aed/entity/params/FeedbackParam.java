@@ -19,7 +19,7 @@ public class FeedbackParam {
     private String feedbackContent;
 
     @ApiModelProperty(value = "反馈星星", required = true)
-    private int feedbackStars;
+    private String feedbackStars;
 
     @ApiModelProperty(value = "反馈时间", required = true)
     private String feedbackTime;

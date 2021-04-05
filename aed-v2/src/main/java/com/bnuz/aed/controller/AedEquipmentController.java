@@ -2,6 +2,7 @@ package com.bnuz.aed.controller;
 
 import com.bnuz.aed.common.mapper.AedEquipmentMapper;
 import com.bnuz.aed.common.mapper.AedPositionMapper;
+import com.bnuz.aed.common.mapper.AedSituationMapper;
 import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.AedEquipment;
@@ -34,9 +35,12 @@ public class AedEquipmentController {
     @Autowired
     private AedPositionMapper aedPositionMapper;
 
+    @Autowired
+    private AedSituationMapper aedSituationMapper;
+
     private QiniuCloudUtils qiniuCloudUtils = new QiniuCloudUtils();
 
-    @GetMapping("/equipments")
+    @GetMapping("/equipments/get")
     @ApiOperation("获取所有AED设备信息")
     public ServerResponse getAllEquipments() {
         List<AedOutput> outputs = aedEquipmentMapper.findAllEquipments();
@@ -47,7 +51,7 @@ public class AedEquipmentController {
         }
     }
 
-    @GetMapping("/equipments/{equipmentId}")
+    @GetMapping("/equipments/get/{equipmentId}")
     @ApiOperation("通过equipmentId获得某一个AED设备")
     public ServerResponse getEquipmentById(@PathVariable @ApiParam(value = "设备ID") String equipmentId) {
         Long id = Long.parseLong(equipmentId);
@@ -60,30 +64,31 @@ public class AedEquipmentController {
         }
     }
 
-    @PostMapping("/equipments")
+    @PostMapping("/equipments/post")
     @ApiOperation("新增一个AED设备")
     public ServerResponse addEquipment(@Validated EquipmentPostParam params,
-                                       @RequestPart @ApiParam(value = "设备图片") MultipartFile file) {
+                                       @RequestPart(required = false) @ApiParam(value = "设备图片") MultipartFile file) {
         System.out.println(params.toString());
         AedEquipment equipment = new AedEquipment();
         equipment.setDisplayTime(params.getDisplayTime());
         equipment.setProductionTime(params.getProductionTime());
-        if (params.getPurchaseTime().isEmpty()) {
-            equipment.setPurchaseTime("null");
+        if (params.getPurchaseTime() == null) {
+            equipment.setPurchaseTime(null);
         } else {
             equipment.setPurchaseTime(params.getPurchaseTime());
         }
-        if (params.getFactoryName().isEmpty()) {
-            equipment.setFactoryName("null");
+        if (params.getFactoryName() == null) {
+            equipment.setFactoryName(null);
         } else {
             equipment.setFactoryName(params.getFactoryName());
         }
         equipment.setModel(params.getModel());
-        equipment.setStatus(params.getStatus());
-        if (!file.isEmpty()) {
+        equipment.setStatus(Integer.parseInt(params.getStatus()));
+        if (file != null) {
             System.out.println(file.getOriginalFilename());
             try {
                 String url = qiniuCloudUtils.uploadToQiniu(file);
+                System.out.println("新图片地址：" + url);
                 equipment.setAppearance(url);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -100,33 +105,51 @@ public class AedEquipmentController {
         }
     }
 
-    @PutMapping("/equipments")
+    @PostMapping("/equipments/update")
     @ApiOperation("修改某一个AED设备的基本信息")
     public ServerResponse updateEquipment(@Validated EquipmentPutParam params,
-                                          @RequestPart @ApiParam(value = "设备图片") MultipartFile file) {
+                                          @RequestPart(required = false) @ApiParam(value = "设备图片") MultipartFile file) {
         System.out.println(params.toString());
-        Long id = params.getEquipmentId();
+        Long id = Long.valueOf(params.getEquipmentId());
         AedEquipment equipment = aedEquipmentMapper.findEquipmentByIdBase(id);
-        equipment.setInspectorId(params.getInspectorId());
-        equipment.setDisplayTime(params.getDisplayTime());
-        equipment.setProductionTime(params.getProductionTime());
-        equipment.setPurchaseTime(params.getPurchaseTime());
-        equipment.setFactoryName(params.getFactoryName());
-        equipment.setModel(params.getModel());
-        equipment.setStatus(params.getStatus());
-
-        if (!file.isEmpty()) {
+        if (!params.getInspectorId().equals(String.valueOf(equipment.getInspectorId()))) {
+            equipment.setInspectorId(Long.valueOf(params.getInspectorId()));
+        }
+        if (!params.getDisplayTime().equals(equipment.getDisplayTime())) {
+            equipment.setDisplayTime(params.getDisplayTime());
+        }
+        if (!params.getProductionTime().equals(equipment.getProductionTime())) {
+            equipment.setProductionTime(params.getProductionTime());
+        }
+        if (!params.getPurchaseTime().equals(equipment.getPurchaseTime())) {
+            equipment.setPurchaseTime(params.getPurchaseTime());
+        }
+        if (!params.getFactoryName().equals(equipment.getFactoryName())) {
+            equipment.setFactoryName(params.getFactoryName());
+        }
+        if (!params.getModel().equals(equipment.getModel())) {
+            equipment.setModel(params.getModel());
+        }
+        if (!params.getStatus().equals(String.valueOf(equipment.getStatus()))) {
+            equipment.setStatus(Integer.parseInt(params.getStatus()));
+        }
+        if (file != null) {
             System.out.println(file.getOriginalFilename());
             try {
                 String url = qiniuCloudUtils.uploadToQiniu(file);
+                System.out.println("新图片地址：" + url);
                 String oldUrl = aedEquipmentMapper.findImageById(id);
-                int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
-                if (statusCode == -1) {
-                    System.out.println("图片删除失败！");
-                } else {
-                    System.out.println("图片删除成功！");
+                System.out.println("旧图片地址：" + oldUrl);
+                if (oldUrl != null) {
+                    int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
+                    if (statusCode == -1) {
+                        System.out.println("旧图片删除失败！");
+                    } else {
+                        System.out.println("旧图片删除成功！");
+                    }
                 }
                 equipment.setAppearance(url);
+                System.out.println("图片替换成功！");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -140,20 +163,24 @@ public class AedEquipmentController {
 
     }
 
-    @DeleteMapping("/equipments/{equipmentId}")
+    @DeleteMapping("/equipments/delete/{equipmentId}")
     @ApiOperation("删除一个AED设备的基本信息和地理信息，by 设备ID")
     public ServerResponse deleteEquipment(@PathVariable @ApiParam(value = "设备ID") String equipmentId){
         Long id = Long.parseLong(equipmentId);
         String oldUrl = aedEquipmentMapper.findImageById(id);
-        int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
-        if (statusCode == -1) {
-            System.out.println("图片删除失败！");
-        } else {
-            System.out.println("图片删除成功！");
+        System.out.println("旧图片地址：" + oldUrl);
+        if (oldUrl != null) {
+            int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
+            if (statusCode == -1) {
+                System.out.println("图片删除失败！");
+            } else {
+                System.out.println("图片删除成功！");
+            }
         }
-        int count1 = aedEquipmentMapper.deleteEquipmentById(id);
+        int count3 = aedSituationMapper.deleteRecordByEquipmentId(id);
         int count2 = aedPositionMapper.deletePositionById(id);
-        if (count1 > 0 && count2 > 0) {
+        int count1 = aedEquipmentMapper.deleteEquipmentById(id);
+        if (count1 > 0) {
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {
             return ServerResponse.createByFail();

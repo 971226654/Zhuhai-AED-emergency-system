@@ -32,7 +32,6 @@ public class EquipmentPostParam {
     private String model;
 
     @ApiModelProperty(value = "AED设备是否可用", required = true)
-    @Range(min = 0, max = 1)
-    private int status;
+    private String status;
 
 }

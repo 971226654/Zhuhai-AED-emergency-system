@@ -24,6 +24,9 @@ public class AuditParam {
     @ApiModelProperty(value = "审核时间", required = true)
     private String auditTime;
 
+    @ApiModelProperty(value = "姓名", required = true)
+    private String name;
+
     @ApiModelProperty(value = "材料内容", required = true)
     private String materialContent;
 

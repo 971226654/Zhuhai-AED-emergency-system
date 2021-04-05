@@ -43,8 +43,12 @@
         WHERE recordId = #{recordId};
     </update>
 
-    <delete id="deleteRecordByRecordI">
+    <delete id="deleteRecordByRecordId">
         DELETE FROM AedSituation WHERE recordId = #{recordId};
+    </delete>
+
+    <delete id="deleteRecordByEquipmentId">
+        DELETE FROM AedSituation WHERE equipmentId = #{equipmentId};
     </delete>
 
 </mapper>

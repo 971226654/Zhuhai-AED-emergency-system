@@ -8,6 +8,7 @@
         <result column="phoneNumber" jdbcType="VARCHAR" property="phoneNumber" />
         <result column="idCard" jdbcType="VARCHAR" property="idCard" />
         <result column="auditTime" jdbcType="VARCHAR" property="auditTime" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
         <association property="auditResult" column="auditId"
                      select="com.bnuz.aed.common.mapper.AuditResultMapper.findAuditResultByAid"/>
         <association property="material" column="auditId"
@@ -28,12 +29,16 @@
 
     <insert id="insertAudit" parameterType="com.bnuz.aed.entity.base.Audit">
         INSERT INTO
-        Audit (userId, phoneNumber, idCard, auditTime)
-        VALUES (#{userId}, #{phoneNumber}, #{idCard}, #{auditTime});
+        Audit (userId, phoneNumber, idCard, auditTime, name)
+        VALUES (#{userId}, #{phoneNumber}, #{idCard}, #{auditTime}, #{name});
     </insert>
 
     <select id="findAuditByUserId" resultType="com.bnuz.aed.entity.base.Audit">
         SELECT * FROM Audit WHERE userId = #{userId};
+    </select>
+
+    <select id="findAuditIdsByUserId" resultType="int">
+        SELECT auditId FROM Audit WHERE userId = #{userId};
     </select>
 
     <update id="updateAudit" parameterType="com.bnuz.aed.entity.base.Audit">
@@ -43,6 +48,7 @@
             <if test="phoneNumber != null">phoneNumber = #{phoneNumber},</if>
             <if test="idCard != null">idCard = #{idCard},</if>
             <if test="auditTime != null">auditTime = #{auditTime}</if>
+            <if test="name != null">auditTime = #{name}</if>
         </set>
         WHERE auditId = #{auditId};
     </update>

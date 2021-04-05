@@ -43,4 +43,7 @@ public class User implements Serializable {
 	@ApiModelProperty(value = "角色")
 	private String role;
 
+	@ApiModelProperty(value = "用户密码")
+	private String passwd;
+
 }

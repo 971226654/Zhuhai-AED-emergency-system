@@ -36,4 +36,6 @@ public interface UserMapper {
 
     int deleteUserByUserId(@Param("userId") Long userId);
 
+    User findUserByNameAndPassword(@Param("userName") String userName, @Param("passwd") String passwd);
+
 }

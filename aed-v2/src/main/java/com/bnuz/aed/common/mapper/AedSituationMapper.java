@@ -27,4 +27,6 @@ public interface AedSituationMapper {
 
     AedSituation findRecordByRecordId(@Param("recordId") Long recordId);
 
+    int deleteRecordByEquipmentId(@Param("equipmentId") Long equipmentId);
+
 }

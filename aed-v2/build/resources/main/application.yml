@@ -3,6 +3,7 @@ server:
   ssl:
     key-store: classpath:4769340_www.zhuhaiaed.xyz.pfx
     key-store-password: OwsRwh0v
+    key-store-type: PKCS12
 
 spring:
   datasource:
@@ -38,6 +39,7 @@ auth:
     - getUserInfosFromWeb
     - updateUser
     - deleteUser
+    - changeRole
     - getAllInspectors
     - getInspector
     - getAllManagers
@@ -93,24 +95,17 @@ auth:
     - createUserByWeb
     - getUserInfosFromWeb
     - updateUser
-    - deleteUser
     - getAllInspectors
     - getInspector
     - getAllInfos
     - getAllKnows
     - getInfoOrKnow
-    - addInfoOrKnow
-    - updateInfoOrKnow
-    - deleteInfoOrKnow
     - getFeedbacksByUserId
     - getFeedbackByFeedbackId
-    - getAllFeedbacks
     - getFeedbacksCount
     - getFeedbackResultsCount
     - addFeedback
-    - addFeedbackResult
     - deleteFeedback
-    - deleteFeedbackResult
     - getCollectionsById
     - addCollection
     - deleteCollection
@@ -132,34 +127,23 @@ auth:
     - createUserByWeb
     - getUserInfosFromWeb
     - updateUser
-    - deleteUser
     - getAllInfos
     - getAllKnows
     - getInfoOrKnow
-    - addInfoOrKnow
-    - updateInfoOrKnow
-    - deleteInfoOrKnow
     - getFeedbacksByUserId
     - getFeedbackByFeedbackId
-    - getAllFeedbacks
     - getFeedbacksCount
     - getFeedbackResultsCount
     - addFeedback
-    - addFeedbackResult
     - deleteFeedback
-    - deleteFeedbackResult
     - getCollectionsById
     - addCollection
     - deleteCollection
-    - getAllAudits
     - getAuditsByUserId
     - getAuditById
     - addAudit
-    - addAuditResult
     - updateAudit
-    - updateAuditResult
     - deleteAudit
-    - deleteAuditResult
     - deleteMaterial
     - getAllRecords
     - getAllEquipments

@@ -23,6 +23,8 @@ public interface AuditMapper {
 
     Audit findAuditByUserId(@Param("userId") Long userId);
 
+    Long[] findAuditIdsByUserId(@Param("userId") Long userId);
+
     int updateAudit(Audit audit);
 
     int deleteAudit(@Param("auditId") Long auditId);

@@ -44,6 +44,10 @@
         SELECT COUNT(*) FROM User WHERE userId = #{userId};
     </select>
 
+    <select id="findUserByNameAndPassword" resultType="com.bnuz.aed.entity.base.User">
+        SELECT * FROM User WHERE userName = #{userName} AND passwd = #{passwd};
+    </select>
+
     <update id="updateUserInfoByUserId" parameterType="com.bnuz.aed.entity.base.User">
         UPDATE User
         <set>
@@ -54,6 +58,7 @@
             <if test="idCard != null">idCard = #{idCard},</if>
             <if test="responsibleArea != null">responsibleArea = #{responsibleArea},</if>
             <if test="role != null">role = #{role}</if>
+            <if test="password != null">role = #{password}</if>
         </set>
         WHERE userId = #{userId};
     </update>

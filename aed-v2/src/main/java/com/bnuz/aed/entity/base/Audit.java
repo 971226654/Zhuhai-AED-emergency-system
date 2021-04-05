@@ -34,4 +34,7 @@ public class Audit implements Serializable {
 	@ApiModelProperty(value = "审核时间")
 	private String auditTime;
 
+	@ApiModelProperty(value = "姓名")
+	private String name;
+
 }

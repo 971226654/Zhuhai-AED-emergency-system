@@ -89,7 +89,7 @@ public class QiniuCloudUtils {
             if (res.isOK()) {
                 Ret ret = res.jsonToObject(Ret.class);
                 //如果不需要对图片进行样式处理，则使用一下方式即可
-                return DOMAIN + ret.key;
+                return DOMAIN + "/" + ret.key;
                 //return DOMAIN + ret.key + "?" + style;
             }
         } catch (QiniuException e) {
@@ -111,7 +111,7 @@ public class QiniuCloudUtils {
         // 实例化一个BucketManager对象
         BucketManager bucketManager = new BucketManager(auth, cfg);
         // 去掉DOMAIN
-        key = key.substring(DOMAIN.length());
+        key = key.substring(DOMAIN.length() + 1);
         try {
             // 调用delete方法移动文件
             Response delete = bucketManager.delete(bucketName, key);

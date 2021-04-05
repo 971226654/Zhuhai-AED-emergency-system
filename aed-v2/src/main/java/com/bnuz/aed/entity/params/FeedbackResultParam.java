@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class FeedbackResultParam {
 
     @ApiModelProperty(value = "反馈ID", required = true)
-    private Long feedbackId;
+    private String feedbackId;
 
     @ApiModelProperty(value = "反馈结果", required = true)
     private String result;

@@ -1,8 +1,10 @@
 package com.bnuz.aed.controller;
 
+import cn.hutool.core.util.ArrayUtil;
 import com.bnuz.aed.common.mapper.AuditMapper;
 import com.bnuz.aed.common.mapper.AuditResultMapper;
 import com.bnuz.aed.common.mapper.MaterialMapper;
+import com.bnuz.aed.common.mapper.UserMapper;
 import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
 import com.bnuz.aed.entity.base.Audit;
@@ -40,6 +42,9 @@ public class AuditController {
 
     @Autowired
     private MaterialMapper materialMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     private QiniuCloudUtils qiniuCloudUtils = new QiniuCloudUtils();
 
@@ -83,7 +88,7 @@ public class AuditController {
     @ApiOperation("通过用户ID新增一个审核")
     public ServerResponse addAudit(HttpServletRequest request,
                                    @Validated AuditParam params,
-                                   @RequestPart @ApiParam(value = "材料图片") MultipartFile file) {
+                                   @RequestPart(required = false) @ApiParam(value = "材料图片") MultipartFile file) {
         System.out.println(params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
@@ -92,17 +97,19 @@ public class AuditController {
         audit.setPhoneNumber(params.getPhoneNumber());
         audit.setIdCard(params.getIdCard());
         audit.setAuditTime(params.getAuditTime());
+        audit.setName(params.getName());
         int count1 = auditMapper.insertAudit(audit);
-        Long auditId = auditMapper.findAuditByUserId(userId).getAuditId();
+        Long auditId = ArrayUtil.max(auditMapper.findAuditIdsByUserId(userId));
         int count2 = 0;
         if (!params.getMaterialContent().isEmpty()) {
             Material material = new Material();
             material.setAuditId(auditId);
             material.setMaterialContent(params.getMaterialContent());
-            if (!file.isEmpty()) {
+            if (file != null) {
                 System.out.println(file.getOriginalFilename());
                 try {
                     String url = qiniuCloudUtils.uploadToQiniu(file);
+                    System.out.println("新图片地址：" + url);
                     material.setPicture(url);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -123,8 +130,7 @@ public class AuditController {
 
     @PostMapping("/audits/result")
     @ApiOperation("通过auditId使管理员新增一个审核结果")
-    public ServerResponse addAuditResult(HttpServletRequest request,
-                                         @Validated AuditResultParam params) {
+    public ServerResponse addAuditResult(HttpServletRequest request, @Validated AuditResultParam params) {
         System.out.println(params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long managerId = Long.parseLong(auth.getUserId());
@@ -136,43 +142,56 @@ public class AuditController {
 
         int count = auditResultMapper.insertAuditResult(auditResult);
         if (count > 0) {
-            return ServerResponse.createBySuccess("INSERT SUCCESS");
-            //TODO: 修改该用户的权限
+            return ServerResponse.createBySuccess("INSERT SUCCESS, 请调用user的api的修改用户的role");
         } else {
             return ServerResponse.createByFail();
         }
     }
 
-    @PutMapping("/audits")
+    @PostMapping("/audits/update")
     @ApiOperation("通过用户ID修改一个审核")
     public ServerResponse updateAudit(HttpServletRequest request,
                                       @Validated AuditParam params,
-                                      @RequestPart @ApiParam(value = "材料图片") MultipartFile file) {
+                                      @RequestPart(required = false) @ApiParam(value = "材料图片") MultipartFile file) {
         System.out.println(params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
-        Audit audit = auditMapper.findAuditByUserId(userId);
-        Long auditId = audit.getAuditId();
-        audit.setPhoneNumber(params.getPhoneNumber());
-        audit.setIdCard(params.getIdCard());
-        audit.setAuditTime(params.getAuditTime());
+        Long auditId = ArrayUtil.max(auditMapper.findAuditIdsByUserId(userId));
+        Audit audit = (Audit) auditMapper.findAuditByAuditId(auditId);
+        if (!params.getPhoneNumber().equals(audit.getPhoneNumber())) {
+            audit.setPhoneNumber(params.getPhoneNumber());
+        }
+        if (!params.getIdCard().equals(audit.getIdCard())) {
+            audit.setIdCard(params.getIdCard());
+        }
+        if (!params.getAuditTime().equals(audit.getAuditTime())) {
+            audit.setAuditTime(params.getAuditTime());
+        }
+        if (!params.getName().equals(audit.getName())) {
+            audit.setName(params.getName());
+        }
         int count1 = auditMapper.updateAudit(audit);
         int count2 = 0;
         Material material = materialMapper.findMaterialsByAid(auditId);
         if (material != null) {
-            material.setMaterialContent(params.getMaterialContent());
-            if (!file.isEmpty()) {
+            if (params.getMaterialContent().equals(material.getMaterialContent())) {
+                material.setMaterialContent(params.getMaterialContent());
+            }
+            if (file != null) {
                 System.out.println(file.getOriginalFilename());
                 try {
                     String url = qiniuCloudUtils.uploadToQiniu(file);
                     String oldUrl = material.getPicture();
-                    int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
-                    if (statusCode == -1) {
-                        System.out.println("图片删除失败！");
-                    } else {
-                        System.out.println("图片删除成功！");
+                    if (oldUrl != null) {
+                        int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
+                        if (statusCode == -1) {
+                            System.out.println("旧图片删除失败！");
+                        } else {
+                            System.out.println("旧图片删除成功！");
+                        }
                     }
                     material.setPicture(url);
+                    System.out.println("图片替换成功！");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -204,7 +223,7 @@ public class AuditController {
         }
     }
 
-    @PutMapping("/audits/result")
+    @PostMapping("/audits/updateResult")
     @ApiOperation("通过auditId使管理员修改一个审核结果")
     public ServerResponse updateAuditResult(HttpServletRequest request,
                                             @Validated AuditResultParam params) {
@@ -213,9 +232,13 @@ public class AuditController {
         Long managerId = Long.parseLong(auth.getUserId());
         Long auditId = params.getAuditId();
         AuditResult auditResult = auditResultMapper.findAuditResultByAid(auditId);
-        auditResult.setResult(params.getResult());
+        if (!params.getResult().equals(auditResult.getResult())) {
+            auditResult.setResult(params.getResult());
+        }
         auditResult.setManagerId(managerId);
-        auditResult.setResultTime(params.getResultTime());
+        if (!params.getResultTime().equals(auditResult.getResultTime())) {
+            auditResult.setResultTime(params.getResultTime());
+        }
         int count = auditResultMapper.updateAuditResult(auditResult);
         if (count > 0) {
             return ServerResponse.createBySuccess("UPDATE SUCCESS!");
@@ -236,11 +259,14 @@ public class AuditController {
             msg += "该审核有结果，";
         }
         String oldUrl = materialMapper.findPictureByAid(id);
-        int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
-        if (statusCode == -1) {
-            System.out.println("图片删除失败！");
-        } else {
-            System.out.println("图片删除成功！");
+        System.out.println("旧图片地址：" + oldUrl);
+        if (oldUrl != null) {
+            int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
+            if (statusCode == -1) {
+                System.out.println("图片删除失败！");
+            } else {
+                System.out.println("图片删除成功！");
+            }
         }
         int count2 = materialMapper.deleteMaterial(id);
         if (count2 == 0) {

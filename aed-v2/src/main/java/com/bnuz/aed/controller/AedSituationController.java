@@ -77,7 +77,7 @@ public class AedSituationController {
 
     @PostMapping("/situations")
     @ApiOperation("添加一条设备检查记录")
-    public ServerResponse addRecord(@Validated SituationPostParam params, HttpServletRequest request) {
+    public ServerResponse addRecord(HttpServletRequest request, @Validated SituationPostParam params) {
         System.out.println(params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long inspectorId = Long.parseLong(auth.getUserId());

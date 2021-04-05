@@ -30,7 +30,7 @@ public class ControllerAspect {
     private final static List<String> passMethod = new ArrayList<>(Arrays.asList(
             "getAllEquipments", "getEquipmentById", "getAllInfos", "getAllKnows",
             "getInfoOrKnow", "createUserByMini", "createUserByWeb", "refreshToken",
-            "getWebLoginCodeMap", "getUserInfosFromWeb"));
+            "getWebLoginCodeMap", "getUserInfosFromWeb", "hello", "loginByPassword"));
 
     @Autowired
     private AuthConfig authConfig;

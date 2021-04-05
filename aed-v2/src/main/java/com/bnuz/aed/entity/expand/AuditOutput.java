@@ -38,4 +38,7 @@ public class AuditOutput {
     @ApiModelProperty(value = "材料")
     private Material material;
 
+    @ApiModelProperty(value = "姓名")
+    private String name;
+
 }

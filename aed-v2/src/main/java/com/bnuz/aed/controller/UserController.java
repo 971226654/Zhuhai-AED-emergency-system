@@ -12,7 +12,7 @@ import com.bnuz.aed.entity.base.User;
 import com.bnuz.aed.entity.base.UserAuth;
 import com.bnuz.aed.entity.expand.UserOutput;
 import com.bnuz.aed.entity.params.RefreshTokenParam;
-import com.bnuz.aed.entity.params.UserInfo;
+import com.bnuz.aed.entity.base.UserInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -76,7 +76,6 @@ public class UserController {
         System.out.println("code: " + code.getStr("code"));
         JSONObject key = WechatUtils.getOpenIdByMini(code.getStr("code"));
         System.out.println(key);
-//        return ServerResponse.createBySuccess(key);
         if (wxErrCode.contains(key.getStr("errcode"))) {
             return ServerResponse.createByFail(key.getStr("errmsg"));
         }
@@ -176,7 +175,6 @@ public class UserController {
         if (ACCESS_TOKEN.isEmpty() || OPENID_WEB.isEmpty()) {
             return ServerResponse.createByFreeStyle(ResponseCode.FAIL.getCode(), "微信方还未回调");
         }
-        System.out.println("----getUserInfosFromWeb-----openid: " + OPENID_WEB);
         JSONObject info = WechatUtils.getInfoByWeb(ACCESS_TOKEN, OPENID_WEB);
         User check_user = userMapper.findUserByOpenid(OPENID_WEB);
         UserOutput output = new UserOutput(check_user);
@@ -191,18 +189,48 @@ public class UserController {
         return ServerResponse.createBySuccess("返回扫码后登录信息", map);
     }
 
+    @PostMapping("/login/passwd")
+    @ApiOperation("web使用userName与password登陆用")
+    public ServerResponse loginByPassword(HttpServletRequest request, @RequestBody String name, @RequestBody String passwd) {
+        User check_user = userMapper.findUserByNameAndPassword(name, passwd);
+        if (check_user == null) {
+            return ServerResponse.createByFail("找不到改用户，请检查用户名和密码或者请扫码注册后修改密码");
+        }
+        UserOutput output = new UserOutput(check_user);
+        JSONObject info = WechatUtils.getInfoByWeb(ACCESS_TOKEN, OPENID_WEB);
+        String token = JwtTokenUtils.generateToken(String.valueOf(output.getUserId()), output.getRole());
+        System.out.println("web-token: " + token);
+        output.setToken(token);
+        Map<String, Object> map = new HashMap<>();
+        map.put("UserOutput", output);
+        map.put("WechatInfo", info);
+        return ServerResponse.createBySuccess("登录成功", map);
+    }
+
     @PutMapping("/users")
     @ApiOperation("修改某个一个用户的信息")
     public ServerResponse updateUser(HttpServletRequest request, @Validated @RequestBody UserInfo info) {
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
         User user = userMapper.findUserByUserId(userId);
-        user.setUserName(info.getUserName());
-        user.setPhoneNumber(info.getPhoneNumber());
-        user.setEmail(info.getEmail());
-        user.setIdCard(info.getIdCard());
-        user.setResponsibleArea(info.getResponsibleArea());
-        user.setRole(info.getRole());
+        if (!info.getUserName().equals(user.getUserName())) {
+            user.setUserName(info.getUserName());
+        }
+        if (!info.getPhoneNumber().equals(user.getPhoneNumber())) {
+            user.setPhoneNumber(info.getPhoneNumber());
+        }
+        if (!info.getEmail().equals(user.getEmail())) {
+            user.setEmail(info.getEmail());
+        }
+        if (!info.getIdCard().equals(user.getIdCard())) {
+            user.setIdCard(info.getIdCard());
+        }
+        if (!info.getResponsibleArea().equals(user.getResponsibleArea())) {
+            user.setResponsibleArea(info.getResponsibleArea());
+        }
+        if (!info.getPasswd().equals(user.getPasswd())) {
+            user.setPasswd(info.getPasswd());
+        }
         int count = userMapper.updateUserInfoByUserId(user);
         if (count > 0) {
             return ServerResponse.createBySuccess("UPDATE SUCCESS!");
@@ -211,11 +239,27 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/users/{userId}")
+    @PutMapping("/users/role")
+    @ApiOperation("修改一个用户的权限")
+    public ServerResponse changeRole(HttpServletRequest request,@RequestParam @ApiParam(value = "需要修改的id") Long id,
+                                     @RequestParam @ApiParam(value = "用户身份") String newRole) {
+        UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
+        User user = userMapper.findUserByUserId(id);
+        user.setRole(newRole);
+        int count = userMapper.updateUserInfoByUserId(user);
+        if (count > 0) {
+            return ServerResponse.createBySuccess("CHANGE ROLE SUCCESS!");
+        } else {
+            return ServerResponse.createByFail();
+        }
+    }
+
+    @DeleteMapping("/users/{id}")
     @ApiOperation("删除一个用户")
-    public ServerResponse deleteUser(@PathVariable @ApiParam(value = "用户ID") String userId) {
-        Long id = Long.parseLong(userId);
-        int count = userMapper.deleteUserByUserId(id);
+    public ServerResponse deleteUser(HttpServletRequest request, @PathVariable @ApiParam(value = "用户ID") String id) {
+        UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
+        Long deleteId = Long.parseLong(id);
+        int count = userMapper.deleteUserByUserId(deleteId);
         if (count > 0) {
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {
@@ -234,11 +278,12 @@ public class UserController {
         }
     }
 
-    @GetMapping("/inspectors/{inspectorId}")
+    @GetMapping("/inspectors/{id}")
     @ApiOperation("查找该id的检查员信息")
-    public ServerResponse getInspector(@PathVariable String inspectorId) {
-        Long id = Long.parseLong(inspectorId);
-        User inspector = userMapper.findUserByUserId(id);
+    public ServerResponse getInspector(HttpServletRequest request, @PathVariable @ApiParam(value = "检查员ID")String id) {
+        UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
+        Long inspectorId = Long.parseLong(id);
+        User inspector = userMapper.findUserByUserId(inspectorId);
         String msg;
         if ("INSPECTOR".equals(inspector.getRole())) {
             msg = "该ID为检查员，信息在data";

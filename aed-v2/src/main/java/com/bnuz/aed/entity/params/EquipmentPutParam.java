@@ -17,28 +17,27 @@ import org.hibernate.validator.constraints.Range;
 public class EquipmentPutParam {
 
     @ApiModelProperty(value = "AED设备ID", required = true)
-    private Long equipmentId;
+    private String equipmentId;
 
-    @ApiModelProperty(value = "所负责该AED设备的检查员ID", required = true)
-    private Long inspectorId;
+    @ApiModelProperty(value = "所负责该AED设备的检查员ID")
+    private String inspectorId;
 
-    @ApiModelProperty(value = "AED设备的摆放时间", required = true)
+    @ApiModelProperty(value = "AED设备的摆放时间")
     private String displayTime;
 
-    @ApiModelProperty(value = "AED设备的生产时间", required = true)
+    @ApiModelProperty(value = "AED设备的生产时间")
     private String productionTime;
 
-    @ApiModelProperty(value = "AED设备的购买时间", required = true)
+    @ApiModelProperty(value = "AED设备的购买时间")
     private String purchaseTime;
 
-    @ApiModelProperty(value = "AED设备的厂家名称", required = true)
+    @ApiModelProperty(value = "AED设备的厂家名称")
     private String factoryName;
 
-    @ApiModelProperty(value = "AED设备的型号", required = true)
+    @ApiModelProperty(value = "AED设备的型号")
     private String model;
 
-    @ApiModelProperty(value = "AED设备是否可用", required = true)
-    @Range(min = 0, max = 1)
-    private int status;
+    @ApiModelProperty(value = "AED设备是否可用")
+    private String status;
 
 }

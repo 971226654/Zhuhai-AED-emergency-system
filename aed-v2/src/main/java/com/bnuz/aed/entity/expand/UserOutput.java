@@ -44,6 +44,9 @@ public class UserOutput {
     @ApiModelProperty(value = "token")
     private String token;
 
+    @ApiModelProperty(value = "用户密码")
+    private String passwd;
+
     public UserOutput(User user) {
         this.userId = user.getUserId();
         this.userName = (!StringUtils.isEmpty(user.getUserName())) ? user.getUserName() : "";

@@ -96,19 +96,20 @@ public class FeedbackController {
     @ApiOperation("通过userId新增一条反馈")
     public ServerResponse addFeedback(HttpServletRequest request,
                                       @Validated FeedbackParam params,
-                                      @RequestPart @ApiParam(value = "反馈图片") MultipartFile file) {
+                                      @RequestPart(required = false) @ApiParam(value = "反馈图片") MultipartFile file) {
         System.out.println(params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
         Feedback feedback = new Feedback();
         feedback.setUserId(userId);
-        feedback.setFeedbackStars(params.getFeedbackStars());
+        feedback.setFeedbackStars(Integer.parseInt(params.getFeedbackStars()));
         feedback.setFeedbackContent(params.getFeedbackContent());
         feedback.setFeedbackTime(params.getFeedbackTime());
-        if (!file.isEmpty()) {
+        if (file != null) {
             System.out.println(file.getOriginalFilename());
             try {
                 String url = qiniuCloudUtils.uploadToQiniu(file);
+                System.out.println("新图片地址：" + url);
                 feedback.setPicture(url);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -133,7 +134,7 @@ public class FeedbackController {
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long managerId = Long.parseLong(auth.getUserId());
         FeedbackResult feedbackResult = new FeedbackResult();
-        feedbackResult.setFeedbackId(params.getFeedbackId());
+        feedbackResult.setFeedbackId(Long.valueOf(params.getFeedbackId()));
         feedbackResult.setResult(params.getResult());
         feedbackResult.setManagerId(managerId);
         feedbackResult.setResultTime(params.getResultTime());
@@ -152,11 +153,14 @@ public class FeedbackController {
         Map<String, Object> feedback = feedbackMapper.findFeedbackById(id);
         if (feedback.get("picture") != null) {
             String oldUrl = (String)feedback.get("picture");
-            int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
-            if (statusCode == -1) {
-                System.out.println("图片删除失败！");
-            } else {
-                System.out.println("图片删除成功！");
+            System.out.println("旧图片地址：" + oldUrl);
+            if (oldUrl != null) {
+                int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
+                if (statusCode == -1) {
+                    System.out.println("图片删除失败！");
+                } else {
+                    System.out.println("图片删除成功！");
+                }
             }
         }
         int count2 = feedbackMapper.deleteFeedbackResult(id);

@@ -4,10 +4,12 @@ com/bnuz/aed/common/tools/utils/CdxException.java
  com.bnuz.aed.common.tools.utils.CdxException
 com/bnuz/aed/entity/params/AuditParam.java
  com.bnuz.aed.entity.params.AuditParam
+com/bnuz/aed/entity/params/RealtimeInfoPutParam.java
+ com.bnuz.aed.entity.params.RealtimeInfoPutParam
 com/bnuz/aed/common/tools/utils/HttpsClientUtils.java
  com.bnuz.aed.common.tools.utils.HttpsClientUtils
-com/bnuz/aed/entity/base/AedEquipment.java
- com.bnuz.aed.entity.base.AedEquipment
+com/bnuz/aed/common/tools/utils/WechatUtils.java
+ com.bnuz.aed.common.tools.utils.WechatUtils
 com/bnuz/aed/entity/params/EquipmentPutParam.java
  com.bnuz.aed.entity.params.EquipmentPutParam
 com/bnuz/aed/entity/params/SituationPostParam.java
@@ -20,8 +22,12 @@ com/bnuz/aed/service/impl/UserServiceImpl.java
  com.bnuz.aed.service.impl.UserServiceImpl
 com/bnuz/aed/common/mapper/RealtimeInfoMapper.java
  com.bnuz.aed.common.mapper.RealtimeInfoMapper
+com/bnuz/aed/entity/base/UserInfo.java
+ com.bnuz.aed.entity.base.UserInfo
 com/bnuz/aed/entity/base/AedSituation.java
  com.bnuz.aed.entity.base.AedSituation
+com/bnuz/aed/entity/params/RealtimeInfoPostParam.java
+ com.bnuz.aed.entity.params.RealtimeInfoPostParam
 com/bnuz/aed/common/mapper/UserMapper.java
  com.bnuz.aed.common.mapper.UserMapper
 com/bnuz/aed/common/config/AuthConfig.java
@@ -51,8 +57,6 @@ com/bnuz/aed/entity/params/EquipmentPostParam.java
  com.bnuz.aed.entity.params.EquipmentPostParam
 com/bnuz/aed/entity/params/FeedbackResultParam.java
  com.bnuz.aed.entity.params.FeedbackResultParam
-com/bnuz/aed/entity/params/RealtimeInfoParam.java
- com.bnuz.aed.entity.params.RealtimeInfoParam
 com/bnuz/aed/controller/AedEquipmentController.java
  com.bnuz.aed.controller.AedEquipmentController
 com/bnuz/aed/common/config/aspect/ControllerAspect.java
@@ -71,8 +75,8 @@ com/bnuz/aed/entity/expand/UserOutput.java
  com.bnuz.aed.entity.expand.UserOutput
 com/bnuz/aed/common/config/Swagger3Config.java
  com.bnuz.aed.common.config.Swagger3Config
-com/bnuz/aed/common/mapper/AedEquipmentMapper.java
- com.bnuz.aed.common.mapper.AedEquipmentMapper
+com/bnuz/aed/controller/UserController.java
+ com.bnuz.aed.controller.UserController
 com/bnuz/aed/controller/CollectListController.java
  com.bnuz.aed.controller.CollectListController
 com/bnuz/aed/entity/base/User.java
@@ -105,8 +109,6 @@ com/bnuz/aed/common/tools/ResponseCode.java
  com.bnuz.aed.common.tools.ResponseCode
 com/bnuz/aed/entity/base/AuditResult.java
  com.bnuz.aed.entity.base.AuditResult
-com/bnuz/aed/entity/params/UserInfo.java
- com.bnuz.aed.entity.params.UserInfo
 com/bnuz/aed/controller/FeedbackController.java
  com.bnuz.aed.controller.FeedbackController
 com/bnuz/aed/common/mapper/CollectListMapper.java
@@ -119,7 +121,7 @@ com/bnuz/aed/entity/base/RealtimeInfo.java
  com.bnuz.aed.entity.base.RealtimeInfo
 com/bnuz/aed/entity/base/Feedback.java
  com.bnuz.aed.entity.base.Feedback
-com/bnuz/aed/controller/UserController.java
- com.bnuz.aed.controller.UserController
-com/bnuz/aed/common/tools/utils/WechatUtils.java
- com.bnuz.aed.common.tools.utils.WechatUtils
+com/bnuz/aed/entity/base/AedEquipment.java
+ com.bnuz.aed.entity.base.AedEquipment
+com/bnuz/aed/common/mapper/AedEquipmentMapper.java
+ com.bnuz.aed.common.mapper.AedEquipmentMapper
