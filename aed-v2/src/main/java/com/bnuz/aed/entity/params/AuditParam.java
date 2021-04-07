@@ -25,7 +25,7 @@ public class AuditParam {
     private String auditTime;
 
     @ApiModelProperty(value = "姓名", required = true)
-    private String name;
+    private String realName;
 
     @ApiModelProperty(value = "材料内容", required = true)
     private String materialContent;

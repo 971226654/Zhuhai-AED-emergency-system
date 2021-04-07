@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class JwtTokenUtils {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtils.class);
 
     /** token过期时间 */
     private static final long EXPIRE = 1000 * 60 * 60 * 24;
@@ -31,7 +31,7 @@ public class JwtTokenUtils {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
         Date exp = new Date(nowMillis + EXPIRE);
-        System.out.println("token-time: [now]" + now + "\n[exp]" + exp);
+        logger.info("token-time: [now]" + now + "\n          [exp]" + exp);
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setHeaderParam("alg", "HS256")
@@ -53,7 +53,7 @@ public class JwtTokenUtils {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception e) {
-            LOGGER.info("JWT格式验证失败: {}", token);
+            logger.error("JWT格式验证失败: {}", token);
         }
         return claims;
     }

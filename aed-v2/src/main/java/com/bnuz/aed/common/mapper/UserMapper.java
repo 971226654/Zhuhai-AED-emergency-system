@@ -1,6 +1,7 @@
 package com.bnuz.aed.common.mapper;
 
 import com.bnuz.aed.entity.base.User;
+import com.bnuz.aed.entity.expand.InspectorOutput;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,8 +23,6 @@ public interface UserMapper {
 
     User findUserByUserId(@Param("userId") Long userId);
 
-    List<User> findAllInspectors();
-
     List<User> findAllManagers();
 
     String findUserRole(@Param("userId") Long userId);
@@ -37,5 +36,9 @@ public interface UserMapper {
     int deleteUserByUserId(@Param("userId") Long userId);
 
     User findUserByNameAndPassword(@Param("userName") String userName, @Param("passwd") String passwd);
+
+    InspectorOutput findInspectorByUserId(@Param("userId") Long userId);
+
+    List<InspectorOutput>findInspectors();
 
 }

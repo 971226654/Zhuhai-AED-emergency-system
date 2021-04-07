@@ -34,6 +34,9 @@ public class AedPosition implements Serializable {
 	@ApiModelProperty(value = "城市", required = true)
 	private String city;
 
+	@ApiModelProperty(value = "区", required = true)
+	private String area;
+
 	@ApiModelProperty(value = "详细地址", required = true)
 	private String address;
 

@@ -9,6 +9,8 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
 import lombok.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -22,6 +24,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QiniuCloudUtils {
+
+    Logger logger = LoggerFactory.getLogger(QiniuCloudUtils.class);
 
     /** 设置需要操作的账号的AK和SK */
     private static final String ACCESS_KEY = "Eb4JJq-S0DHzVvLfviEEPfcYSZtSq5-GqI0rarcM";
@@ -41,7 +45,7 @@ public class QiniuCloudUtils {
     /** 上传对象 */
     private UploadManager uploadManager = new UploadManager(cfg);
 
-    /** 可接收的后缀名(暂时为图片) */
+    /** 可接收的后缀名 */
     private static String[] FILE_SUFFIX = new String[]{"png", "bmp", "jpg", "jpeg",
             "pdf", "mp4", "flv"};
 
@@ -70,9 +74,9 @@ public class QiniuCloudUtils {
     public String uploadToQiniu(MultipartFile file) throws IOException {
         int dotPos = file.getOriginalFilename().lastIndexOf(".");
         String fileExt = file.getOriginalFilename().substring(dotPos + 1).toLowerCase();
-        System.out.println("后缀：" + fileExt);
+        logger.info("后缀：" + fileExt);
         if (!isFileAllowed(fileExt)) {
-            System.out.println("文件后缀名不合法！");
+            logger.error("文件后缀名不合法！");
             return null;
         }
         String fileName = UUID.randomUUID().toString().replaceAll("-", "") + "." + fileExt;
@@ -80,25 +84,25 @@ public class QiniuCloudUtils {
             //调用put方法上传
             String token = auth.uploadToken(bucketName, null, 3600, getUpToken());
             if (token.isEmpty()) {
-                System.out.println("未获取到token，请重试！");
+                logger.error("未获取到七牛云的token，请重试！");
                 return null;
             }
             Response res = uploadManager.put(file.getBytes(), fileName, token);
             //打印返回信息
-            System.out.println(res.bodyString());
+            logger.info("qiniu res: " + res.bodyString());
             if (res.isOK()) {
                 Ret ret = res.jsonToObject(Ret.class);
                 //如果不需要对图片进行样式处理，则使用一下方式即可
-                return DOMAIN + "/" + ret.key;
+                return "http://"+ DOMAIN + "/" + ret.key;
                 //return DOMAIN + ret.key + "?" + style;
             }
         } catch (QiniuException e) {
             Response r = e.response;
             //请求失败时打印的异常的信息
-            System.out.println(r.toString());
+            logger.error(r.toString());
             try {
                 //响应的文本信息
-                System.out.println(r.bodyString());
+                logger.error(r.bodyString());
             } catch (QiniuException e1) {
                 // ignore
             }
@@ -119,8 +123,8 @@ public class QiniuCloudUtils {
         } catch (QiniuException e) {
             // 打印的异常的信息
             Response r = e.response;
-            System.out.println(e.code());
-            System.out.println(r.toString());
+            logger.error(" error code: " + e.code());
+            logger.error(r.toString());
         }
         return -1;
     }

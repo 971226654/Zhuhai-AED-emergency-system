@@ -35,6 +35,6 @@ public class Audit implements Serializable {
 	private String auditTime;
 
 	@ApiModelProperty(value = "姓名")
-	private String name;
+	private String realName;
 
 }

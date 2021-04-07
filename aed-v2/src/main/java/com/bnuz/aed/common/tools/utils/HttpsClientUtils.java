@@ -4,6 +4,8 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import cn.hutool.json.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,6 +18,8 @@ import java.util.Map;
  * 返回值为响应的json字符串
  */
 public class HttpsClientUtils {
+
+    static Logger logger = LoggerFactory.getLogger(HttpsClientUtils.class);
 
     /**
      * @param url 发送请求的URL
@@ -30,16 +34,17 @@ public class HttpsClientUtils {
                     .execute();
             if (response.getStatus() == HttpStatus.SC_OK) {
                 String content = response.body();
-                System.out.println("Get's Content: " + content);
+                logger.info("Get's Content: " + content);
                 return JSONUtil.parseObj(content);
             } else {
-                System.out.println("Fail to Get.");
+                logger.error("Fail to Get.");
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 String errTime = dateFormat.format(new Date());
-                System.out.println(errTime + "  response error(" + response.getStatus() + "):" + url);
+                logger.error(errTime + "  response error(" + response.getStatus() + "):" + url);
                 return null;
             }
         } catch (Exception e) {
+            logger.error("got an error from HTTP for url: " + url);
             throw new RuntimeException("got an error from HTTP for url: " + url, e);
         }
     }
@@ -62,16 +67,17 @@ public class HttpsClientUtils {
                     .execute();
             if (response.getStatus() == HttpStatus.SC_OK) {
                 String content = response.body();
-                System.out.println("Post's Content: " + content);
+                logger.info("Post's Content: " + content);
                 return JSONUtil.parseObj(content);
             } else {
-                System.out.println("Fail to Post.");
+                logger.error("Fail to Post.");
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 String errTime = dateFormat.format(new Date());
-                System.out.println(errTime + "  response error(" + response.getStatus() + "):" + url);
+                logger.error(errTime + "  response error(" + response.getStatus() + "):" + url);
                 return null;
             }
         } catch (Exception e) {
+            logger.error("got an error from HTTP for url: " + url);
             throw new RuntimeException("got an error from HTTP for url: " + url, e);
         }
     }

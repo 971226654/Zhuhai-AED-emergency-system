@@ -8,7 +8,7 @@
         <result column="phoneNumber" jdbcType="VARCHAR" property="phoneNumber" />
         <result column="idCard" jdbcType="VARCHAR" property="idCard" />
         <result column="auditTime" jdbcType="VARCHAR" property="auditTime" />
-        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="realName" jdbcType="VARCHAR" property="realName" />
         <association property="auditResult" column="auditId"
                      select="com.bnuz.aed.common.mapper.AuditResultMapper.findAuditResultByAid"/>
         <association property="material" column="auditId"
@@ -16,28 +16,40 @@
     </resultMap>
 
     <select id="findAllAudits" resultMap="auditMap">
-        SELECT * FROM Audit;
+        SELECT * FROM Audit a
+        LEFT JOIN AuditResult r on a.auditId = r.auditId
+        LEFT JOIN Material m on a.auditId = m.auditId;
     </select>
 
-    <select id="findAuditsByUserId" resultMap="auditMap">
-        SELECT * FROM Audit WHERE userId = #{userId};
+    <select id="findAuditsAllByUserId" resultMap="auditMap">
+        SELECT * FROM Audit a
+        LEFT JOIN AuditResult r on a.auditId = r.auditId
+        LEFT JOIN Material m on a.auditId = m.auditId
+        WHERE userId = #{userId};
     </select>
 
-    <select id="findAuditByAuditId" resultMap="auditMap">
-        SELECT * FROM Audit WHERE auditId = #{auditId};
+    <select id="findAuditAllByAuditId" resultMap="auditMap">
+        SELECT * FROM Audit a
+        LEFT JOIN AuditResult r on a.auditId = r.auditId
+        LEFT JOIN Material m on a.auditId = m.auditId
+        WHERE a.auditId = #{auditId};
     </select>
 
     <insert id="insertAudit" parameterType="com.bnuz.aed.entity.base.Audit">
         INSERT INTO
-        Audit (userId, phoneNumber, idCard, auditTime, name)
-        VALUES (#{userId}, #{phoneNumber}, #{idCard}, #{auditTime}, #{name});
+        Audit (userId, phoneNumber, idCard, auditTime, realName)
+        VALUES (#{userId}, #{phoneNumber}, #{idCard}, #{auditTime}, #{realName});
     </insert>
 
     <select id="findAuditByUserId" resultType="com.bnuz.aed.entity.base.Audit">
         SELECT * FROM Audit WHERE userId = #{userId};
     </select>
 
-    <select id="findAuditIdsByUserId" resultType="int">
+    <select id="findAuditByAuditId" resultType="com.bnuz.aed.entity.base.Audit">
+        SELECT * FROM Audit WHERE auditId = #{auditId};
+    </select>
+
+    <select id="findAuditIdsByUserId" resultType="Long">
         SELECT auditId FROM Audit WHERE userId = #{userId};
     </select>
 
@@ -48,7 +60,7 @@
             <if test="phoneNumber != null">phoneNumber = #{phoneNumber},</if>
             <if test="idCard != null">idCard = #{idCard},</if>
             <if test="auditTime != null">auditTime = #{auditTime}</if>
-            <if test="name != null">auditTime = #{name}</if>
+            <if test="realName != null">realName = #{realName}</if>
         </set>
         WHERE auditId = #{auditId};
     </update>

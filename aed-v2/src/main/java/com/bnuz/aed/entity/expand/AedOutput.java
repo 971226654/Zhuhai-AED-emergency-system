@@ -58,6 +58,9 @@ public class AedOutput implements Serializable {
     @ApiModelProperty(value = "城市")
     private String city;
 
+    @ApiModelProperty(value = "区")
+    private String area;
+
     @ApiModelProperty(value = "详细地址")
     private String address;
 

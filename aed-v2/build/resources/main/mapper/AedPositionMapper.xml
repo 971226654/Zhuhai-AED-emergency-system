@@ -14,15 +14,16 @@
             <if test="latitude != null">latitude = #{latitude},</if>
             <if test="country != null">country = #{country},</if>
             <if test="city != null">city = #{city},</if>
-            <if test="address != null">address = #{address}</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="area != null">area = #{area}</if>
         </set>
         WHERE equipmentId = #{equipmentId};
     </update>
 
     <insert id="insertPositionByObject" parameterType="com.bnuz.aed.entity.base.AedPosition">
         INSERT INTO
-        AedPosition(equipmentId, longitude, latitude, country, city, address)
-        VALUES (#{equipmentId},#{longitude},#{latitude},#{country},#{city},#{address});
+        AedPosition(equipmentId, longitude, latitude, country, city, address, area)
+        VALUES (#{equipmentId},#{longitude},#{latitude},#{country},#{city},#{address},#{area});
     </insert>
 
     <delete id="deletePositionById">

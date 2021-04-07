@@ -11,6 +11,8 @@ import com.bnuz.aed.entity.params.FeedbackResultParam;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +31,8 @@ import java.util.Map;
 @Api(tags = "FeedbackController", description = "反馈模块接口")
 public class FeedbackController {
 
+    Logger logger = LoggerFactory.getLogger(FeedbackController.class);
+
     @Autowired
     private FeedbackMapper feedbackMapper;
 
@@ -41,8 +45,12 @@ public class FeedbackController {
         Long userId = Long.parseLong(auth.getUserId());
         List<Map<String, Object>> outputs = feedbackMapper.findAllFeedbackByUserId(userId);
         if (outputs != null) {
+            logger.info("获取成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess(outputs);
         } else {
+            logger.error("获取失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -53,8 +61,12 @@ public class FeedbackController {
         Long id = Long.parseLong(feedbackId);
         Map<String, Object> output = feedbackMapper.findFeedbackById(id);
         if (output != null) {
+            logger.info("获取成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess(output);
         } else {
+            logger.error("获取失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -64,8 +76,12 @@ public class FeedbackController {
     public ServerResponse getAllFeedbacks() {
         List<Map<String, Object>> outputs = feedbackMapper.findAllFeedbacks();
         if (outputs != null) {
+            logger.info("获取成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess(outputs);
         } else {
+            logger.error("获取失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -75,8 +91,12 @@ public class FeedbackController {
     public ServerResponse getFeedbacksCount() {
         int count = feedbackMapper.sumFeedbacks();
         if (count > 0) {
+            logger.info("获取成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess(count);
         } else {
+            logger.error("获取失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail("SQL ERROR");
         }
     }
@@ -86,8 +106,12 @@ public class FeedbackController {
     public ServerResponse getFeedbackResultsCount() {
         int count = feedbackMapper.sumFeedbackResults();
         if (count > 0) {
+            logger.info("获取成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess(count);
         } else {
+            logger.error("获取失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail("SQL ERROR");
         }
     }
@@ -97,7 +121,7 @@ public class FeedbackController {
     public ServerResponse addFeedback(HttpServletRequest request,
                                       @Validated FeedbackParam params,
                                       @RequestPart(required = false) @ApiParam(value = "反馈图片") MultipartFile file) {
-        System.out.println(params.toString());
+        logger.info("params: " + params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
         Feedback feedback = new Feedback();
@@ -106,10 +130,10 @@ public class FeedbackController {
         feedback.setFeedbackContent(params.getFeedbackContent());
         feedback.setFeedbackTime(params.getFeedbackTime());
         if (file != null) {
-            System.out.println(file.getOriginalFilename());
+            logger.info("fileName: " + file.getOriginalFilename());
             try {
                 String url = qiniuCloudUtils.uploadToQiniu(file);
-                System.out.println("新图片地址：" + url);
+                logger.info("新图片地址：" + url);
                 feedback.setPicture(url);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -117,11 +141,15 @@ public class FeedbackController {
         } else {
             feedback.setPicture(null);
         }
-
         int count = feedbackMapper.insertFeedback(feedback);
+        logger.info("new feedback: " + feedback.toString());
         if (count > 0) {
+            logger.info("新增Feedback成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess("INSERT SUCCESS!");
         } else {
+            logger.error("新增Feedback失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -130,7 +158,7 @@ public class FeedbackController {
     @ApiOperation("通过feedbackId新增一条反馈结果")
     public ServerResponse addFeedbackResult(HttpServletRequest request,
                                             @Validated FeedbackResultParam params) {
-        System.out.println(params.toString());
+        logger.info("params: " + params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long managerId = Long.parseLong(auth.getUserId());
         FeedbackResult feedbackResult = new FeedbackResult();
@@ -139,9 +167,14 @@ public class FeedbackController {
         feedbackResult.setManagerId(managerId);
         feedbackResult.setResultTime(params.getResultTime());
         int count = feedbackMapper.insertFeedbackResult(feedbackResult);
+        logger.info("new feedbackResult: " + feedbackResult.toString());
         if (count > 0) {
+            logger.info("新增FeedbackResult成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess("INSERT SUCCESS!");
         } else {
+            logger.error("新增FeedbackResult失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -153,21 +186,26 @@ public class FeedbackController {
         Map<String, Object> feedback = feedbackMapper.findFeedbackById(id);
         if (feedback.get("picture") != null) {
             String oldUrl = (String)feedback.get("picture");
-            System.out.println("旧图片地址：" + oldUrl);
+            logger.info("旧图片地址：" + oldUrl);
             if (oldUrl != null) {
                 int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
                 if (statusCode == -1) {
-                    System.out.println("图片删除失败！");
+                    logger.error("图片删除失败！");
                 } else {
-                    System.out.println("图片删除成功！");
+                    logger.info("图片删除成功！");
                 }
             }
         }
         int count2 = feedbackMapper.deleteFeedbackResult(id);
         int count1 = feedbackMapper.deleteFeedback(id);
+        logger.info("删除feedback（反馈、结果）id: " + feedbackId);
         if (count1 > 0) {
+            logger.info("删除Feedback成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {
+            logger.error("删除Feedback失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -177,9 +215,14 @@ public class FeedbackController {
     public ServerResponse deleteFeedbackResult(@PathVariable @ApiParam(value = "反馈ID") String feedbackId) {
         Long id = Long.parseLong(feedbackId);
         int count = feedbackMapper.deleteFeedbackResult(id);
+        logger.info("删除feedbackResult id: " + feedbackId);
         if (count > 0) {
+            logger.info("删除FeedbackResult成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {
+            logger.error("删除FeedbackResult失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }

@@ -13,6 +13,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,8 @@ import java.util.List;
 @ResponseBody
 @Api(tags = "AedEquipmentController", description = "AED设备接口")
 public class AedEquipmentController {
+
+    Logger logger = LoggerFactory.getLogger(AedEquipmentController.class);
 
     @Autowired
     private AedEquipmentMapper aedEquipmentMapper;
@@ -45,8 +49,12 @@ public class AedEquipmentController {
     public ServerResponse getAllEquipments() {
         List<AedOutput> outputs = aedEquipmentMapper.findAllEquipments();
         if (outputs != null) {
+            logger.info("获取成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess(outputs);
         } else {
+            logger.error("获取失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -57,9 +65,12 @@ public class AedEquipmentController {
         Long id = Long.parseLong(equipmentId);
         AedOutput output = aedEquipmentMapper.findEquipmentByIdExpand(id);
         if (output != null) {
-            System.out.println(output);
+            logger.info("获取成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess(output);
         } else {
+            logger.error("获取失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -68,7 +79,7 @@ public class AedEquipmentController {
     @ApiOperation("新增一个AED设备")
     public ServerResponse addEquipment(@Validated EquipmentPostParam params,
                                        @RequestPart(required = false) @ApiParam(value = "设备图片") MultipartFile file) {
-        System.out.println(params.toString());
+        logger.info("params: " + params.toString());
         AedEquipment equipment = new AedEquipment();
         equipment.setDisplayTime(params.getDisplayTime());
         equipment.setProductionTime(params.getProductionTime());
@@ -85,10 +96,10 @@ public class AedEquipmentController {
         equipment.setModel(params.getModel());
         equipment.setStatus(Integer.parseInt(params.getStatus()));
         if (file != null) {
-            System.out.println(file.getOriginalFilename());
+            logger.info("fileName: " + file.getOriginalFilename());
             try {
                 String url = qiniuCloudUtils.uploadToQiniu(file);
-                System.out.println("新图片地址：" + url);
+                logger.info("新图片地址：" + url);
                 equipment.setAppearance(url);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -96,11 +107,15 @@ public class AedEquipmentController {
         } else {
             equipment.setAppearance(null);
         }
+        logger.info("new equipment: " + equipment.toString());
         int count = aedEquipmentMapper.insertEquipment(equipment);
-        System.out.println("insert count: " + count);
         if (count > 0) {
+            logger.info("新增AED成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess("INSERT SUCCESS!");
         } else {
+            logger.error("新增AED失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -109,7 +124,7 @@ public class AedEquipmentController {
     @ApiOperation("修改某一个AED设备的基本信息")
     public ServerResponse updateEquipment(@Validated EquipmentPutParam params,
                                           @RequestPart(required = false) @ApiParam(value = "设备图片") MultipartFile file) {
-        System.out.println(params.toString());
+        logger.info("params: " + params.toString());
         Long id = Long.valueOf(params.getEquipmentId());
         AedEquipment equipment = aedEquipmentMapper.findEquipmentByIdBase(id);
         if (!params.getInspectorId().equals(String.valueOf(equipment.getInspectorId()))) {
@@ -134,30 +149,36 @@ public class AedEquipmentController {
             equipment.setStatus(Integer.parseInt(params.getStatus()));
         }
         if (file != null) {
-            System.out.println(file.getOriginalFilename());
+            logger.info("fileName: " + file.getOriginalFilename());
             try {
                 String url = qiniuCloudUtils.uploadToQiniu(file);
-                System.out.println("新图片地址：" + url);
+                logger.info("新图片地址：" + url);
                 String oldUrl = aedEquipmentMapper.findImageById(id);
-                System.out.println("旧图片地址：" + oldUrl);
+                logger.info("旧图片地址：" + oldUrl);
                 if (oldUrl != null) {
                     int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
                     if (statusCode == -1) {
-                        System.out.println("旧图片删除失败！");
+                        logger.error("旧图片删除失败！");
                     } else {
-                        System.out.println("旧图片删除成功！");
+                        logger.info("旧图片删除成功！");
                     }
                 }
                 equipment.setAppearance(url);
-                System.out.println("图片替换成功！");
+                logger.info("新图片地址：" + url);
+                logger.info("图片替换成功！");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        logger.info("update equipment: " + equipment.toString());
         int count = aedEquipmentMapper.updateEquipment(equipment);
         if (count > 0) {
+            logger.info("修改AED设备成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess("UPDATE SUCCESS!");
         } else {
+            logger.error("修改AED设备失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail("NOT UPDATE");
         }
 
@@ -168,21 +189,26 @@ public class AedEquipmentController {
     public ServerResponse deleteEquipment(@PathVariable @ApiParam(value = "设备ID") String equipmentId){
         Long id = Long.parseLong(equipmentId);
         String oldUrl = aedEquipmentMapper.findImageById(id);
-        System.out.println("旧图片地址：" + oldUrl);
+        logger.info("旧图片地址：" + oldUrl);
         if (oldUrl != null) {
             int statusCode = qiniuCloudUtils.deleteFromQiniu(oldUrl);
             if (statusCode == -1) {
-                System.out.println("图片删除失败！");
+                logger.error("图片删除失败！");
             } else {
-                System.out.println("图片删除成功！");
+                logger.info("图片删除成功！");
             }
         }
         int count3 = aedSituationMapper.deleteRecordByEquipmentId(id);
         int count2 = aedPositionMapper.deletePositionById(id);
         int count1 = aedEquipmentMapper.deleteEquipmentById(id);
+        logger.info("删除AED设备（设备信息、位置信息、检查记录） id: " + equipmentId);
         if (count1 > 0) {
+            logger.info("删除AED设备成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {
+            logger.error("删除AED设备失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }

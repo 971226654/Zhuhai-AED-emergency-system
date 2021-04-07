@@ -9,6 +9,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -26,11 +28,13 @@ import java.util.List;
 @Configuration
 public class ControllerAspect {
 
+    Logger logger = LoggerFactory.getLogger(ControllerAspect.class);
+
     /** 不需要登录的方法或登录接口的方法 */
     private final static List<String> passMethod = new ArrayList<>(Arrays.asList(
             "getAllEquipments", "getEquipmentById", "getAllInfos", "getAllKnows",
             "getInfoOrKnow", "createUserByMini", "createUserByWeb", "refreshToken",
-            "getWebLoginCodeMap", "getUserInfosFromWeb", "hello", "loginByPassword"));
+            "getWebLoginCodeMap", "getUserInfosFromWeb", "hello", "loginByPassword", "log"));
 
     @Autowired
     private AuthConfig authConfig;
@@ -44,7 +48,7 @@ public class ControllerAspect {
     @Before("controllerValidationPoint()")
     public void doBefore(JoinPoint joinPoint) {
 
-        System.out.println(joinPoint.toString());
+        logger.info(joinPoint.toString());
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
 
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -54,54 +58,50 @@ public class ControllerAspect {
             request = attributes.getRequest();
 
             String method = methodSignature.getMethod().getName();
-            System.out.println("Method: " + method);
+            logger.info("Method: " + method);
 
             if (passMethod.contains(method)) {
-                System.out.println("get equipments or infos or login.");
-                System.out.println("No Need Validation.");
+                logger.info("get equipments or infos or login.");
+                logger.info("No Need Validation.");
             } else {
                 UserAuth userAuth = (UserAuth) request.getAttribute("UserAuth");
                 if (userAuth != null) {
                     userAuth.setMethod(method);
-
-                    System.out.println(userAuth.toString());
-
+                    logger.info(userAuth.toString());
                     String role = userAuth.getRole();
                     if ("MANAGER".equals(role)) {
                         if (authConfig.getManager().contains(method)) {
                             request.setAttribute("UserAuth", userAuth);
-                            System.out.println("Pass Validation.");
+                            logger.info("Pass Validation.");
                         } else {
-                            System.out.println("No Validation.");
+                            logger.error("No Validation.");
                             throw new CdxException(ResponseCode.FORBIDDEN.getCode(), "No Validation.");
                         }
                     } else if ("INSPECTOR".equals(role)) {
                         if (authConfig.getInspector().contains(method)) {
                             request.setAttribute("UserAuth", userAuth);
-                            System.out.println("Pass Validation.");
+                            logger.info("Pass Validation.");
                         } else {
-                            System.out.println("No Validation.");
+                            logger.error("No Validation.");
                             throw new CdxException(ResponseCode.FORBIDDEN.getCode(), "No Validation.");
                         }
                     } else if ("USER".equals(role)) {
                         if (authConfig.getUser().contains(method)) {
                             request.setAttribute("UserAuth", userAuth);
-                            System.out.println("Pass Validation.");
+                            logger.info("Pass Validation.");
                         } else {
-                            System.out.println("No Validation.");
+                            logger.error("No Validation.");
                             throw new CdxException(ResponseCode.FORBIDDEN.getCode(), "No Validation.");
                         }
                     } else {
-                        System.out.println("角色错误，请检查数据库");
+                        logger.error("角色错误，请检查数据库");
                         throw new CdxException(ResponseCode.FORBIDDEN.getCode(), "角色错误，请检查数据库");
                     }
                 } else {
-                    System.out.println("auth为空，请查看token拦截器");
+                    logger.error("auth为空，请查看token拦截器");
                     throw new CdxException(ResponseCode.FORBIDDEN.getCode(), "auth为空，请查看token拦截器");
                 }
             }
         }
-
     }
-
 }

@@ -32,13 +32,13 @@ public class AuditOutput {
     @ApiModelProperty(value = "审核时间")
     private String auditTime;
 
+    @ApiModelProperty(value = "姓名")
+    private String realName;
+
     @ApiModelProperty(value = "审核结果")
     private AuditResult auditResult;
 
     @ApiModelProperty(value = "材料")
     private Material material;
-
-    @ApiModelProperty(value = "姓名")
-    private String name;
 
 }

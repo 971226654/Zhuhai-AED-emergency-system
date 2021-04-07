@@ -16,10 +16,8 @@ com/bnuz/aed/entity/params/SituationPostParam.java
  com.bnuz.aed.entity.params.SituationPostParam
 com/bnuz/aed/entity/params/AuditResultParam.java
  com.bnuz.aed.entity.params.AuditResultParam
-com/bnuz/aed/controller/HelloController.java
- com.bnuz.aed.controller.HelloController
-com/bnuz/aed/service/impl/UserServiceImpl.java
- com.bnuz.aed.service.impl.UserServiceImpl
+com/bnuz/aed/entity/base/AedEquipment.java
+ com.bnuz.aed.entity.base.AedEquipment
 com/bnuz/aed/common/mapper/RealtimeInfoMapper.java
  com.bnuz.aed.common.mapper.RealtimeInfoMapper
 com/bnuz/aed/entity/base/UserInfo.java
@@ -28,8 +26,8 @@ com/bnuz/aed/entity/base/AedSituation.java
  com.bnuz.aed.entity.base.AedSituation
 com/bnuz/aed/entity/params/RealtimeInfoPostParam.java
  com.bnuz.aed.entity.params.RealtimeInfoPostParam
-com/bnuz/aed/common/mapper/UserMapper.java
- com.bnuz.aed.common.mapper.UserMapper
+com/bnuz/aed/common/mapper/AuditResultMapper.java
+ com.bnuz.aed.common.mapper.AuditResultMapper
 com/bnuz/aed/common/config/AuthConfig.java
  com.bnuz.aed.common.config.AuthConfig
 com/bnuz/aed/entity/base/Material.java
@@ -57,6 +55,12 @@ com/bnuz/aed/entity/params/EquipmentPostParam.java
  com.bnuz.aed.entity.params.EquipmentPostParam
 com/bnuz/aed/entity/params/FeedbackResultParam.java
  com.bnuz.aed.entity.params.FeedbackResultParam
+com/bnuz/aed/common/config/WebSocketConfig.java
+ com.bnuz.aed.common.config.WebSocketConfig
+com/bnuz/aed/common/tools/TailLogThread.java
+ com.bnuz.aed.common.tools.TailLogThread
+com/bnuz/aed/common/config/LogWebSocketHandle.java
+ com.bnuz.aed.common.config.LogWebSocketHandle
 com/bnuz/aed/controller/AedEquipmentController.java
  com.bnuz.aed.controller.AedEquipmentController
 com/bnuz/aed/common/config/aspect/ControllerAspect.java
@@ -75,8 +79,8 @@ com/bnuz/aed/entity/expand/UserOutput.java
  com.bnuz.aed.entity.expand.UserOutput
 com/bnuz/aed/common/config/Swagger3Config.java
  com.bnuz.aed.common.config.Swagger3Config
-com/bnuz/aed/controller/UserController.java
- com.bnuz.aed.controller.UserController
+com/bnuz/aed/entity/base/Feedback.java
+ com.bnuz.aed.entity.base.Feedback
 com/bnuz/aed/controller/CollectListController.java
  com.bnuz.aed.controller.CollectListController
 com/bnuz/aed/entity/base/User.java
@@ -97,10 +101,12 @@ com/bnuz/aed/common/tools/ServerResponse.java
  com.bnuz.aed.common.tools.ServerResponse
 com/bnuz/aed/service/UserService.java
  com.bnuz.aed.service.UserService
-com/bnuz/aed/common/config/interceptors/JwtInterceptor.java
- com.bnuz.aed.common.config.interceptors.JwtInterceptor
-com/bnuz/aed/controller/AuditController.java
- com.bnuz.aed.controller.AuditController
+com/bnuz/aed/entity/base/RealtimeInfo.java
+ com.bnuz.aed.entity.base.RealtimeInfo
+com/bnuz/aed/controller/UtilController.java
+ com.bnuz.aed.controller.UtilController
+com/bnuz/aed/common/mapper/AedEquipmentMapper.java
+ com.bnuz.aed.common.mapper.AedEquipmentMapper
 com/bnuz/aed/entity/expand/AuditOutput.java
  com.bnuz.aed.entity.expand.AuditOutput
 com/bnuz/aed/common/tools/utils/JwtTokenUtils.java
@@ -109,19 +115,23 @@ com/bnuz/aed/common/tools/ResponseCode.java
  com.bnuz.aed.common.tools.ResponseCode
 com/bnuz/aed/entity/base/AuditResult.java
  com.bnuz.aed.entity.base.AuditResult
+com/bnuz/aed/entity/params/PositionPutParam.java
+ com.bnuz.aed.entity.params.PositionPutParam
 com/bnuz/aed/controller/FeedbackController.java
  com.bnuz.aed.controller.FeedbackController
 com/bnuz/aed/common/mapper/CollectListMapper.java
  com.bnuz.aed.common.mapper.CollectListMapper
 com/bnuz/aed/entity/base/UserAuth.java
  com.bnuz.aed.entity.base.UserAuth
-com/bnuz/aed/common/mapper/AuditResultMapper.java
- com.bnuz.aed.common.mapper.AuditResultMapper
-com/bnuz/aed/entity/base/RealtimeInfo.java
- com.bnuz.aed.entity.base.RealtimeInfo
-com/bnuz/aed/entity/base/Feedback.java
- com.bnuz.aed.entity.base.Feedback
-com/bnuz/aed/entity/base/AedEquipment.java
- com.bnuz.aed.entity.base.AedEquipment
-com/bnuz/aed/common/mapper/AedEquipmentMapper.java
- com.bnuz.aed.common.mapper.AedEquipmentMapper
+com/bnuz/aed/controller/AuditController.java
+ com.bnuz.aed.controller.AuditController
+com/bnuz/aed/service/impl/UserServiceImpl.java
+ com.bnuz.aed.service.impl.UserServiceImpl
+com/bnuz/aed/controller/UserController.java
+ com.bnuz.aed.controller.UserController
+com/bnuz/aed/entity/expand/InspectorOutput.java
+ com.bnuz.aed.entity.expand.InspectorOutput
+com/bnuz/aed/common/config/interceptors/JwtInterceptor.java
+ com.bnuz.aed.common.config.interceptors.JwtInterceptor
+com/bnuz/aed/common/mapper/UserMapper.java
+ com.bnuz.aed.common.mapper.UserMapper

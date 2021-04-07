@@ -6,6 +6,8 @@ import com.bnuz.aed.entity.base.UserAuth;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,8 @@ import java.util.Map;
 @Api(tags = "CollectListController", description = "收藏模块接口")
 public class CollectListController {
 
+    Logger logger = LoggerFactory.getLogger(CollectListController.class);
+
     @Autowired
     private CollectListMapper collectListMapper;
 
@@ -31,8 +35,12 @@ public class CollectListController {
         Long userId = Long.parseLong(auth.getUserId());
         List<Map<String, Object>> outputs = collectListMapper.findAllCollectById(userId);
         if (outputs != null) {
+            logger.info("获取成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess(outputs);
         } else {
+            logger.error("获取失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -45,9 +53,14 @@ public class CollectListController {
         Long userId = Long.parseLong(auth.getUserId());
         Long infoId = Long.parseLong(info_id);
         int count = collectListMapper.insertCollection(userId, infoId);
+        logger.info("new collected id" + info_id);
         if (count > 0) {
+            logger.info("新增收藏成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess("INSERT SUCCESS!");
         } else {
+            logger.error("新增收藏失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
@@ -57,9 +70,14 @@ public class CollectListController {
     public ServerResponse deleteCollection(@PathVariable @ApiParam(value = "收藏ID") String collectionId) {
         Long id = Long.parseLong(collectionId);
         int count = collectListMapper.deleteCollection(id);
+        logger.info("删除collection id: " + collectionId);
         if (count > 0) {
+            logger.info("删除收藏成功。");
+            logger.info("==========================================");
             return ServerResponse.createBySuccess("DELETE SUCCESS!");
         } else {
+            logger.error("删除收藏失败。");
+            logger.info("==========================================");
             return ServerResponse.createByFail();
         }
     }
