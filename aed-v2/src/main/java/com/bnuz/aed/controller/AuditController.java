@@ -7,10 +7,7 @@ import com.bnuz.aed.common.mapper.MaterialMapper;
 import com.bnuz.aed.common.mapper.UserMapper;
 import com.bnuz.aed.common.tools.utils.QiniuCloudUtils;
 import com.bnuz.aed.common.tools.ServerResponse;
-import com.bnuz.aed.entity.base.Audit;
-import com.bnuz.aed.entity.base.AuditResult;
-import com.bnuz.aed.entity.base.Material;
-import com.bnuz.aed.entity.base.UserAuth;
+import com.bnuz.aed.entity.base.*;
 import com.bnuz.aed.entity.expand.AuditOutput;
 import com.bnuz.aed.entity.params.AuditParam;
 import com.bnuz.aed.entity.params.AuditResultParam;
@@ -109,14 +106,19 @@ public class AuditController {
         logger.info("params: " + params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
+        User user = userMapper.findUserByUserId(userId);
         Audit audit = new Audit();
         audit.setUserId(userId);
         audit.setPhoneNumber(params.getPhoneNumber());
+        user.setPhoneNumber(params.getPhoneNumber());
         audit.setIdCard(params.getIdCard());
+        user.setIdCard(params.getIdCard());
         audit.setAuditTime(params.getAuditTime());
         audit.setRealName(params.getRealName());
         int count1 = auditMapper.insertAudit(audit);
         logger.info("new audit: " + audit.toString());
+        int count_u = userMapper.updateUserInfoByUserId(user);
+        logger.info("update user: " + user.toString());
 
         Long auditId = ArrayUtil.max(auditMapper.findAuditIdsByUserId(userId));
         int count2 = 0;
@@ -183,13 +185,16 @@ public class AuditController {
         logger.info("params: " + params.toString());
         UserAuth auth = (UserAuth) request.getAttribute("UserAuth");
         Long userId = Long.parseLong(auth.getUserId());
+        User user = userMapper.findUserByUserId(userId);
         Long auditId = ArrayUtil.max(auditMapper.findAuditIdsByUserId(userId));
-        Audit audit = (Audit) auditMapper.findAuditByAuditId(auditId);
+        Audit audit = auditMapper.findAuditByAuditId(auditId);
         if (!params.getPhoneNumber().equals(audit.getPhoneNumber())) {
             audit.setPhoneNumber(params.getPhoneNumber());
+            user.setPhoneNumber(params.getPhoneNumber());
         }
         if (!params.getIdCard().equals(audit.getIdCard())) {
             audit.setIdCard(params.getIdCard());
+            user.setIdCard(params.getIdCard());
         }
         if (!params.getAuditTime().equals(audit.getAuditTime())) {
             audit.setAuditTime(params.getAuditTime());
@@ -199,6 +204,9 @@ public class AuditController {
         }
         int count1 = auditMapper.updateAudit(audit);
         logger.info("update Audit: " + audit.toString());
+        int count_u = userMapper.updateUserInfoByUserId(user);
+        logger.info("update user: " + user.toString());
+
         int count2 = 0;
         Material material = materialMapper.findMaterialsByAid(auditId);
         if (material != null) {

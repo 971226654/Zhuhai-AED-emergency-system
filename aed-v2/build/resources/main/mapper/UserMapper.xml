@@ -98,30 +98,36 @@
 
     <select id="findInspectors" resultType="com.bnuz.aed.entity.expand.InspectorOutput">
         SELECT
-            u.userId,
-            u.userName,
-            u.wxOpenid,
-            u.phoneNumber,
-            u.idCard,
-            u.email,
-            u.responsibleArea,
-            u.role,
-            u.passwd,
-            a.auditId,
-            a.auditTime,
-            a.realName,
-            ar.managerId,
-            ar.result,
-            ar.resultTime
+            *
         FROM
-            User u
-                LEFT JOIN Audit a ON u.userId = a.userId
-                LEFT JOIN AuditResult ar ON ar.auditId = a.auditId
-        WHERE
-            u.role = 'INSPECTOR'
-        ORDER BY
-            a.auditId DESC
-        LIMIT 1;
+            (
+                SELECT
+                    u.userId,
+                    u.userName,
+                    u.wxOpenid,
+                    u.phoneNumber,
+                    u.idCard,
+                    u.email,
+                    u.responsibleArea,
+                    u.role,
+                    u.passwd,
+                    a.auditId,
+                    a.auditTime,
+                    a.realName,
+                    ar.managerId,
+                    ar.result,
+                    ar.resultTime
+                FROM
+                    User u
+                        LEFT JOIN Audit a ON u.userId = a.userId
+                        LEFT JOIN AuditResult ar ON ar.auditId = a.auditId
+                WHERE
+                    u.role = 'INSPECTOR'
+                ORDER BY
+                    a.auditId DESC
+            ) i
+        GROUP BY
+            i.wxOpenid;
     </select>
 
 </mapper>

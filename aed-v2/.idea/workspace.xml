@@ -26,86 +26,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26886c16-0bad-470f-8bff-8ae8b003d4f6" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/LogWebSocketHandle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/WebSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/TailLogThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/expand/InspectorOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/params/PositionPutParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries-with-intellij-classes.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/059d7c7e-f38b-4efd-a872-3b30bc6f6ba9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/059d7c7e-f38b-4efd-a872-3b30bc6f6ba9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/AedApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/AedApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/InterceptorConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/InterceptorConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/aspect/ControllerAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/aspect/ControllerAspect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/interceptors/JwtInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/config/interceptors/JwtInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/mapper/AuditMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/mapper/AuditMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/mapper/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/HttpsClientUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/HttpsClientUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/JwtTokenUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/JwtTokenUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/QiniuCloudUtils$Ret.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/QiniuCloudUtils$Ret.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/QiniuCloudUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/common/tools/utils/QiniuCloudUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AedEquipmentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AedEquipmentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AedPositionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AedPositionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AedSituationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AedSituationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AuditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/AuditController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/CollectListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/CollectListController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/FeedbackController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/FeedbackController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/HelloController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/RealtimeInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/RealtimeInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/base/AedPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/base/AedPosition.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/base/Audit.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/base/Audit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/expand/AedOutput.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/expand/AedOutput.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/expand/AuditOutput.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/expand/AuditOutput.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/params/AuditParam.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/bnuz/aed/entity/params/AuditParam.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/jquery-3.6.0.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/AedPositionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/AedPositionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/AuditMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/AuditMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/log-web.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/log-web.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/AedApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/AedApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/InterceptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/aspect/ControllerAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/aspect/ControllerAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/interceptors/JwtInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/config/interceptors/JwtInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/mapper/AuditMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/mapper/AuditMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/HttpsClientUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/HttpsClientUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/JwtTokenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/JwtTokenUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/QiniuCloudUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/common/tools/utils/QiniuCloudUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedEquipmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedEquipmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedPositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedPositionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedSituationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AedSituationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AuditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/AuditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/CollectListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/CollectListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/FeedbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/FeedbackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/UtilController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/RealtimeInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/RealtimeInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/AedPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/AedPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/Audit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/base/Audit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/expand/AedOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/expand/AedOutput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/expand/AuditOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/expand/AuditOutput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/params/AuditParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bnuz/aed/entity/params/AuditParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/jquery-3.6.0.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/jquery-3.6.0.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AedPositionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AedPositionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AuditMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AuditMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/log-web.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/log-web.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,6 +112,7 @@
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -221,19 +149,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.aed-v2 [bootJar]">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="aed-v2 [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -349,7 +264,8 @@
       <workItem from="1616809019030" duration="4441000" />
       <workItem from="1617438658580" duration="28965000" />
       <workItem from="1617626166960" duration="128000" />
-      <workItem from="1617626309428" duration="29701000" />
+      <workItem from="1617626309428" duration="30433000" />
+      <workItem from="1617809362083" duration="4339000" />
     </task>
     <servers />
   </component>
